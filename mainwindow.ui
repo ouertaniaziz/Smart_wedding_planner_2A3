@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Lore</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../Proj icons/app icon.png</normaloff>../../../Proj icons/app icon.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-2</y>
+      <width>1200</width>
+      <height>801</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+ border-width: 2px;
+border-style: solid;
+border-color: #80cbc4;
+  border-radius: 10px;
+padding:0 8;
+}
+QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: #ba68c8;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:hover
+{
+background:#e5ffff;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background: #f5f5f5;
+}
+QStackedWidget &gt; QWidget{
+background: white;
+}
+QTableView
+{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+ border-width: 2px;
+border-color: #9e9e9e;
+background: #f5f5f5;
+}
+</string>
+    </property>
+    <widget class="QWidget" name="emp_mus">
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>300</y>
+        <width>420</width>
+        <height>150</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Musician Management</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/musico.png</normaloff>../../../Proj icons/musico.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>300</y>
+        <width>420</width>
+        <height>150</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Employee Management</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/empico.png</normaloff>../../../Proj icons/empico.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Mus_man">
+     <widget class="QCommandLinkButton" name="commandLinkButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: white;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:hover
+{
+background:#f5f5f5;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background:#eeeeee;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/back.png</normaloff>../../../Proj icons/back.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="add_Musicians">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>180</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Add a Musician</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/plus.png</normaloff>../../../Proj icons/plus.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="del_Musicians">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>460</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Delete Musicians</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/trash.png</normaloff>../../../Proj icons/trash.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="res_Musicians">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>460</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Reserve a Musician</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/bell.png</normaloff>../../../Proj icons/bell.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mod_Musicians">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>180</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Modify Musicians</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/pencil.png</normaloff>../../../Proj icons/pencil.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Addmus">
+     <widget class="QFrame" name="Mus_frame">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>70</y>
+        <width>981</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">.QFrame{
+border: 2px solid grey ;
+background-color: #fafafa;
+border-radius: 25px;
+padding: 20px;
+ margin: 0px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLineEdit" name="FNedit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>110</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="LNedit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>210</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FNlabel">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>70</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>First Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="LNlabel">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>170</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Last Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="MGlabel">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>270</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Music Genre</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EMlabel">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>370</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="EMedit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>410</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Thin</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="sub_mus">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>500</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: #80cbc4;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background: #f5f5f5;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Submit</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="can_mus">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>500</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>318</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox
+{ 
+border-width: 2px;
+border-style: solid;
+border-color: #80cbc4;
+border-radius: 10px;
+padding:0 5;
+}
+</string>
+       </property>
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Jazz</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rock</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Electro</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Traditional</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Calm</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="labmusadd">
+      <property name="geometry">
+       <rect>
+        <x>23</x>
+        <y>101</y>
+        <width>161</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>19</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+color:#ba68c8
+}</string>
+      </property>
+      <property name="text">
+       <string>Add Musician</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Modmus">
+     <widget class="QTableView" name="musmod">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>230</y>
+        <width>781</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>170</y>
+        <width>111</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>To Modify</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: white;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:hover
+{
+background:#f5f5f5;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background:#eeeeee;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/back.png</normaloff>../../../Proj icons/back.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Emp_man">
+     <widget class="QCommandLinkButton" name="commandLinkButton_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: white;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:hover
+{
+background:#f5f5f5;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background:#eeeeee;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/back.png</normaloff>../../../Proj icons/back.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="add_Emp">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>180</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Add an Employee</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/plus.png</normaloff>../../../Proj icons/plus.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="del_Emp">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>460</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Delete Employees</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/trash.png</normaloff>../../../Proj icons/trash.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mod_Emp">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>180</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Modify Employees</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/pencil.png</normaloff>../../../Proj icons/pencil.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="gen_pdf">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>460</y>
+        <width>350</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Light</family>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Generate a PDF file</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Proj icons/pdf.png</normaloff>../../../Proj icons/pdf.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Addemp">
+     <widget class="QFrame" name="Emp_frame">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>70</y>
+        <width>981</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">.QFrame{
+border: 2px solid grey ;
+background-color: #fafafa;
+border-radius: 25px;
+padding: 20px;
+ margin: 0px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLineEdit" name="FNedit_1">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>110</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="LNedit_1">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>210</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FNlabel_1">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>70</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>First Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="LNlabel_3">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>170</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Last Name</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="Saledit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>310</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Sal_emp">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>266</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Salary</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="NUMlabel">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>370</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Number</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="NUMedit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>410</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="sub_emp">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>500</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+ border-width: 2px;
+border-style: outset;
+border-color: #80cbc4;
+border-radius: 20px;
+padding:0 8;
+}
+QPushButton:pressed{
+border-style: inset;
+border-radius: 20px;
+padding:0 8;
+background: #f5f5f5;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Submit</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="can_emp">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>500</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Light</family>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="labaddemp">
+      <property name="geometry">
+       <rect>
+        <x>23</x>
+        <y>101</y>
+        <width>161</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>19</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+color:#ba68c8
+}</string>
+      </property>
+      <property name="text">
+       <string>Add Employee</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
