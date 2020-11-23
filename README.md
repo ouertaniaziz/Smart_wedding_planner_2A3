@@ -1,8 +1,9 @@
-# LORE
+# SONO Module
 
 
-Lore is a modern and smart app for agencies that manage weddings.
+The SONO module is essential to the application and to it's functionality
 
-  - Intuitive UI
-  - Easy setup
-  - Secure
+  - Manage Musicians 
+  - Reserve Musicians
+  - Manage Employees
+  - Generate PDF containing employees and their salaries.
