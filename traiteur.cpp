@@ -47,6 +47,11 @@ bool traiteur::update_T(QString identifiant ,QString nom ,QString numero,QString
         query.prepare( "update TRAITEUR set  ADRESSE_TRAIT= :addres where ID_TRAIT=:id " );
 
     }
+    else if (column==5)
+     {
+         //  query.prepare("Delete from TRAITEUR where ID_TRAIT=:id ");
+         //  qDebug()<<"suprimer";
+    }
     query.bindValue(":id",identifiant);
     query.bindValue(":nom",nom);
     query.bindValue(":num",numero);
@@ -64,4 +69,12 @@ QSqlQueryModel * traiteur ::afficher()
     model->setQuery("SELECT * FROM TRAITEUR ");
 
 return model;
+}
+bool traiteur::DELETE(QString identifiant)
+{ QSqlQuery query;
+     query.prepare("Delete from TRAITEUR where ID_TRAIT=:id ");
+     qDebug()<<"suprimer";
+     query.bindValue(":id",identifiant);
+
+     return query.exec();
 }

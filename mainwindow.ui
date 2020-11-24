@@ -41,8 +41,8 @@ background-repeat: none;
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>40</y>
+      <x>10</x>
+      <y>50</y>
       <width>671</width>
       <height>401</height>
      </rect>
@@ -1832,13 +1832,22 @@ background-repeat: none;
      </widget>
     </widget>
     <widget class="QWidget" name="modifier_trait">
+     <property name="styleSheet">
+      <string notr="true">#modifier_trait{
+background-color: transparent;
+border-image: url(:fond.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+     </property>
      <widget class="QTableWidget" name="aff_trait">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>80</y>
-        <width>651</width>
-        <height>241</height>
+        <x>50</x>
+        <y>120</y>
+        <width>551</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="editTriggers">
@@ -2423,8 +2432,8 @@ color : white</string>
      <widget class="QLineEdit" name="rechercheLine">
       <property name="geometry">
        <rect>
-        <x>472</x>
-        <y>30</y>
+        <x>480</x>
+        <y>10</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -2466,17 +2475,31 @@ background-repeat: none;
        <string>rechercher</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page_4">
-     <property name="styleSheet">
-      <string notr="true">#page_4{
-background-color: transparent;
-border-image: url(:fond.png);
-background: none;
-border: none;
-background-repeat: none;
-}</string>
-     </property>
+     <widget class="QComboBox" name="triTrait">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>20</y>
+        <width>71</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>identifiant</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>nom</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Nouvel élément</string>
+       </property>
+      </item>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_5">
      <property name="styleSheet">
@@ -2508,7 +2531,7 @@ color : white</string>
        <string>back</string>
       </property>
      </widget>
-     <widget class="QTableView" name="essai_table_2">
+     <widget class="QTableView" name="affiche_tablePR">
       <property name="geometry">
        <rect>
         <x>35</x>
@@ -3097,13 +3120,13 @@ color : white</string>
        <string>back</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="aff_trait_2">
+     <widget class="QTableWidget" name="update_tablePR">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>651</width>
-        <height>241</height>
+        <x>110</x>
+        <y>140</y>
+        <width>481</width>
+        <height>201</height>
        </rect>
       </property>
       <property name="editTriggers">

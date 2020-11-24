@@ -23,6 +23,9 @@ public:
     void setPRIXprod(QString prixP){Prix_Prod=prixP;}
     void setIDTRAITprod(QString idTP){Id_TraitProd=idTP;}
  bool addproduit();
+ bool update_P(QString identifiant ,QString nom ,QString type,QString prix,QString idtrait , int columun);
+ QSqlQueryModel* afficher();
+ bool DELETE(QString identifiant);
 
     Produit();
 };

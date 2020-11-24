@@ -18,7 +18,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void initialiserUpdate();
+    void initialiserUpdatetrait();
+    void initialiserUpdateprod();
 
 private slots:
     void on_traiteur_edit_clicked();
@@ -60,6 +61,21 @@ private slots:
 void on_pushButton_7_clicked();
 void on_pushButton_8_clicked();
 void on_green_addP_clicked();
+
+
+void on_aff_trait_cellClicked(int row, int column);
+
+void on_list_produit_clicked();
+
+void on_modifie_produit_clicked();
+
+void on_pushButton_9_clicked();
+
+void on_update_tablePR_cellChanged(int row, int column);
+
+void on_update_tablePR_cellClicked(int row, int column);
+
+void on_triTrait_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
