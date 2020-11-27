@@ -7,6 +7,8 @@ Connection::Connection()
 
 }
 
+// test connection
+
 bool Connection::createconnect()
 {bool test=false;
 QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
