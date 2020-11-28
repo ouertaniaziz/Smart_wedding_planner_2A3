@@ -109,3 +109,7 @@ void MainWindow::on_del_Musicians_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
 }
+void MainWindow::on_commandLinkButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
