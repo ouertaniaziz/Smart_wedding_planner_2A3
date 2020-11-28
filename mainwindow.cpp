@@ -151,3 +151,33 @@ void MainWindow::on_commandLinkButton_7_clicked()
     aaa.setNum(cmon);
     ui->PRMedit_2->setText(aaa);
 }
+void MainWindow::on_sub_mus_2_clicked()
+{
+
+    int id_mus1 = ui->MIDedit->text().toInt();
+    int prix_mus = ui->PRMedit_2->text().toInt();
+    QString nom_mus = ui->FNedit_2->text();
+    QString prenom_mus = ui->LNedit_2->text();
+    int id_mus = ui->IDMedit_2->text().toInt();
+    QString genre_mus = ui->MGedit_2->text();
+    QString email_mus = ui->EMedit_2->text();
+    bool test = mscs.modifier_mus(id_mus1, id_mus, nom_mus, prenom_mus, genre_mus, email_mus, prix_mus);
+    if (test)
+    {
+        ui->PRMedit_2->clear();
+        ui->FNedit_2->clear();
+        ui->LNedit_2->clear();
+        ui->IDMedit_2->clear();
+        ui->MGedit_2->clear();
+        ui->EMedit_2->clear();
+        ui->tableView->setModel(mscs.afficher_mus());
+
+        QMessageBox::information(nullptr, QObject::tr("Success"), QObject::tr("Musician Successfully Modified!\n"), QMessageBox::Ok);
+    }
+    else
+    {
+        QMessageBox::critical(nullptr, QObject::tr("Failed"), QObject::tr("Failed to Modify musician\n"
+                                                                          "Click cancel."),
+                              QMessageBox::Cancel);
+    }
+}
