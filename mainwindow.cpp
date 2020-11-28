@@ -23,7 +23,7 @@ ui->stackedWidget->setCurrentIndex(1);
 
 void MainWindow::on_pushButton_2_clicked()
 {
-ui->stackedWidget->setCurrentIndex(4);
+ui->stackedWidget->setCurrentIndex(5);
 }
 
 void MainWindow::on_commandLinkButton_clicked()
@@ -38,7 +38,7 @@ void MainWindow::on_commandLinkButton_2_clicked()
 
 void MainWindow::on_add_Musicians_clicked()
 {
-   ui->stackedWidget->setCurrentIndex(2);
+   ui->stackedWidget->setCurrentIndex(3);
 }
 
 
@@ -51,12 +51,12 @@ void MainWindow::on_can_mus_clicked()
 
 void MainWindow::on_add_Emp_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(5);
+    ui->stackedWidget->setCurrentIndex(6);
 
 }
 
 void MainWindow::on_can_emp_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(5);
 
 }
