@@ -33,8 +33,27 @@ private slots:
     void on_add_Emp_clicked();
 
     void on_can_emp_clicked();
+void on_list_Musicians_clicked();
 
+    void on_commandLinkButton_4_clicked();
+
+    void on_sub_mus_clicked();
+
+    void on_commandLinkButton_5_clicked();
+
+    void on_del_Musicians_clicked();
+
+    void on_commandLinkButton_6_clicked();
+
+    void on_delmusid_clicked();
+
+    void on_mod_Musicians_clicked();
+
+    void on_commandLinkButton_7_clicked();
+
+    void on_sub_mus_2_clicked();
 private:
     Ui::MainWindow *ui;
+        musiciens mscs;
 };
 #endif // MAINWINDOW_H
