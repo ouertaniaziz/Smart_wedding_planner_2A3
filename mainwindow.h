@@ -6,6 +6,7 @@
 #include"login.h"
 #include<QSqlQueryModel>
 #include"produit.h"
+#include <stdlib.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -76,6 +77,18 @@ void on_update_tablePR_cellChanged(int row, int column);
 void on_update_tablePR_cellClicked(int row, int column);
 
 void on_triTrait_currentIndexChanged(int index);
+
+
+
+
+void on_rechercheLine_textChanged(const QString &arg1);
+
+void on_triProd_currentIndexChanged(int index);
+
+void on_rechercheLine_2_textChanged(const QString &arg1);
+
+bool verif_trait(QString,QString,QString,QString,QString);
+bool verif_prod(QString,QString,QString,QString,QString);
 
 private:
     Ui::MainWindow *ui;

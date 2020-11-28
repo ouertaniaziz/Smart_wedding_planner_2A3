@@ -27,7 +27,7 @@ public:
    void setIDTrait(QString id){ID_traiteur=id;}
    bool addtraiteur( );
    bool update_T(QString identifiant ,QString nom ,QString numero,QString email,QString adresse , int columun);
-   QSqlQueryModel* afficher();
+   QSqlQueryModel* afficher(int c,QString cherche);
    bool DELETE(QString identifiant);
 
 };

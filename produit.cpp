@@ -60,11 +60,33 @@ bool Produit::update_P(QString identifiant ,QString nom ,QString type,QString pr
 
     return query.exec();
 }
-QSqlQueryModel * Produit::afficher()
+QSqlQueryModel * Produit::afficher(int c,QString cherche)
 {
     QSqlQueryModel *model= new QSqlQueryModel();
-    model->setQuery("SELECT * FROM PRODUIT ");
+    if(c==0)
+    {
+    model->setQuery("SELECT * FROM PRODUIT ORDER BY ID_PRODUIT ASC  ");
+}
+    else if (c==1) {
+        model->setQuery("SELECT * FROM PRODUIT ORDER BY NOM_PRODUIT ASC ");
 
+
+    }
+    else if (c==2) {
+
+        model->setQuery("SELECT * FROM PRODUIT ORDER BY PRIX_PRODUIT ASC ");
+
+    }
+    else if (c==3) {
+        model->setQuery("SELECT * FROM PRODUIT ORDER BY PRIX_PRODUIT DESC ");
+
+
+    }
+    else if (c==5) {
+        model->setQuery("SELECT * FROM PRODUIT WHERE  NOM_PRODUIT LIKE '%"+cherche+"%' ");
+
+
+    }
 return model;
 }
 bool Produit::DELETE(QString identifiant)

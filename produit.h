@@ -24,7 +24,7 @@ public:
     void setIDTRAITprod(QString idTP){Id_TraitProd=idTP;}
  bool addproduit();
  bool update_P(QString identifiant ,QString nom ,QString type,QString prix,QString idtrait , int columun);
- QSqlQueryModel* afficher();
+ QSqlQueryModel* afficher(int c,QString cherche);
  bool DELETE(QString identifiant);
 
     Produit();

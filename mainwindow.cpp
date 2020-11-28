@@ -68,13 +68,90 @@ void MainWindow::on_ajoute_produit_clicked()
     ui->stackedWidget->setCurrentIndex(4);
 
 }
+bool MainWindow::verif_trait(QString id,QString nom,QString num,QString email,QString adresse)
+{ bool verification=true;
+    int k,N;
+    k=id.toInt();
+    N=num.toInt();
+    if(k==0)
+    {
+        ui->IDEdit->clear();
+        ui->IDEdit->setText("l'identifiant contien que des chiffres");
+        verification=false;
+    }
+    if(nom=="")
+    {
+        ui->nameEdit->clear();
 
+          ui->nameEdit->setText("il faut remplire le nom");
+          verification=false;
 
+    }
+   for(int i=0;i<ui->nameEdit->text().size();i++)
+   {
+if((ui->nameEdit->text().at(i)>'a')&&((ui->nameEdit->text().at(i))<'z'))
+{
+    ui->nameEdit->clear();
+
+      ui->nameEdit->setText("verifier le nom ");
+      //verification=false;
+
+    }
+   }
+   if(N==0)
+   {
+       ui->phoneEdit->clear();
+       ui->phoneEdit->setText("verifier le numero");
+       verification=false;
+   }
+   int x=0;
+   for(int i=0;i<ui->emailEdit->text().size();i++)
+   {
+if(ui->emailEdit->text().at(i)=='@')
+{
+
+x++;
+    }
+   }
+   if((x<1)||(x>1))
+   {
+       ui->emailEdit->clear();
+
+         ui->emailEdit->setText("verifier l'email");
+         verification=false;
+   }
+   if(adresse=="")
+   {
+       ui->adresseEdit->clear();
+
+         ui->adresseEdit->setText("il faut remplire le nom");
+         verification=false;
+
+   }
+
+    return verification;
+
+}
+bool verif_prod(QString id ,QString nom ,QString prix,QString type,QString id_t)
+{
+bool verification=true;
+   int k,N;
+   k=id.toInt();
+   N=prix.toInt();
+   if(k==0)
+   {
+       ui->identifier_edit->clear();
+       ui->identifier_edit->setText("l'identifiant contien que des chiffres");
+       verification=false;
+   }
+}
 //ajouter un traiteur
 void MainWindow::on_green_add_clicked()
 {
 
     traiteur t;
+   if(verif_trait(ui->IDEdit->text(),ui->nameEdit->text(),ui->phoneEdit->text(),ui->emailEdit->text(),ui->adresseEdit->text())==true)
+   {
 t.setIDTrait(ui->IDEdit->text());
 t.setNomTrait(ui->nameEdit->text());
 t.setNumTrait(ui->phoneEdit->text());
@@ -88,17 +165,21 @@ ui->phoneEdit->clear();
 ui->emailEdit->clear();
 ui->adresseEdit->clear();
 ui->stackedWidget->setCurrentIndex(1);
+   }
+
 
 }
 void MainWindow::on_green_addP_clicked()
 {
     Produit p;
-    p.setIDprod(ui->identifier_edit->text());
+    if(verif_prod(ui->identifier_edit->text(),ui->namePEdit->text(),ui->priceEdit->text(),ui->typeBox->currentText(),ui->idencatprod->text()))
+   { p.setIDprod(ui->identifier_edit->text());
     p.setNOMprod(ui->namePEdit->text());
     p.setPRIXprod(ui->priceEdit->text());
     p.setTYPEprod(ui->typeBox->currentText());
     p.setIDTRAITprod(ui->idencatprod->text());
 p.addproduit();
+    }
     ui->identifier_edit->clear();
     ui->namePEdit->clear();
     ui->priceEdit->clear();
@@ -118,7 +199,7 @@ void MainWindow::on_list_traiteurs_clicked()
 
 traiteur t;
         ui->stackedWidget->setCurrentIndex(6);
-        ui->essai_table->setModel(t.afficher());
+        ui->essai_table->setModel(t.afficher(0,"null"));
          ui->essai_table->resizeRowsToContents();
          ui->essai_table->resizeColumnsToContents();
          ui->essai_table->show();
@@ -177,7 +258,7 @@ void MainWindow::initialiserUpdatetrait( )
 
     traiteur t;
 
-   ui->essai_table->setModel(t.afficher());
+   ui->essai_table->setModel(t.afficher(0,"null"));
 
 
             ui->aff_trait->setRowCount(0);
@@ -249,7 +330,7 @@ void MainWindow::on_list_produit_clicked()
 {
     Produit p;
             ui->stackedWidget->setCurrentIndex(7);
-            ui->affiche_tablePR->setModel(p.afficher());
+            ui->affiche_tablePR->setModel(p.afficher(0,"null"));
              ui->affiche_tablePR->resizeRowsToContents();
              ui->affiche_tablePR->resizeColumnsToContents();
              ui->affiche_tablePR->show();
@@ -264,7 +345,7 @@ void MainWindow::initialiserUpdateprod()
    ui->update_tablePR->setHorizontalHeaderLabels(entet);
    ui->update_tablePR->resizeColumnsToContents();
 
-   ui->affiche_tablePR->setModel(p.afficher());
+   ui->affiche_tablePR->setModel(p.afficher(0,"null"));
 
 
             ui->update_tablePR->setRowCount(0);
@@ -331,15 +412,46 @@ if(column==5)
 
 void MainWindow::on_triTrait_currentIndexChanged(int index)
 {qDebug()<< index;
+    traiteur t;
+    ui->essai_table->setModel(t.afficher(index,"null"));
+         ui->essai_table->resizeRowsToContents();
+         ui->essai_table->resizeColumnsToContents();
+         ui->essai_table->show();
 
-    if (index==1){
 
+}
+
+
+
+
+
+
+void MainWindow::on_rechercheLine_textChanged(const QString &arg1)
+{
+    traiteur t;
+
+    ui->essai_table->setModel(t.afficher(5,arg1));
+
+    qDebug()<< ui->rechercheLine->text();
+         ui->essai_table->resizeRowsToContents();
+         ui->essai_table->resizeColumnsToContents();
+         ui->essai_table->show();
+}
+
+void MainWindow::on_triProd_currentIndexChanged(int index)
+{
     Produit p;
-    ui->essai_table->setModel(p.afficher());
-     ui->essai_table->resizeRowsToContents();
-     ui->essai_table->resizeColumnsToContents();
-     ui->essai_table->show();
+            ui->affiche_tablePR->setModel(p.afficher(index,"null"));
+             ui->affiche_tablePR->resizeRowsToContents();
+             ui->affiche_tablePR->resizeColumnsToContents();
+             ui->affiche_tablePR->show();
+}
 
-
-    }
+void MainWindow::on_rechercheLine_2_textChanged(const QString &arg1)
+{
+    Produit p;
+            ui->affiche_tablePR->setModel(p.afficher(5,arg1));
+             ui->affiche_tablePR->resizeRowsToContents();
+             ui->affiche_tablePR->resizeColumnsToContents();
+             ui->affiche_tablePR->show();
 }

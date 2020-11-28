@@ -63,10 +63,27 @@ bool traiteur::update_T(QString identifiant ,QString nom ,QString numero,QString
     return query.exec();
 }
 //afficher traiteur
-QSqlQueryModel * traiteur ::afficher()
+QSqlQueryModel * traiteur ::afficher(int c,QString cherche)
 {
     QSqlQueryModel *model= new QSqlQueryModel();
-    model->setQuery("SELECT * FROM TRAITEUR ");
+    if (c==0)
+    {
+        model->setQuery("SELECT * FROM TRAITEUR ORDER BY ID_TRAIT ASC ");
+
+    }
+    else if(c==1)
+    {
+        model->setQuery("SELECT * FROM TRAITEUR ORDER BY NOM_TRAIT ASC ");
+
+    }
+    else if(c==5)
+    {
+
+        model->setQuery("SELECT * FROM TRAITEUR WHERE  NOM_TRAIT LIKE '%"+cherche+"%' ");
+
+
+    }
+
 
 return model;
 }
