@@ -113,3 +113,41 @@ void MainWindow::on_commandLinkButton_6_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
+void MainWindow::on_delmusid_clicked()
+{
+    int id_mus = ui->musdeledit->text().toInt();
+    bool test = mscs.supprimer_mus(id_mus);
+    if (test)
+    {
+        ui->tableView->setModel(mscs.afficher_mus());
+
+        QMessageBox::information(nullptr, QObject::tr("Success"), QObject::tr("Musician Successfully Deleted!\n"), QMessageBox::Ok);
+    }
+    else
+    {
+        QMessageBox::critical(nullptr, QObject::tr("Failed"), QObject::tr("Failed to delete musician\n"
+                                                                          "Click cancel."),
+                              QMessageBox::Cancel);
+    }
+}
+
+void MainWindow::on_mod_Musicians_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_commandLinkButton_7_clicked()
+{
+    QString aaa;
+    int id_mus = ui->MIDedit->text().toInt();
+    int cmon = mscs.affecter_mus(id_mus);
+    aaa.setNum(cmon);
+    ui->IDMedit_2->setText(aaa);
+    ui->FNedit_2->setText(mscs.affecter_mus2(id_mus));
+    ui->LNedit_2->setText(mscs.affecter_mus3(id_mus));
+    ui->MGedit_2->setText(mscs.affecter_mus4(id_mus));
+    ui->EMedit_2->setText(mscs.affecter_mus5(id_mus));
+    cmon = mscs.affecter_mus6(id_mus);
+    aaa.setNum(cmon);
+    ui->PRMedit_2->setText(aaa);
+}
