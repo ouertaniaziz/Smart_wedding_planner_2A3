@@ -90,6 +90,8 @@ void on_rechercheLine_2_textChanged(const QString &arg1);
 bool verif_trait(QString,QString,QString,QString,QString);
 bool verif_prod(QString,QString,QString,QString,QString);
 
+void on_statisticP_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

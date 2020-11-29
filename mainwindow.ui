@@ -41,7 +41,7 @@ background-repeat: none;
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>25</x>
+      <x>20</x>
       <y>50</y>
       <width>671</width>
       <height>401</height>
@@ -57,7 +57,7 @@ background-repeat: none;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="page_1">
      <property name="styleSheet">
@@ -1011,7 +1011,7 @@ background-repeat: none;
      <widget class="QPushButton" name="list_traiteurs">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>180</x>
         <y>230</y>
         <width>271</width>
         <height>131</height>
@@ -1043,28 +1043,6 @@ background-repeat: none;
        <string notr="true">#ajouter_traiteur {
 background-color: transparent;
 border-image: url(:Add_bouton.png);
-background: none;
-border: none;
-background-repeat: none;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="statistic">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>230</y>
-        <width>271</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#statistic {
-background-color: transparent;
-border-image: url(:statistics_bouton.png);
 background: none;
 border: none;
 background-repeat: none;
@@ -3203,9 +3181,37 @@ color : white</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="statistique">
+     <property name="styleSheet">
+      <string notr="true">#statistique{
+background-color: transparent;
+border-image: url(:fond.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+     </property>
+     <widget class="QChartView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>90</y>
+        <width>571</width>
+        <height>281</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">QtCharts</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -5,7 +5,12 @@
 
 #include <QApplication>
 #include <QTableWidget>
-//#include <QStandardItemModel>
+#include <QtCharts>
+#include <QDateTime>
+#include<QBarSet>
+#include <QChartView>
+QT_CHARTS_USE_NAMESPACE
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -83,7 +88,7 @@ bool MainWindow::verif_trait(QString id,QString nom,QString num,QString email,QS
     {
         ui->nameEdit->clear();
 
-          ui->nameEdit->setText("il faut remplire le nom");
+          ui->nameEdit->setText("il faut remplire le nom5");
           verification=false;
 
     }
@@ -93,7 +98,7 @@ if((ui->nameEdit->text().at(i)>'a')&&((ui->nameEdit->text().at(i))<'z'))
 {
     ui->nameEdit->clear();
 
-      ui->nameEdit->setText("verifier le nom ");
+      ui->nameEdit->setText("verifier le nom !!");
       //verification=false;
 
     }
@@ -124,7 +129,7 @@ x++;
    {
        ui->adresseEdit->clear();
 
-         ui->adresseEdit->setText("il faut remplire le nom");
+         ui->adresseEdit->setText("il faut remplire l'adresse");
          verification=false;
 
    }
@@ -132,7 +137,7 @@ x++;
     return verification;
 
 }
-bool verif_prod(QString id ,QString nom ,QString prix,QString type,QString id_t)
+bool MainWindow::verif_prod(QString id ,QString nom ,QString prix,QString type,QString id_t)
 {
 bool verification=true;
    int k,N;
@@ -144,6 +149,42 @@ bool verification=true;
        ui->identifier_edit->setText("l'identifiant contien que des chiffres");
        verification=false;
    }
+   if(nom=="")
+   {
+       ui->namePEdit->clear();
+
+         ui->namePEdit->setText("il faut remplire le nom");
+         verification=false;
+
+   }
+   for(int i=0;i<ui->namePEdit->text().size();i++)
+   {
+if((ui->namePEdit->text().at(i)>'a')&&((ui->namePEdit->text().at(i))<'z'))
+{
+    ui->namePEdit->clear();
+
+      ui->namePEdit->setText("verifier le nom ");
+      //verification=false;
+
+    }
+   }
+   if(N==0)
+   {
+       ui->priceEdit->clear();
+       ui->priceEdit->setText("verifier le prix");
+       verification=false;
+   }
+
+   if(id_t=="")
+   {
+       ui->idencatprod->clear();
+
+         ui->idencatprod->setText("il faut remplire l'id");
+         verification=false;
+
+   }
+
+    return verification;
 }
 //ajouter un traiteur
 void MainWindow::on_green_add_clicked()
@@ -320,7 +361,7 @@ void MainWindow::on_aff_trait_cellClicked(int row, int column)
   const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
 if(column==5)
 {
-    t.DELETE(identifiant);
+    t.effacer(identifiant);
     initialiserUpdatetrait();
 
 }
@@ -330,8 +371,10 @@ void MainWindow::on_list_produit_clicked()
 {
     Produit p;
             ui->stackedWidget->setCurrentIndex(7);
-            ui->affiche_tablePR->setModel(p.afficher(0,"null"));
-             ui->affiche_tablePR->resizeRowsToContents();
+           // ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+            ui->affiche_tablePR->setModel(p.stat());
+
+            ui->affiche_tablePR->resizeRowsToContents();
              ui->affiche_tablePR->resizeColumnsToContents();
              ui->affiche_tablePR->show();
 }
@@ -345,7 +388,7 @@ void MainWindow::initialiserUpdateprod()
    ui->update_tablePR->setHorizontalHeaderLabels(entet);
    ui->update_tablePR->resizeColumnsToContents();
 
-   ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+  ui->affiche_tablePR->setModel(p.afficher(0,"null"));
 
 
             ui->update_tablePR->setRowCount(0);
@@ -404,7 +447,7 @@ void MainWindow::on_update_tablePR_cellClicked(int row, int column)
   const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
 if(column==5)
 {
-    p.DELETE(identifiant);
+    p.effacer(identifiant);
     initialiserUpdateprod();
 
 }
@@ -454,4 +497,67 @@ void MainWindow::on_rechercheLine_2_textChanged(const QString &arg1)
              ui->affiche_tablePR->resizeRowsToContents();
              ui->affiche_tablePR->resizeColumnsToContents();
              ui->affiche_tablePR->show();
+}
+
+void MainWindow::on_statisticP_clicked()
+{ QStringList list;
+
+  ui->stackedWidget->setCurrentIndex(9);
+    //![1]
+        QBarSet *set0 = new QBarSet("chaud");
+        QBarSet *set1 = new QBarSet("froid");
+        QBarSet *set2 = new QBarSet("sucrée");
+        QBarSet *set3 = new QBarSet("salée");
+
+
+        *set0 << 1 << 2 << 3 << 4 << 5 << 6;
+        *set1 << 5 << 0 << 0 << 4 << 0 << 7;
+        *set2 << 3 << 5 << 8 << 13 << 8 << 5;
+        *set3 << 5 << 6 << 7 << 3 << 4 << 5;
+    //![1]
+
+    //![2]
+        QBarSeries *series = new QBarSeries();
+        series->append(set0);
+        series->append(set1);
+        series->append(set2);
+        series->append(set3);
+     //   series->append(set4);
+
+    //![2]
+
+    //![3]
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Simple barchart example");
+        chart->setAnimationOptions(QChart::SeriesAnimations);
+    //![3]
+
+    //![4]
+        QStringList categories;
+
+        categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun";
+        QBarCategoryAxis *axis = new QBarCategoryAxis();
+        axis->append(categories);
+        chart->createDefaultAxes();
+        chart->setAxisX(axis, series);
+    //![4]
+
+    //![5]
+        chart->legend()->setVisible(true);
+        chart->legend()->setAlignment(Qt::AlignBottom);
+    //![5]
+
+    //![6]
+        QChartView *chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+    //![6]
+
+    //![7]
+    //!
+ui->graphicsView->setChart(chart);
+        ui->graphicsView->setMinimumSize(420,300);
+        ui->graphicsView->show();
+    //![7]
+
 }

@@ -87,7 +87,7 @@ QSqlQueryModel * traiteur ::afficher(int c,QString cherche)
 
 return model;
 }
-bool traiteur::DELETE(QString identifiant)
+bool traiteur::effacer(QString identifiant)
 { QSqlQuery query;
      query.prepare("Delete from TRAITEUR where ID_TRAIT=:id ");
      qDebug()<<"suprimer";

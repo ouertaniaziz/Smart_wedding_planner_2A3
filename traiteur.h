@@ -28,7 +28,7 @@ public:
    bool addtraiteur( );
    bool update_T(QString identifiant ,QString nom ,QString numero,QString email,QString adresse , int columun);
    QSqlQueryModel* afficher(int c,QString cherche);
-   bool DELETE(QString identifiant);
+   bool effacer(QString identifiant);
 
 };
 

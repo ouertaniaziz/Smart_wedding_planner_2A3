@@ -89,11 +89,20 @@ QSqlQueryModel * Produit::afficher(int c,QString cherche)
     }
 return model;
 }
-bool Produit::DELETE(QString identifiant)
+bool Produit::effacer(QString identifiant)
 { QSqlQuery query;
      query.prepare("Delete from PRODUIT where ID_PRODUIT=:id ");
      qDebug()<<"suprimer";
      query.bindValue(":id",identifiant);
 
      return query.exec();
+}
+QSqlQueryModel * Produit::stat()
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+    model->setQuery("SELECT COUNT(ID_TRAITEUR) "
+                    " FROM PRODUIT where  TYPE_PRODUIT='chaud' AND ID_TRAITEUR='123456'   ");
+
+    return model;
+
 }
