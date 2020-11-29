@@ -26,7 +26,7 @@ public:
  bool update_P(QString identifiant ,QString nom ,QString type,QString prix,QString idtrait , int columun);
  QSqlQueryModel* afficher(int c,QString cherche);
  bool effacer(QString identifiant);
- QSqlQueryModel * stat();
+ QSqlQueryModel * stat(QString id,int k);
 
     Produit();
 };

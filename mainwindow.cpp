@@ -9,6 +9,8 @@
 #include <QDateTime>
 #include<QBarSet>
 #include <QChartView>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 QT_CHARTS_USE_NAMESPACE
 
 
@@ -92,17 +94,23 @@ bool MainWindow::verif_trait(QString id,QString nom,QString num,QString email,QS
           verification=false;
 
     }
-   for(int i=0;i<ui->nameEdit->text().size();i++)
-   {
-if((ui->nameEdit->text().at(i)>'a')&&((ui->nameEdit->text().at(i))<'z'))
-{
-    ui->nameEdit->clear();
+    QString ch;
+            ch=ui->nameEdit->text();
+            bool test=true;
+            int i=0;
+            while(i<ch.size() && test==true)
+            {
+                if(ch[i].isLetter())
+                  {  i++;
+                    test=true;
 
-      ui->nameEdit->setText("verifier le nom !!");
-      //verification=false;
-
-    }
-   }
+                }
+                else {
+                    test=false;
+                  verification=false;
+                  ui->nameEdit->setText("verifier le nom");
+                }
+            }
    if(N==0)
    {
        ui->phoneEdit->clear();
@@ -157,17 +165,23 @@ bool verification=true;
          verification=false;
 
    }
-   for(int i=0;i<ui->namePEdit->text().size();i++)
-   {
-if((ui->namePEdit->text().at(i)>'a')&&((ui->namePEdit->text().at(i))<'z'))
-{
-    ui->namePEdit->clear();
+   QString ch;
+           ch=ui->namePEdit->text();
+           bool test=true;
+           int i=0;
+           while(i<ch.size() && test==true)
+           {
+               if(ch[i].isLetter())
+                 {  i++;
+                   test=true;
 
-      ui->namePEdit->setText("verifier le nom ");
-      //verification=false;
-
-    }
-   }
+               }
+               else {
+                   test=false;
+                 verification=false;
+                 ui->namePEdit->setText("verifier le nom");
+               }
+           }
    if(N==0)
    {
        ui->priceEdit->clear();
@@ -371,8 +385,8 @@ void MainWindow::on_list_produit_clicked()
 {
     Produit p;
             ui->stackedWidget->setCurrentIndex(7);
-           // ui->affiche_tablePR->setModel(p.afficher(0,"null"));
-            ui->affiche_tablePR->setModel(p.stat());
+            ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+           // ui->affiche_tablePR->setModel(p.stat("123456",1));
 
             ui->affiche_tablePR->resizeRowsToContents();
              ui->affiche_tablePR->resizeColumnsToContents();
@@ -500,64 +514,151 @@ void MainWindow::on_rechercheLine_2_textChanged(const QString &arg1)
 }
 
 void MainWindow::on_statisticP_clicked()
-{ QStringList list;
+{
+    ui->stackedWidget->setCurrentIndex(9);
 
-  ui->stackedWidget->setCurrentIndex(9);
-    //![1]
-        QBarSet *set0 = new QBarSet("chaud");
-        QBarSet *set1 = new QBarSet("froid");
-        QBarSet *set2 = new QBarSet("sucrée");
-        QBarSet *set3 = new QBarSet("salée");
+}
+
+void MainWindow::on_imprimer_clicked()
+{
+    QPrinter printer(QPrinter::HighResolution);
 
 
-        *set0 << 1 << 2 << 3 << 4 << 5 << 6;
-        *set1 << 5 << 0 << 0 << 4 << 0 << 7;
-        *set2 << 3 << 5 << 8 << 13 << 8 << 5;
-        *set3 << 5 << 6 << 7 << 3 << 4 << 5;
-    //![1]
+    printer.setOrientation(QPrinter::Landscape);
+            QPrintDialog *dialog = new QPrintDialog(&printer, this);
+            dialog->setWindowTitle(tr("Print Document"));
+             dialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
 
-    //![2]
-        QBarSeries *series = new QBarSeries();
-        series->append(set0);
-        series->append(set1);
-        series->append(set2);
-        series->append(set3);
-     //   series->append(set4);
+                printer.setOutputFileName("print.ps");
+                QPainter painter;
 
-    //![2]
+     painter.begin(&printer);
 
-    //![3]
-        QChart *chart = new QChart();
-        chart->addSeries(series);
-        chart->setTitle("Simple barchart example");
-        chart->setAnimationOptions(QChart::SeriesAnimations);
-    //![3]
 
-    //![4]
-        QStringList categories;
+        int    numberOfPages=1;
+                for (int page = 0; page < numberOfPages; ++page) {
 
-        categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun";
-        QBarCategoryAxis *axis = new QBarCategoryAxis();
-        axis->append(categories);
-        chart->createDefaultAxes();
-        chart->setAxisX(axis, series);
-    //![4]
+                    // Utilisez l'imprimante pour dessiner sur la page.
 
-    //![5]
-        chart->legend()->setVisible(true);
-        chart->legend()->setAlignment(Qt::AlignBottom);
-    //![5]
+                    if (page != numberOfPages)
+                      {painter.setFont(QFont("Arial",20));
 
-    //![6]
-        QChartView *chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
-    //![6]
+                        painter.drawText(width()/2,height()/2, (""));
+                       // painter.drawImage()
+                              double xscale = printer.pageRect().width()/double(  ui->stackedWidget->width());
+                                double yscale = printer.pageRect().height()/double( ui->stackedWidget->height());
+                                double scale = qMin(xscale, yscale);
+                                painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+                                                   printer.paperRect().y() + printer.pageRect().height()/2);
+                                painter.scale(scale, scale);
+                                painter.translate(-width()/2, -height()/2);
 
-    //![7]
-    //!
-ui->graphicsView->setChart(chart);
-        ui->graphicsView->setMinimumSize(420,300);
-        ui->graphicsView->show();
-    //![7]
+                                 ui->stackedWidget->render(&painter);
+
+
+                    }
+
+
+                }
+
+                painter.end();
+}
+
+void MainWindow::on_stat_clicked()
+{       ui->stackedWidget->setCurrentIndex(10);
+
+      QLineEdit text1;
+
+     Produit p;
+
+            QBarSet *set0 = new QBarSet("chaud");
+            QBarSet *set1 = new QBarSet("froid");
+            QBarSet *set2 = new QBarSet("sucrée");
+            QBarSet *set3 = new QBarSet("salée");
+    QString identifiant_1=ui->identifiant_1->text();
+    QString identifiant_2=ui->identifiant_2->text();
+    QString identifiant_3=ui->identifiant_3->text();
+    QString identifiant_4=ui->identifiant_4->text();
+    QString identifiant_5=ui->identifiant_5->text();
+
+                            for(int i=1;i<4;i++)
+                            {
+
+                                    text1.setText(p.stat(identifiant_1,i)->index(0 , 0).data().toString());
+                                   int k1=text1.text().toInt();
+                                     text1.setText(p.stat(identifiant_2,i)->index(0 , 0).data().toString());
+                                      int k2=text1.text().toInt();
+                                          text1.setText(p.stat(identifiant_3,i)->index(0 , 0).data().toString());
+                                         int k3=text1.text().toInt();
+                                             text1.setText(p.stat(identifiant_4,i)->index(0 , 0).data().toString());
+                                            int k4=text1.text().toInt();
+                                            text1.setText(p.stat(identifiant_5,i)->index(0 , 0).data().toString());
+                                           int k5=text1.text().toInt();
+                                            if(i==1)
+                                            {
+                                              *set0 << k1 << k2 << k3 << k4 << k5 ;
+                                            }
+                                            else if (i==2)
+                                            {
+                                                *set1 << k1 << k2 << k3 << k4 << k5 ;
+
+                                            }
+                                            else if( i==3)
+                                            {
+                                                *set2 << k1 << k2 << k3 << k4 << k5 ;
+
+                                            }
+                                            else if(i==4)
+                                            {
+                                                *set3 << k1 << k2 << k3 << k4 << k5 ;
+
+                                            }
+
+
+                            }
+
+
+
+            QBarSeries *series = new QBarSeries();
+            series->append(set0);
+            series->append(set1);
+            series->append(set2);
+            series->append(set3);
+
+
+            QChart *chart = new QChart();
+            chart->addSeries(series);
+            chart->setTitle("Simple barchart example");
+            chart->setAnimationOptions(QChart::SeriesAnimations);
+
+            QStringList categories;
+
+            categories << ui->identifiant_1->text() << ui->identifiant_2->text() << ui->identifiant_3->text() << ui->identifiant_4->text() << ui->identifiant_5->text() ;
+            QBarCategoryAxis *axis = new QBarCategoryAxis();
+            axis->append(categories);
+            chart->createDefaultAxes();
+            chart->setAxisX(axis, series);
+
+            chart->legend()->setVisible(true);
+            chart->legend()->setAlignment(Qt::AlignBottom);
+
+            QChartView *chartView = new QChartView(chart);
+            chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->graphicsView->setChart(chart);
+            ui->graphicsView->setMinimumSize(420,300);
+            ui->graphicsView->show();
+
+
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(9);
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 
 }

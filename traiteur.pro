@@ -1,4 +1,4 @@
-QT       += core gui sql  charts
+QT       += core gui sql  charts printsupport
 
 CONFIG +=console
 

@@ -92,6 +92,14 @@ bool verif_prod(QString,QString,QString,QString,QString);
 
 void on_statisticP_clicked();
 
+void on_imprimer_clicked();
+
+void on_stat_clicked();
+
+void on_pushButton_10_clicked();
+
+void on_pushButton_11_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

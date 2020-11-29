@@ -97,11 +97,26 @@ bool Produit::effacer(QString identifiant)
 
      return query.exec();
 }
-QSqlQueryModel * Produit::stat()
+QSqlQueryModel * Produit::stat(QString identifiant,int k)
 {
     QSqlQueryModel *model= new QSqlQueryModel();
+    if(k==1)
+    {
     model->setQuery("SELECT COUNT(ID_TRAITEUR) "
-                    " FROM PRODUIT where  TYPE_PRODUIT='chaud' AND ID_TRAITEUR='123456'   ");
+                    " FROM PRODUIT where  TYPE_PRODUIT='chaud' AND ID_TRAITEUR='"+identifiant+"'   ");
+} else if (k==2) {
+
+        model->setQuery("SELECT COUNT(ID_TRAITEUR) "
+                        " FROM PRODUIT where  TYPE_PRODUIT='froid' AND ID_TRAITEUR='"+identifiant+"'  ");
+} else if (k==3) {
+        model->setQuery("SELECT COUNT(ID_TRAITEUR) "
+                        " FROM PRODUIT where  TYPE_PRODUIT='sucree' AND ID_TRAITEUR='"+identifiant+"'  ");
+
+} else if (k==4) {
+        model->setQuery("SELECT COUNT(ID_TRAITEUR) "
+                        " FROM PRODUIT where  TYPE_PRODUIT='salee' AND ID_TRAITEUR='"+identifiant+"'  ");
+
+}
 
     return model;
 
