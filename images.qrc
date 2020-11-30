@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Img/add.png</file>
+        <file>Img/addicon.png</file>
+        <file>Img/delete.png</file>
+        <file>Img/gmail.png</file>
+        <file>Img/phone.png</file>
+        <file>Img/search.png</file>
+        <file>Img/update.png</file>
+        <file>Img/searchicon.png</file>
+    </qresource>
+</RCC>
