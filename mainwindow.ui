@@ -57,7 +57,7 @@ background-repeat: none;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="page_1">
      <property name="styleSheet">
@@ -1822,9 +1822,9 @@ background-repeat: none;
      <widget class="QTableWidget" name="aff_trait">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>120</x>
         <y>120</y>
-        <width>551</width>
+        <width>511</width>
         <height>191</height>
        </rect>
       </property>
@@ -3152,6 +3152,28 @@ background-repeat: none;
        <string>rechercher</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="imprimer_2">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>20</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#imprimer_2 {
+background-color: transparent;
+border-image: url(:imprimante.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_6">
      <property name="styleSheet">
@@ -3186,9 +3208,9 @@ color : white</string>
      <widget class="QTableWidget" name="update_tablePR">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>130</x>
         <y>140</y>
-        <width>481</width>
+        <width>471</width>
         <height>201</height>
        </rect>
       </property>

@@ -100,6 +100,8 @@ void on_pushButton_10_clicked();
 
 void on_pushButton_11_clicked();
 
+void on_imprimer_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

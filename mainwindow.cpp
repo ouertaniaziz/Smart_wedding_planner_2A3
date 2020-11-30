@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->aff_trait->setColumnCount(6);
     ui->aff_trait->setHorizontalHeaderLabels(Titres);
     ui->aff_trait->resizeColumnsToContents();
+    ui->stackedWidget->setCurrentIndex(0);
+
 
 }
 
@@ -328,12 +330,13 @@ void MainWindow::initialiserUpdatetrait( )
          ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
          ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
          ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.png");
+         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.jpg");
 
          QTableWidgetItem *MAJ_item = new QTableWidgetItem;
 
               MAJ_item->setIcon(MAJ);
               ui->aff_trait->setItem(row,5, MAJ_item);
+
               ui->aff_trait->resizeColumnsToContents();
             }
          }
@@ -375,6 +378,7 @@ void MainWindow::on_aff_trait_cellClicked(int row, int column)
   const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
 if(column==5)
 {
+
     t.effacer(identifiant);
     initialiserUpdatetrait();
 
@@ -417,7 +421,7 @@ void MainWindow::initialiserUpdateprod()
          ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
          ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
          ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.png");
+         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.jpg");
 
          QTableWidgetItem *MAJ_item = new QTableWidgetItem;
 
@@ -661,4 +665,49 @@ void MainWindow::on_pushButton_11_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 
+}
+
+void MainWindow::on_imprimer_2_clicked()
+{
+    QPrinter printer(QPrinter::HighResolution);
+
+
+    printer.setOrientation(QPrinter::Landscape);
+            QPrintDialog *dialog = new QPrintDialog(&printer, this);
+            dialog->setWindowTitle(tr("Print Document"));
+             dialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+
+                printer.setOutputFileName("print.ps");
+                QPainter painter;
+
+     painter.begin(&printer);
+
+
+        int    numberOfPages=1;
+                for (int page = 0; page < numberOfPages; ++page) {
+
+                    // Utilisez l'imprimante pour dessiner sur la page.
+
+                    if (page != numberOfPages)
+                      {painter.setFont(QFont("Arial",20));
+
+                        painter.drawText(width()/2,height()/2, (""));
+                       // painter.drawImage()
+                              double xscale = printer.pageRect().width()/double(  ui->stackedWidget->width());
+                                double yscale = printer.pageRect().height()/double( ui->stackedWidget->height());
+                                double scale = qMin(xscale, yscale);
+                                painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+                                                   printer.paperRect().y() + printer.pageRect().height()/2);
+                                painter.scale(scale, scale);
+                                painter.translate(-width()/2, -height()/2);
+
+                                 ui->stackedWidget->render(&painter);
+
+
+                    }
+
+
+                }
+
+                painter.end();
 }
