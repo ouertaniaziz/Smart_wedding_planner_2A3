@@ -33,7 +33,15 @@ public:
 
 
     bool add_guest();
-    bool supprimer_invite(QString );
+    bool supprimer_invite(QString,QString);
+    bool update_invite_info(QString ,QString );
+    int clear_table_inv();
+    void fix_id_after_delete(int id, QString id_client);
+    int count_id_inv(QString id_marriage);
+    int invite_check_unique_phone(QString phone);
+    QSqlQuery search_inv_to_update(QString ID, QString idclient);
+    int search_inv_exist_to_update(QString ID, QString id_client);
+    QSqlQuery search_inv_to_print(QString ID);
 };
 
 #endif // INVITE_H

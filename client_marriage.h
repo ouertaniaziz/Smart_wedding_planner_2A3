@@ -17,6 +17,7 @@ private:
     QString nom_m,prenom_m,email,nom_f,prenom_f;
     QString budget,phone_m,phone_f,cin_m,cin_f,date;
 
+
 public:
     client_marriage();
     client_marriage(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString);
@@ -41,7 +42,13 @@ public:
     bool ajouter_client(int);
     bool supprimer_client(QString );
     bool update_client_info(QString);
+    int unique_cin_search(QString );
 
+    int count_id();
+    int clear_table_marriage();
+    QSqlQuery search_client_update(QString id);
+    int check_id_client(QString id);
+    void update_confirmation(QString id);
 };
 
 #endif // CLIENT_MARRIAGE_H

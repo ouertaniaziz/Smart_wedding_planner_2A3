@@ -5,6 +5,8 @@
 #include <QString>
 #include "client_marriage.h"
 #include "invite.h"
+#include "smtp.h"
+#include <QtWidgets/QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -95,6 +97,21 @@ private slots:
     void afficher_liste_invite(QString);
 
     void on_cancel_3_clicked();
+
+    void on_search_gues_info_clicked();
+
+    void on_update_guest_info_clicked();
+
+    void on_search_bar_2_textChanged(const QString &arg1);
+
+    void sendMail();
+    void mailSent(QString);
+
+    void on_imprimer_clicked();
+
+    void on_send_invite_clicked();
+
+    void on_pushButton_10_clicked();
 
 private:
     Ui::MainWindow *ui;

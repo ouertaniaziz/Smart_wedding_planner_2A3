@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBox">
@@ -165,7 +165,7 @@ background-repeat: none;
         <enum>Qt::CustomDashLine</enum>
        </property>
        <property name="sortingEnabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="rowCount">
         <number>0</number>
@@ -177,7 +177,7 @@ background-repeat: none;
         <number>163</number>
        </attribute>
        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
        <attribute name="horizontalHeaderStretchLastSection">
         <bool>false</bool>
@@ -348,7 +348,7 @@ background-repeat: none;
       <widget class="QPushButton" name="delete_client">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>410</x>
          <y>30</y>
          <width>121</width>
          <height>31</height>
@@ -374,7 +374,7 @@ background-repeat: none;
       <widget class="QPushButton" name="update_client">
        <property name="geometry">
         <rect>
-         <x>570</x>
+         <x>590</x>
          <y>30</y>
          <width>121</width>
          <height>31</height>
@@ -493,32 +493,6 @@ QPushButton:focused{
        </property>
        <property name="text">
         <string>&lt; back</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="radioButton_2">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>560</y>
-         <width>83</width>
-         <height>18</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Confirmation</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_26">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>530</y>
-         <width>47</width>
-         <height>14</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TRI :</string>
        </property>
       </widget>
      </widget>
@@ -1822,6 +1796,19 @@ background-repeat: none;
        </property>
       </item>
      </widget>
+     <widget class="QPushButton" name="imprimer">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>550</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>imprimer</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="search_guest_list_2">
      <widget class="QLabel" name="label_17">
@@ -2082,7 +2069,7 @@ QPushButton:focused{
         <bool>true</bool>
        </property>
        <property name="rowCount">
-        <number>18</number>
+        <number>0</number>
        </property>
        <attribute name="horizontalHeaderDefaultSectionSize">
         <number>205</number>
@@ -2102,84 +2089,6 @@ QPushButton:focused{
        <attribute name="verticalHeaderStretchLastSection">
         <bool>false</bool>
        </attribute>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string/>
-        </property>
-       </row>
-       <row/>
-       <row/>
-       <row/>
        <column>
         <property name="text">
          <string>ID :</string>
@@ -2283,61 +2192,6 @@ QPushButton:focused{
          </brush>
         </property>
        </column>
-       <item row="0" column="0">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="0" column="1">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="0" column="2">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="0" column="3">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="1" column="0">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="1" column="1">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="1" column="2">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="1" column="3">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="2" column="0">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="3" column="0">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item row="4" column="0">
-        <property name="text">
-         <string/>
-        </property>
-       </item>
       </widget>
       <widget class="QPushButton" name="add_guest">
        <property name="geometry">
@@ -3139,50 +2993,27 @@ background-repeat: none;
        <string/>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_4">
+     <widget class="QTableWidget" name="tableWidget_5">
       <property name="geometry">
        <rect>
-        <x>161</x>
-        <y>277</y>
-        <width>770</width>
-        <height>144</height>
+        <x>260</x>
+        <y>300</y>
+        <width>504</width>
+        <height>146</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="showGrid">
-       <bool>true</bool>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::CustomDashLine</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-      <property name="cornerButtonEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>32</number>
-      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>303</number>
+       <number>358</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
       </attribute>
       <row>
        <property name="text">
-        <string>Husband's First name :</string>
+        <string>INVITED First Name :</string>
        </property>
        <property name="font">
         <font>
@@ -3202,7 +3033,7 @@ background-repeat: none;
       </row>
       <row>
        <property name="text">
-        <string>Husband's Last name :</string>
+        <string>INVITED Last Name :</string>
        </property>
        <property name="font">
         <font>
@@ -3222,13 +3053,16 @@ background-repeat: none;
       </row>
       <row>
        <property name="text">
-        <string>Husband's Phone Number :</string>
+        <string>INVITED Phone Number :</string>
        </property>
        <property name="font">
         <font>
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignLeading|AlignVCenter</set>
        </property>
        <property name="foreground">
         <brush brushstyle="SolidPattern">
@@ -3242,7 +3076,7 @@ background-repeat: none;
       </row>
       <row>
        <property name="text">
-        <string>E-mail :</string>
+        <string>INVITED Email :</string>
        </property>
        <property name="font">
         <font>
@@ -3270,13 +3104,6 @@ background-repeat: none;
          <bold>true</bold>
         </font>
        </property>
-       <property name="background">
-        <color>
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
-        </color>
-       </property>
        <property name="foreground">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -3287,71 +3114,6 @@ background-repeat: none;
         </brush>
        </property>
       </column>
-      <column>
-       <property name="text">
-        <string>Information[Updated]</string>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-         <stylestrategy>PreferAntialias</stylestrategy>
-        </font>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>60</red>
-          <green>170</green>
-          <blue>153</blue>
-         </color>
-        </brush>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string>Mohamed</string>
-       </property>
-      </item>
-      <item row="0" column="1">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string>Matri</string>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </item>
-      <item row="1" column="1">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item row="2" column="0">
-       <property name="text">
-        <string>98675543</string>
-       </property>
-      </item>
-      <item row="2" column="1">
-       <property name="text">
-        <string>98675544</string>
-       </property>
-      </item>
-      <item row="3" column="0">
-       <property name="text">
-        <string>mohamed@gmail.com</string>
-       </property>
-      </item>
      </widget>
     </widget>
    </widget>

@@ -13,6 +13,14 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include "invite.h"
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QTextEdit>
+#include <QtCharts>
+#include <QChartView>
+#include <QPieSeries>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -70,12 +78,43 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
+    connect(ui->send_invite, SIGNAL(clicked()),this, SLOT(sendMail()));
+
+    ui->tableWidget->setSortingEnabled(false);
+    ui->tableWidget_3->setSortingEnabled(false);
+
+}
+
+void MainWindow::sendMail()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_MARRIAGE=:id");
+    qry.bindValue(":id",ui->mariage_id_3->text());
+    if(qry.exec())
+    {
+        while(qry.next())
+        {
+            QString code = qry.value(0).toString() + ui->mariage_id_3->text();
+            qDebug() << code << endl;
+
+            Smtp* smtp = new Smtp("yassine.bs125@gmail.com", "Salwaghozzi10", "smtp.gmail.com", 465);
+            connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
 
+            smtp->sendMail("yassine.bs125@gmail.com", qry.value(4).toString() , "Wedding Invitation",code);
+        }
+
+    }
 
 
 
 }
+
+/*void MainWindow::mailSent(QString status)
+{
+    if(status == "Message sent")
+        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
+}*/
 
 MainWindow::~MainWindow()
 {
@@ -212,53 +251,37 @@ void MainWindow::add_to_database_Marriage()
     {
         QSqlQuery qry;
 
-        qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE CIN_M =:cin");
-        qry.bindValue(":cin",C.get_cin_m());
-
-        if (qry.exec())
+        int count = C.unique_cin_search(C.get_cin_m());
+        if (count == 0)
         {
-            int count(0);
-            while(qry.next())
+            int count1 = C.count_id();
+
+
+            bool test = C.ajouter_client(count1);
+            if ( test)
             {
-                count++;
+                QMessageBox::information(nullptr, QObject::tr("add to data base"),
+                                         QObject::tr("done .\n"
+                                                     "Click Cancel to try again."), QMessageBox::Cancel);
+                ui->stackedWidget->setCurrentIndex(1);
+
             }
-            if (count == 0)
-            {
-                if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
-                {
-                    int count1=0;
-                    while(qry.next())
-                    {
-                        count1++;
-                    }
-                    count1+=1;
-
-
-                    bool test = C.ajouter_client(count1);
-                    if ( test)
-                    {
-                        QMessageBox::information(nullptr, QObject::tr("add to data base"),
-                                                 QObject::tr("done .\n"
-                                                             "Click Cancel to try again."), QMessageBox::Cancel);
-                        ui->stackedWidget->setCurrentIndex(1);
-
-                    }
 
 
 
-                    clear_info_add_marriage();
+            clear_info_add_marriage();
 
-
-                }
-            }
-            else
-            {
-                QMessageBox::critical(nullptr, QObject::tr("add to data base"),
-                                      QObject::tr("CIN of male or female already exists.\n"
-                                                  "Click Cancel to try again."), QMessageBox::Cancel);
-            }
 
         }
+
+        else
+        {
+            QMessageBox::critical(nullptr, QObject::tr("add to data base"),
+                                  QObject::tr("CIN of male or female already exists.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
+        }
+
+
 
 
     }
@@ -282,7 +305,6 @@ void MainWindow::Delete_Marriage()
 
         if (test)
         {
-            qDebug() << "succes" << endl;
             ui->mariage_id->setText("");
             ui->stackedWidget->setCurrentIndex(1);
         }
@@ -293,22 +315,12 @@ void MainWindow::Delete_Marriage()
 
 void MainWindow::afficher_table_marriage()
 {
+    client_marriage c;
+    int rowCount = c.clear_table_marriage();
+    for (int i =rowCount ; i>=0 ; i--)
+        ui->tableWidget->removeRow(i);
+
     QSqlQuery qry;
-
-
-    if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
-    {
-        int rowCount = 0;
-        while(qry.next())
-        {
-            rowCount++;
-        }
-
-        for (int i =rowCount ; i>=0 ; i--)
-            ui->tableWidget->removeRow(i);
-
-    }
-
     if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
     {
         int rowCount = 0;
@@ -327,7 +339,7 @@ void MainWindow::afficher_table_marriage()
             Email->setText(qry.value(9).toString());
 
 
-            if ( qry.value(14).toString() == "1" )
+            if ( qry.value(12).toString() == "1" )
             {
                 Confirmation->setCheckState(Qt::Checked);
             }
@@ -365,73 +377,66 @@ void MainWindow::search_client_to_update()
     }
     else
     {
-        QSqlQuery qry;
+        client_marriage c;
+        int count = c.check_id_client(ID);
 
-        qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT =:id ");
-        qry.bindValue(":id",ID);
 
-        if (qry.exec())
+
+        if ( count == 0)
+        {
+            QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                                  QObject::tr("ID doesn't exists.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
+        }
+        else
         {
 
-            int count(0);
-            while(qry.next())
-            {
-                int i=0;
-                QTableWidgetItem *m_name = new QTableWidgetItem;
-                QTableWidgetItem *m_last_name = new QTableWidgetItem;
-                QTableWidgetItem *m_phone_number = new QTableWidgetItem;
-                QTableWidgetItem *m_cin = new QTableWidgetItem;
-                QTableWidgetItem *f_name = new QTableWidgetItem;
-                QTableWidgetItem *f_last_name = new QTableWidgetItem;
-                QTableWidgetItem *f_phone_number = new QTableWidgetItem;
-                QTableWidgetItem *f_cin = new QTableWidgetItem;
-                QTableWidgetItem *email = new QTableWidgetItem;
-                QTableWidgetItem *budget = new QTableWidgetItem;
-                QTableWidgetItem *Date = new QTableWidgetItem;
-
-                m_name->setText(qry.value(0).toString());
-                m_last_name->setText(qry.value(1).toString());
-                m_phone_number->setText(qry.value(2).toString());
-                m_cin->setText(qry.value(3).toString());
-                f_name->setText(qry.value(4).toString());
-                f_last_name->setText(qry.value(5).toString());
-                f_phone_number->setText(qry.value(6).toString());
-                f_cin->setText(qry.value(7).toString());
-                email->setText(qry.value(9).toString());
-                budget->setText(qry.value(8).toString());
-                Date->setText(qry.value(10).toString());
-
-                ui->tableWidget_2->setItem(0,i,m_name);
-                ui->tableWidget_2->setItem(1,i,m_last_name);
-                ui->tableWidget_2->setItem(2,i,m_phone_number);
-                ui->tableWidget_2->setItem(3,i,m_cin);
-                ui->tableWidget_2->setItem(4,i,f_name);
-                ui->tableWidget_2->setItem(5,i,f_last_name);
-                ui->tableWidget_2->setItem(6,i,f_phone_number);
-                ui->tableWidget_2->setItem(7,i,f_cin);
-                ui->tableWidget_2->setItem(8,i,email);
-                ui->tableWidget_2->setItem(9,i,budget);
-                ui->tableWidget_2->setItem(10,i,Date);
+            QSqlQuery qry= c.search_client_update(ID);
 
 
-                count++;
-            }
+            int i=0;
+            QTableWidgetItem *m_name = new QTableWidgetItem;
+            QTableWidgetItem *m_last_name = new QTableWidgetItem;
+            QTableWidgetItem *m_phone_number = new QTableWidgetItem;
+            QTableWidgetItem *m_cin = new QTableWidgetItem;
+            QTableWidgetItem *f_name = new QTableWidgetItem;
+            QTableWidgetItem *f_last_name = new QTableWidgetItem;
+            QTableWidgetItem *f_phone_number = new QTableWidgetItem;
+            QTableWidgetItem *f_cin = new QTableWidgetItem;
+            QTableWidgetItem *email = new QTableWidgetItem;
+            QTableWidgetItem *budget = new QTableWidgetItem;
+            QTableWidgetItem *Date = new QTableWidgetItem;
 
-            if ( count == 0)
-            {
-                QMessageBox::critical(nullptr, QObject::tr("ERROR"),
-                                      QObject::tr("ID doesn't exists.\n"
-                                                  "Click Cancel to try again."), QMessageBox::Cancel);
-            }
+            m_name->setText(qry.value(0).toString());
+            m_last_name->setText(qry.value(1).toString());
+            m_phone_number->setText(qry.value(2).toString());
+            m_cin->setText(qry.value(3).toString());
+            f_name->setText(qry.value(4).toString());
+            f_last_name->setText(qry.value(5).toString());
+            f_phone_number->setText(qry.value(6).toString());
+            f_cin->setText(qry.value(7).toString());
+            email->setText(qry.value(9).toString());
+            budget->setText(qry.value(8).toString());
+            Date->setText(qry.value(10).toString());
 
+            ui->tableWidget_2->setItem(0,i,m_name);
+            ui->tableWidget_2->setItem(1,i,m_last_name);
+            ui->tableWidget_2->setItem(2,i,m_phone_number);
+            ui->tableWidget_2->setItem(3,i,m_cin);
+            ui->tableWidget_2->setItem(4,i,f_name);
+            ui->tableWidget_2->setItem(5,i,f_last_name);
+            ui->tableWidget_2->setItem(6,i,f_phone_number);
+            ui->tableWidget_2->setItem(7,i,f_cin);
+            ui->tableWidget_2->setItem(8,i,email);
+            ui->tableWidget_2->setItem(9,i,budget);
+            ui->tableWidget_2->setItem(10,i,Date);
         }
 
-        if (!qry.exec())
-        {
-            qDebug("error updating to db");
-        }
+
     }
+
 }
+
 
 
 
@@ -618,7 +623,6 @@ void MainWindow::update_client_info()
     }
     else if ( C.get_cin_m().length() != 8 || C.get_cin_f().length() != 8)
     {
-        qDebug() << C.get_cin_m() << endl;
         QMessageBox::critical(nullptr, QObject::tr("ERROR"),
                               QObject::tr("CIN MUST BE 8 NUMBERS ONLY.\n"
                                           "Click Cancel to try again."), QMessageBox::Cancel);
@@ -656,59 +660,42 @@ void MainWindow::update_client_info()
     }
     else
     {
-        qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT =:id ");
-        qry.bindValue(":id",ID);
+        int count = C.check_id_client(ID);
 
-        if (qry.exec())
+        if (count == 1)
         {
-            int count(0);
-            while(qry.next())
+
+            bool test = C.update_client_info(ID);
+            if ( test)
             {
-                count++;
+                QMessageBox::information(nullptr, QObject::tr("edit to data base"),
+                                         QObject::tr("Client Updated.\n"
+                                                     "Click Cancel to exit."), QMessageBox::Cancel);
+                ui->stackedWidget->setCurrentIndex(1);
+                for (int i =0 ; i<1 ; i++)
+                    for (int j =0 ; j< 11 ; j++)
+                        ui->tableWidget_2->item(j,i)->setText("");
+
+                ui->mariage_id_2->setText("");
+
+
             }
 
 
-            if (count == 1)
-            {
-
-                bool test = C.update_client_info(ID);
-                if ( test)
-                {
-                    QMessageBox::information(nullptr, QObject::tr("edit to data base"),
-                                             QObject::tr("Client Updated.\n"
-                                                         "Click Cancel to exit."), QMessageBox::Cancel);
-                    ui->stackedWidget->setCurrentIndex(1);
-                    for (int i =0 ; i<1 ; i++)
-                        for (int j =0 ; j< 11 ; j++)
-                            ui->tableWidget_2->item(j,i)->setText("");
-
-                    ui->mariage_id_2->setText("");
-
-
-                }
-
-
-            }
-            else
-            {
-                QMessageBox::critical(nullptr, QObject::tr("edit to data base"),
-                                      QObject::tr("CIN doesn't exist.\n"
-                                                  "Click Cancel to try again."), QMessageBox::Cancel);
-            }
-
+        }
+        else
+        {
+            QMessageBox::critical(nullptr, QObject::tr("edit to data base"),
+                                  QObject::tr("CIN doesn't exist.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
         }
 
     }
 
-
-
-
-
-
-
-
-
 }
+
+
+
 
 
 void MainWindow::on_update_client_info_clicked()
@@ -743,21 +730,14 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::afficher_liste_invite(QString marriage_id)
 {
+    invite inv;
+    int rowCount = inv.clear_table_inv();
+
+    for (int i =rowCount ; i>=0 ; i--)
+        ui->tableWidget_3->removeRow(i);
+
+
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM INVITE_MARRIAGE");
-
-    if (qry.exec())
-    {
-        int rowCount = 0;
-        while(qry.next())
-        {
-            rowCount++;
-        }
-
-        for (int i =rowCount ; i>=0 ; i--)
-            ui->tableWidget_3->removeRow(i);
-
-    }
 
     qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_MARRIAGE = :id_marriage");
     qry.bindValue(":id_marriage",marriage_id);
@@ -801,33 +781,22 @@ void MainWindow::on_search_guest_list_clicked()
     // recher d'un client id pour afficher les invitées
     QString marriage_id = ui->mariage_id_3->text();
 
-    QSqlQuery qry;
-
-    qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT = :id_marriage");
-    qry.bindValue(":id_marriage",marriage_id);
-
-    if (qry.exec())
+    client_marriage c;
+    int rowCount = c.check_id_client(marriage_id);
+    if ( rowCount == 0)
     {
-        int rowCount = 0;
-        while(qry.next())
-        {
-            rowCount++;
-        }
-
-        if ( rowCount == 0)
-        {
-            QMessageBox::critical(nullptr, QObject::tr("ERROR"),
-                                  QObject::tr("ENTER A VALID MARRIAGE ID.\n"
-                                              "Click Cancel to try again."), QMessageBox::Cancel);
-        }
-        else
-        {
-            afficher_liste_invite(marriage_id);
-        }
-
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("ENTER A VALID MARRIAGE ID.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else
+    {
+        afficher_liste_invite(marriage_id);
     }
 
 }
+
+
 
 void MainWindow::on_add_guest_clicked()
 {
@@ -837,6 +806,12 @@ void MainWindow::on_add_guest_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(6);
+    ui->name_guest->setText("");
+    ui->last_name_guest->setText("");
+    ui->Phone_number_guest->setText("");
+    ui->Email_guest->setText("");
+
+
 }
 
 void MainWindow::on_delete_guest_clicked()
@@ -853,7 +828,17 @@ void MainWindow::on_delete_guest_3_clicked()
 {
     //delete the guest through ID then go back to guest list
     invite e;
-    bool test = e.supprimer_invite(ui->guest_id->text());
+    QString ID = ui->guest_id->text();
+    QString id_client = ui->mariage_id_3->text();
+    bool test = e.supprimer_invite(ID,id_client);
+
+    QSqlQuery qry;
+
+
+
+    int id = ui->guest_id->text().toInt();
+
+    e.fix_id_after_delete(id,id_client);
 
     if (  test )
     {
@@ -905,23 +890,9 @@ void MainWindow::on_add_guest_3_clicked()
     invite E(id_inv,nom_inv,prenom_inv,phone_inv,email_inv,id_marriage);
     ///////////////////////////////////
 
-    QSqlQuery qry;
-    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_MARRIAGE= :id_m");
-    qry.bindValue(":id_m",id_marriage);
-
-    if ( qry.exec())
-    {
-        int count(0);
-        while(qry.next())
-        {
-            count++;
-        }
-        count++;
-        id_inv = QString::number(count);
-        E.set_id_inv(id_inv);
-        qDebug() << E.get_id_inv() << "and " << E.get_id_marriage() << endl;
-
-    }
+    int count = E.count_id_inv(id_marriage);
+    id_inv = QString::number(count);
+    E.set_id_inv(id_inv);
 
 
 
@@ -931,6 +902,7 @@ void MainWindow::on_add_guest_3_clicked()
     {
         valid = true;
     }
+    int length_email = E.get_email().length();
 
     int phone = convert_string_to_number(E.get_phone());
     int l_phone = E.get_phone().length();
@@ -959,49 +931,45 @@ void MainWindow::on_add_guest_3_clicked()
                               QObject::tr("Please use an email of a Gmail domain.\n"
                                           "Click Cancel to try again."), QMessageBox::Cancel);
     }
+    else if ( length_email < 14)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("Email must contian at least 4 letters before the gmail domaine.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
     else
     {
-        QSqlQuery qry;
-        qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE PHONE_INVITE= :phone");
-        qry.bindValue(":phone",E.get_phone());
 
-        if ( qry.exec())
+        int count = E.invite_check_unique_phone(E.get_phone());
+        if ( count == 0)
         {
-            int count(0);
-            while(qry.next())
+            bool test = E.add_guest();
+            if ( test )
             {
-                count++;
+                QMessageBox::information(nullptr, QObject::tr("SUCCESS"),
+                                         QObject::tr("done .\n"
+                                                     "Click Cancel to try again."), QMessageBox::Cancel);
             }
+            ui->stackedWidget->setCurrentIndex(6);
+            afficher_liste_invite(E.get_id_marriage());
 
-            if ( count == 0)
-            {
-                bool test = E.add_guest();
-                if ( test )
-                {
-                    QMessageBox::information(nullptr, QObject::tr("SUCCESS"),
-                                             QObject::tr("done .\n"
-                                                         "Click Cancel to try again."), QMessageBox::Cancel);
-                }
-                ui->stackedWidget->setCurrentIndex(6);
-                afficher_liste_invite(E.get_id_marriage());
-
-                ui->name_guest->setText("");
-                ui->last_name_guest->setText("");
-                ui->Phone_number_guest->setText("");
-                ui->Email_guest->setText("");
-            }
-            else
-            {
-                QMessageBox::critical(nullptr, QObject::tr("ERROR"),
-                                      QObject::tr("PHONE NUMBER ALREADY EXISTS.\n"
-                                                  "Click Cancel to try again."), QMessageBox::Cancel);
-            }
+            ui->name_guest->setText("");
+            ui->last_name_guest->setText("");
+            ui->Phone_number_guest->setText("");
+            ui->Email_guest->setText("");
         }
-
-
-
+        else
+        {
+            QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                                  QObject::tr("PHONE NUMBER ALREADY EXISTS.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
+        }
     }
+
+
+
 }
+
 
 
 void MainWindow::on_cancel_3_clicked()
@@ -1011,5 +979,251 @@ void MainWindow::on_cancel_3_clicked()
     ui->last_name_guest->setText("");
     ui->Phone_number_guest->setText("");
     ui->Email_guest->setText("");
+
+}
+
+void MainWindow::on_search_gues_info_clicked()
+{
+    invite inv;
+    QString ID,id_client;
+    id_client = ui->mariage_id_3->text();
+    ID = ui->guest_id_2->text();
+    if (ID == "")
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("PLEASE PROVIDE AN ID.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else
+    {
+
+
+
+        int count = inv.search_inv_exist_to_update(ID,id_client);
+        if ( count == 0)
+        {
+            QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                                  QObject::tr("ID doesn't exists.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
+        }
+        else
+        {
+            QSqlQuery qry = inv.search_inv_to_update(ID,id_client);
+            int i=0;
+            QTableWidgetItem *name = new QTableWidgetItem;
+            QTableWidgetItem *last_name = new QTableWidgetItem;
+            QTableWidgetItem *phone_number = new QTableWidgetItem;
+            QTableWidgetItem *email = new QTableWidgetItem;
+
+            name->setText(qry.value(1).toString());
+            last_name->setText(qry.value(2).toString());
+            phone_number->setText(qry.value(3).toString());
+            email->setText(qry.value(4).toString());
+
+
+            ui->tableWidget_5->setItem(0,i,name);
+            ui->tableWidget_5->setItem(1,i,last_name);
+            ui->tableWidget_5->setItem(2,i,phone_number);
+            ui->tableWidget_5->setItem(3,i,email);
+
+
+        }
+
+    }
+}
+
+void MainWindow::on_update_guest_info_clicked()
+{
+    QString ID,id_client;
+    ID = ui->guest_id_2->text();
+    id_client = ui->mariage_id_3->text();
+
+    QSqlQuery qry;
+
+    QTableWidgetItem *nom= new QTableWidgetItem,*prenom= new QTableWidgetItem,*phone= new QTableWidgetItem,*email= new QTableWidgetItem;
+    QString n_inv="",p_inv="",ph_inv="",email_inv="";
+
+    for ( int i = 0;i< 4;i++)
+    {
+        for (int j=0 ; j<1 ; j++)
+        {
+            if ( i == 0)
+            {
+                nom = ui->tableWidget_5->item(i,j);
+                n_inv = nom->text();
+            }
+            if ( i == 1)
+            {
+                prenom = ui->tableWidget_5->item(i,j);
+                p_inv = prenom->text();
+
+            }
+            if ( i == 2)
+            {
+                phone = ui->tableWidget_5->item(i,j);
+                ph_inv = phone->text();
+
+            }
+            if ( i == 3)
+            {
+                email = ui->tableWidget_5->item(i,j);
+                email_inv = email->text();
+            }
+        }
+
+    }
+    invite inv(ID,n_inv,p_inv,ph_inv,email_inv,id_client);
+
+
+    bool valid = false;
+
+    if ( inv.get_email().contains("@gmail.com") )
+    {
+        valid = true;
+    }
+    int length_email = inv.get_email().length();
+
+    int phone_inv = convert_string_to_number(inv.get_phone());
+    int l_phone = inv.get_phone().length();
+
+
+    if ( inv.get_nom()== "" || inv.get_prenom()== "" || inv.get_email()== "" || inv.get_phone() == "")
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("PLEASE FILL IN THE INFORMATIONS.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else if ( phone_inv == 0)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("PHONE NUMBER MUST ONLY CONTAIN NUMBERS AND NOT 0 OR EMPTY.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else if ( l_phone < 8)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("ENTER A VALID 8 DIGIT PHONE NUMBER.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else if ( valid == false)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("Please use an email of a Gmail domain.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else if ( length_email < 14)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                              QObject::tr("Email must contian at least 4 letters before the gmail domaine.\n"
+                                          "Click Cancel to try again."), QMessageBox::Cancel);
+    }
+    else
+    {
+        int count = inv.search_inv_exist_to_update(ID,id_client);
+
+        if (count == 1)
+        {
+
+            bool test = inv.update_invite_info( ID, id_client);
+            if ( test)
+            {
+                QMessageBox::information(nullptr, QObject::tr("edit to data base"),
+                                         QObject::tr("invite Updated.\n"
+                                                     "Click Cancel to exit."), QMessageBox::Cancel);
+                afficher_liste_invite(inv.get_id_marriage());
+                ui->stackedWidget->setCurrentIndex(6);
+                for (int i =0 ; i<1 ; i++)
+                    for (int j =0 ; j< 4 ; j++)
+                        ui->tableWidget_5->item(j,i)->setText("");
+
+                ui->guest_id_2->setText("");
+
+
+            }
+
+
+        }
+        else
+        {
+            QMessageBox::critical(nullptr, QObject::tr("edit to data base"),
+                                  QObject::tr("ID doesn't exist.\n"
+                                              "Click Cancel to try again."), QMessageBox::Cancel);
+        }
+
+    }
+
+}
+
+
+void MainWindow::on_search_bar_2_textChanged(const QString &arg1)
+{
+    QString filter = ui->search_bar->text();
+    for( int i = 0; i < ui->tableWidget_3->rowCount(); ++i )
+    {
+        bool match = false;
+        for( int j = 0; j < ui->tableWidget_3->columnCount(); ++j )
+        {
+            QTableWidgetItem *item = ui->tableWidget_3->item( i, j );
+            if( item->text().contains(arg1) )
+            {
+                match = true;
+                break;
+            }
+        }
+        ui->tableWidget_3->setRowHidden( i, !match );
+    }
+}
+
+void MainWindow::on_imprimer_clicked()
+{
+    QPrinter printer;
+    invite inv;
+    printer.setPrinterName("my_printer_machine");
+    QPrintDialog dialog(&printer,this);
+    if ( dialog.exec()== QDialog::Rejected) return ;
+
+    QString nom,phone,email,cin,budget,date;
+
+    QString ID = ui->mariage_id_2->text();
+
+    QSqlQuery qry = inv.search_inv_to_print(ID);
+
+    nom = qry.value(0).toString() + " " + qry.value(1).toString() + " ET " + qry.value(4).toString() + " " + qry.value(5).toString();
+    phone = qry.value(2).toString() + " / " + qry.value(6).toString();
+    cin = qry.value(3).toString() + " / " + qry.value(7).toString();
+    email = qry.value(9).toString();
+    budget = qry.value(8).toString();
+    date = qry.value(10).toString();
+
+
+
+
+
+
+    QString text = "Le Nom Complet des Marries est  : " + nom + "\n"
+            + " Les numeros de telephone associes sont : " + phone + "\n"
+            + " Les CIN associes sont : " + cin + "\n"
+            + " Leur Email est : " + email + "\n"
+            + " Leur Budget est : " + budget + "\n"
+            + " Leur Date de Marriage est : " + date ;
+
+
+    QTextEdit y;
+    y.setPlainText(text);
+
+    y.print(&printer);
+
+
+}
+
+void MainWindow::on_send_invite_clicked()
+{
+    QString ID = ui->mariage_id_3->text();
+    client_marriage c;
+    c.update_confirmation(ID);
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
 
 }

@@ -41,14 +41,15 @@ bool invite::add_guest()
 }
 
 
-bool invite::supprimer_invite(QString ID)
+bool invite::supprimer_invite(QString ID,QString id_client)
 {
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_INVITE =:id ");
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_INVITE =:id AND ID_MARRIAGE = :id_client ");
     qry.bindValue(":id",ID);
+    qry.bindValue(":id_client",id_client);
     if (qry.exec())
     {
-        int count(0);
+        int count=0;
         while(qry.next())
         {
             count++;
@@ -56,8 +57,9 @@ bool invite::supprimer_invite(QString ID)
 
         if (count == 1)
         {
-            qry.prepare("Delete from INVITE_MARRIAGE WHERE ID_INVITE =:id ");
+            qry.prepare("Delete from INVITE_MARRIAGE WHERE ID_INVITE =:id AND ID_MARRIAGE = :id_client ");
             qry.bindValue(":id",ID);
+            qry.bindValue(":id_client",id_client);
             QMessageBox::information(nullptr, QObject::tr("SUCESS"),
                                      QObject::tr("INVITE SUPPRIMER.\n"
                                                  "Click Cancel to exit."), QMessageBox::Cancel);
@@ -73,4 +75,156 @@ bool invite::supprimer_invite(QString ID)
 
     }
     return qry.exec();
+}
+
+
+bool invite::update_invite_info(QString ID,QString id_client)
+{
+    QSqlQuery qry;
+
+
+
+    qry.prepare("UPDATE INVITE_MARRIAGE SET NOM_INVITE=:nom ,PRENOM_INVITE=:prenom,PHONE_INVITE=:phone ,EMAIL_INVITE = :email  WHERE ID_INVITE =:id AND ID_MARRIAGE = :id_client ");
+
+    qry.bindValue(":nom",nom_invite);
+    qry.bindValue(":prenom",prenom_invite);
+    qry.bindValue(":phone",phone_invite);
+    qry.bindValue(":email",email_invite);
+
+
+
+    qry.bindValue(":id",ID);
+    qry.bindValue(":id_client",id_client);
+
+
+    return qry.exec();
+}
+
+int invite::clear_table_inv()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE");
+    int rowCount = 0;
+    if (qry.exec())
+    {
+
+        while(qry.next())
+        {
+            rowCount++;
+        }
+
+
+
+    }
+    return rowCount;
+}
+
+void invite::fix_id_after_delete(int id,QString id_client)
+{
+    QSqlQuery qry;
+
+    qry.prepare("UPDATE INVITE_MARRIAGE SET ID_INVITE= :id_inv  WHERE ID_MARRIAGE = :id_client AND ID_INVITE > :id_inv");
+    qry.bindValue(":id_inv",id);
+    qry.bindValue(":id_client",id_client);
+    if (qry.exec() )
+    {
+        while (qry.next())
+        {
+            id++;
+        }
+    }
+}
+
+int invite::count_id_inv(QString id_marriage)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_MARRIAGE= :id_m");
+    qry.bindValue(":id_m",id_marriage);
+    int count(0);
+    if ( qry.exec())
+    {
+
+        while(qry.next())
+        {
+            count++;
+        }
+        count++;
+
+
+    }
+    return count;
+}
+
+int invite::invite_check_unique_phone(QString phone)
+{
+
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE PHONE_INVITE= :phone");
+    qry.bindValue(":phone",phone);
+    int count(0);
+
+    if ( qry.exec())
+    {
+        while(qry.next())
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+QSqlQuery invite::search_inv_to_update(QString ID,QString id_client)
+{
+    QSqlQuery qry;
+
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_INVITE =:id AND ID_MARRIAGE = :id_client");
+    qry.bindValue(":id",ID);
+    qry.bindValue(":id_client",id_client);
+
+    if (qry.exec())
+    {
+
+        while(qry.next())
+        {
+            return qry;
+        }
+
+    }
+}
+
+int invite::search_inv_exist_to_update(QString ID,QString id_client)
+{
+    QSqlQuery qry;
+
+    qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_INVITE =:id AND ID_MARRIAGE = :id_client");
+    qry.bindValue(":id",ID);
+    qry.bindValue(":id_client",id_client);
+    int count(0);
+    if (qry.exec())
+    {
+
+        while(qry.next())
+        {
+            count++;
+        }
+
+    }
+    return count;
+}
+
+
+QSqlQuery invite::search_inv_to_print(QString ID)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT=:id");
+    qry.bindValue(":id",ID);
+
+    if ( qry.exec())
+    {
+        while(qry.next())
+        {
+            return qry;
+        }
+    }
 }

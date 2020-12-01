@@ -135,3 +135,106 @@ bool client_marriage::update_client_info(QString ID)
 
     return qry.exec();
 }
+
+
+int client_marriage::unique_cin_search(QString cinn)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE CIN_M =:cin");
+    qry.bindValue(":cin",cinn);
+    int count(0);
+    if (qry.exec())
+    {
+
+        while(qry.next())
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+int client_marriage::count_id()
+{
+    QSqlQuery qry;
+    int count1=0;
+    if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
+    {
+
+        while(qry.next())
+        {
+            count1++;
+        }
+
+    }
+    count1+=1;
+
+    return count1;
+}
+
+
+int client_marriage::clear_table_marriage()
+{
+    QSqlQuery qry;
+
+    int rowCount = 0;
+
+    if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
+    {
+        while(qry.next())
+        {
+            rowCount++;
+        }
+
+
+
+    }
+    return rowCount;
+}
+
+QSqlQuery client_marriage::search_client_update(QString id)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT =:id ");
+    qry.bindValue(":id",id);
+
+    if (qry.exec())
+    {
+
+
+        while(qry.next())
+        {
+            return qry;
+        }
+    }
+}
+
+
+int client_marriage::check_id_client(QString id)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM CLIENT_MARRIAGE WHERE ID_CLIENT =:id ");
+    qry.bindValue(":id",id);
+    int count(0);
+    if (qry.exec())
+    {
+
+
+        while(qry.next())
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+void client_marriage::update_confirmation(QString id)
+{
+    QSqlQuery qry;
+    qry.prepare("UPDATE CLIENT_MARRIAGE SET CONFIRMATION=:conf WHERE ID_CLIENT =:id");
+    qry.bindValue(":conf","1");
+    qry.bindValue(":id",id);
+
+    qry.exec();
+}
