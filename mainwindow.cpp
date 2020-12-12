@@ -8,6 +8,8 @@
 #include <QtCharts>
 #include <QDateTime>
 #include<QBarSet>
+#include <QtMultimedia/QMediaPlayer>
+
 #include <QChartView>
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
@@ -18,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
     QStringList Titres;
-    Titres <<"   Identifiant " <<"  Name  "<<" Phone "<<" Adresse   "<<" Email    "<<"delete";
+    Titres <<"   Identifiant " <<"  Name  "<<" Phone "<<"         Adresse       "<<"         Email        "<<"delete";
     ui->aff_trait->setColumnCount(6);
     ui->aff_trait->setHorizontalHeaderLabels(Titres);
     ui->aff_trait->resizeColumnsToContents();
@@ -120,9 +122,9 @@ bool MainWindow::verif_trait(QString id,QString nom,QString num,QString email,QS
        verification=false;
    }
    int x=0;
-   for(int i=0;i<ui->emailEdit->text().size();i++)
+   for(int i=0;i<email.size();i++)
    {
-if(ui->emailEdit->text().at(i)=='@')
+if(email.at(i)=='@')
 {
 
 x++;
@@ -147,7 +149,7 @@ x++;
     return verification;
 
 }
-bool MainWindow::verif_prod(QString id ,QString nom ,QString prix,QString type,QString id_t)
+bool MainWindow::verif_prod(QString id ,QString nom ,QString prix,QString id_t)
 {
 bool verification=true;
    int k,N;
@@ -229,7 +231,7 @@ ui->stackedWidget->setCurrentIndex(1);
 void MainWindow::on_green_addP_clicked()
 {
     Produit p;
-    if(verif_prod(ui->identifier_edit->text(),ui->namePEdit->text(),ui->priceEdit->text(),ui->typeBox->currentText(),ui->idencatprod->text()))
+    if(verif_prod(ui->identifier_edit->text(),ui->namePEdit->text(),ui->priceEdit->text(),ui->idencatprod->text()))
    { p.setIDprod(ui->identifier_edit->text());
     p.setNOMprod(ui->namePEdit->text());
     p.setPRIXprod(ui->priceEdit->text());
@@ -378,7 +380,10 @@ void MainWindow::on_aff_trait_cellClicked(int row, int column)
   const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
 if(column==5)
 {
-
+    QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/projet c++/traiteur/sound.mp3"));
+        player->setVolume(50);
+        player->play();
     t.effacer(identifiant);
     initialiserUpdatetrait();
 
@@ -465,6 +470,10 @@ void MainWindow::on_update_tablePR_cellClicked(int row, int column)
   const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
 if(column==5)
 {
+    QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/projet c++/traiteur/sound.mp3"));
+        player->setVolume(50);
+        player->play();
     p.effacer(identifiant);
     initialiserUpdateprod();
 
@@ -578,14 +587,14 @@ void MainWindow::on_stat_clicked()
             QBarSet *set0 = new QBarSet("chaud");
             QBarSet *set1 = new QBarSet("froid");
             QBarSet *set2 = new QBarSet("sucrée");
-            QBarSet *set3 = new QBarSet("salée");
+            QBarSet *set3 = new QBarSet("salee");
     QString identifiant_1=ui->identifiant_1->text();
     QString identifiant_2=ui->identifiant_2->text();
     QString identifiant_3=ui->identifiant_3->text();
     QString identifiant_4=ui->identifiant_4->text();
     QString identifiant_5=ui->identifiant_5->text();
 
-                            for(int i=1;i<4;i++)
+                            for(int i=1;i<5;i++)
                             {
 
                                     text1.setText(p.stat(identifiant_1,i)->index(0 , 0).data().toString());
@@ -615,7 +624,6 @@ void MainWindow::on_stat_clicked()
                                             else if(i==4)
                                             {
                                                 *set3 << k1 << k2 << k3 << k4 << k5 ;
-
                                             }
 
 
@@ -632,7 +640,7 @@ void MainWindow::on_stat_clicked()
 
             QChart *chart = new QChart();
             chart->addSeries(series);
-            chart->setTitle("Simple barchart example");
+            chart->setTitle("statistique des poroduits préparés par chaque traiteur");
             chart->setAnimationOptions(QChart::SeriesAnimations);
 
             QStringList categories;
@@ -659,6 +667,11 @@ void MainWindow::on_stat_clicked()
 void MainWindow::on_pushButton_10_clicked()
 {
     ui->stackedWidget->setCurrentIndex(9);
+    ui->identifiant_1->clear();
+    ui->identifiant_2->clear();
+    ui->identifiant_3->clear();
+    ui->identifiant_4->clear();
+    ui->identifiant_5->clear();
 }
 
 void MainWindow::on_pushButton_11_clicked()
@@ -669,6 +682,7 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_imprimer_2_clicked()
 {
+
     QPrinter printer(QPrinter::HighResolution);
 
 
@@ -710,4 +724,54 @@ void MainWindow::on_imprimer_2_clicked()
                 }
 
                 painter.end();
+}
+
+void MainWindow::on_temporaire_clicked()
+{
+Produit p;
+    QStringList entet;
+    entet <<"   Identifiant " <<"  Name  "<<" Type "<<" price "<<" Id_traiteur    "<<"ajouter";
+    ui->acheter_prod->setColumnCount(6);
+    ui->acheter_prod->setHorizontalHeaderLabels(entet);
+    ui->acheter_prod->resizeColumnsToContents();
+
+    ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+
+             ui->acheter_prod->setRowCount(0);
+
+          for( int row = 0; row < ui->affiche_tablePR->model()->rowCount(); ++row )
+           {ui->acheter_prod->insertRow(ui->acheter_prod->rowCount());
+     for( int col = 0; col < ui->affiche_tablePR->model()->columnCount(); ++col )
+             {
+              QModelIndex index =ui->affiche_tablePR->model()->index(row,col);
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/add.png");
+
+          QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+
+               MAJ_item->setIcon(MAJ);
+               ui->acheter_prod->setItem(row,5, MAJ_item);
+               ui->acheter_prod->resizeColumnsToContents();
+             }
+          }
+          ui->stackedWidget->setCurrentIndex(11);
+
+}
+
+void MainWindow::on_acheter_prod_cellClicked(int row, int column)
+{ prod_client pc;
+    const QAbstractItemModel *model = ui->affiche_tablePR->model();
+    const QString idprod = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+qDebug()<<idprod;
+if(column==5)
+{
+    pc.setIDclient("1234789");
+
+pc.setIDprod(idprod);
+pc.addprod_client();
+}
 }

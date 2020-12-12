@@ -1,4 +1,4 @@
-QT       += core gui sql  charts printsupport
+QT       += core gui sql  charts printsupport multimedia
 
 CONFIG +=console
 
@@ -21,12 +21,14 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    prod_client.cpp \
     produit.cpp \
     traiteur.cpp
 
 HEADERS += \
     login.h \
     mainwindow.h \
+    prod_client.h \
     produit.h \
     traiteur.h
 

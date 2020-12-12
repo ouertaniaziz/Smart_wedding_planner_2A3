@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "traiteur.h"
 #include"login.h"
+#include"prod_client.h"
 #include<QSqlQueryModel>
 #include"produit.h"
 #include <stdlib.h>
@@ -88,7 +89,7 @@ void on_triProd_currentIndexChanged(int index);
 void on_rechercheLine_2_textChanged(const QString &arg1);
 
 bool verif_trait(QString,QString,QString,QString,QString);
-bool verif_prod(QString,QString,QString,QString,QString);
+bool verif_prod(QString,QString,QString,QString);
 
 void on_statisticP_clicked();
 
@@ -101,6 +102,10 @@ void on_pushButton_10_clicked();
 void on_pushButton_11_clicked();
 
 void on_imprimer_2_clicked();
+
+void on_temporaire_clicked();
+
+void on_acheter_prod_cellClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

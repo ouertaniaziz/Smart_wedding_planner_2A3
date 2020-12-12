@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>GASTRONOMIE</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#MainWindow{
@@ -41,7 +41,7 @@ background-repeat: none;
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>30</x>
       <y>40</y>
       <width>671</width>
       <height>401</height>
@@ -57,7 +57,7 @@ background-repeat: none;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_1">
      <property name="styleSheet">
@@ -997,6 +997,19 @@ background-repeat: none;
        <string/>
       </property>
      </widget>
+     <widget class="QPushButton" name="temporaire">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>280</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>temporaire</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
      <property name="styleSheet">
@@ -1827,6 +1840,14 @@ background-repeat: none;
         <width>511</width>
         <height>191</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#aff_trait{
+
+
+	border-right-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 0, 0, 255), stop:0.339795 rgba(255, 0, 0, 255), stop:0.339799 rgba(255, 255, 255, 255), stop:0.662444 rgba(255, 255, 255, 255), stop:0.662469 rgba(0, 0, 255, 255), stop:1 rgba(0, 0, 255, 255));
+
+}</string>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::AllEditTriggers</set>
@@ -3497,6 +3518,18 @@ color : white</string>
       </property>
       <property name="text">
        <string>back</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_7">
+     <widget class="QTableWidget" name="acheter_prod">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>150</y>
+        <width>461</width>
+        <height>192</height>
+       </rect>
       </property>
      </widget>
     </widget>
