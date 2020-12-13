@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.png</file>
+        <file>add_client.png</file>
+        <file>budget_icon.png</file>
+        <file>cancel.png</file>
+        <file>cin_icon.png</file>
+        <file>clientlist.png</file>
+        <file>delete.png</file>
+        <file>delete_client.png</file>
+        <file>email_icon.png</file>
+        <file>guestlist.png</file>
+        <file>marriage_list.png</file>
+        <file>phone_icon.png</file>
+        <file>search.png</file>
+        <file>search_icon.png</file>
+        <file>searchguest.png</file>
+        <file>send_invite.png</file>
+        <file>update.png</file>
+        <file>updateclient.png</file>
+        <file>updateguests.png</file>
+        <file>user_icon.png</file>
+        <file>pdf.png</file>
+        <file>addicon.png</file>
+        <file>fav.png</file>
+        <file>gmail.png</file>
+        <file>nofav.png</file>
+        <file>phone.png</file>
+        <file>searchicon.png</file>
+    </qresource>
+</RCC>
