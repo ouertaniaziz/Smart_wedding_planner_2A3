@@ -9,6 +9,12 @@
 #include <QtWidgets/QMessageBox>
 #include <QPropertyAnimation>
 
+#include <QMainWindow>
+#include "traiteur.h"
+#include"prod_client.h"
+#include<QSqlQueryModel>
+#include"produit.h"
+#include <stdlib.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +27,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void initialiserUpdatetrait();
+    void initialiserUpdateprod();
 
 private slots:
     void on_clientlist_clicked();
@@ -62,7 +69,7 @@ private slots:
 
     void on_add_guest_clicked();
 
-    void on_pushButton_7_clicked();
+    void on_back_guest_from_add();
 
     void on_delete_guest_clicked();
 
@@ -198,6 +205,98 @@ private slots:
     void on_back_from_delete_client_clicked();
 
     void on_back_from_yassine_clicked();
+
+    //////////////////////////////////////////////////////////////////////// aziz
+    ///
+    ///
+    void on_traiteur_edit_clicked();
+
+    void on_fermer_clicked();
+
+    void on_ajouter_traiteur_clicked();
+
+    void on_cancel_clicked();
+
+    void on_produit_edit_clicked();
+
+    void on_cancel_P_clicked();
+
+
+    void on_ajoute_produit_clicked();
+
+    void on_green_add_clicked();
+
+    void on_BACK5_clicked();
+
+    void on_list_traiteurs_clicked();
+    void essaiaff();
+
+    void on_BACK1_clicked();
+
+    void on_BACK2_clicked();
+
+    void on_BACK3_clicked();
+
+    void on_BACK4_clicked();
+
+    void on_BACK6_clicked();
+
+    void on_modifier_traiter_clicked();
+
+
+    void on_aff_trait_cellChanged(int row, int column );
+    void on_pushButton_7_clicked();
+    void on_BACK7_clicked();
+    void on_green_addP_clicked();
+
+
+    void on_aff_trait_cellClicked(int row, int column);
+
+    void on_list_produit_clicked();
+
+    void on_modifie_produit_clicked();
+
+    void on_BACK8_clicked();
+
+    void on_update_tablePR_cellChanged(int row, int column);
+
+    void on_update_tablePR_cellClicked(int row, int column);
+
+    void on_triTrait_currentIndexChanged(int index);
+
+
+
+
+    void on_rechercheLine_textChanged(const QString &arg1);
+
+    void on_triProd_currentIndexChanged(int index);
+
+    void on_rechercheLine_2_textChanged(const QString &arg1);
+
+    bool verif_trait(QString,QString,QString,QString,QString);
+    bool verif_prod(QString,QString,QString,QString);
+
+    void on_statisticP_clicked();
+
+    void on_imprimer_TRAIT_clicked();
+
+    void on_stat_clicked();
+
+    void on_BACK10_clicked();
+
+    void on_BACK9_clicked();
+
+    void on_imprimerPROD_clicked();
+
+    void on_temporaire_clicked();
+
+    void on_acheter_prod_cellClicked(int row, int column);
+
+    void on_BACK12_clicked();
+
+    void on_aziz_clicked();
+
+    void on_back_to_aziz_clicked();
 
 private:
     Ui::MainWindow *ui;

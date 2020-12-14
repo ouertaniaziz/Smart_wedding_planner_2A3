@@ -8,7 +8,7 @@
 #include <QSqlQueryModel>
 #include "connection.h"
 #include "decorator.h"
-
+#include "deletedecorator.h"
 
 #include <QSqlDatabase>
 #include <QSqlError>

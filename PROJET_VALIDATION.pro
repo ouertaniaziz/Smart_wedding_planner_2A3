@@ -1,6 +1,6 @@
 
 QT += sql
-QT       += core gui sql network printsupport charts
+QT       += core gui sql network printsupport charts multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,27 +21,35 @@ SOURCES += \
     client_marriage.cpp \
     connection.cpp \
     decorator.cpp \
-    deletedecorator.cpp \
-    deletehall.cpp \
     hall.cpp \
     invite.cpp \
     main.cpp \
     mainwindow.cpp \
+    prod_client.cpp \
+    produit.cpp \
     smtp.cpp \
+    deletehall.cpp \
+    deletedecorator.cpp \
+    traiteur.cpp
 
 HEADERS += \
     client_marriage.h \
     connection.h \
     decorator.h \
-    deletedecorator.h \
-    deletehall.h \
     hall.h \
     invite.h \
     mainwindow.h \
+    prod_client.h \
+    produit.h \
     smtp.h \
+    deletehall.h \
+    deletedecorator.h \
+    traiteur.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    deletehall.ui \
+    deletedecorator.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

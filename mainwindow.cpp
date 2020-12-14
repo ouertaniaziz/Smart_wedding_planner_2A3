@@ -24,20 +24,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "ajoutersalle.h"
-#include "deletehall.h"
 #include "deletedecorator.h"
 #include "hall.h"
 #include "decorator.h"
 #include "smtp.h"
 #include "smtp_yassine.h"
+#include "deletehall.h"
 
+#include"traiteur.h"
+#include"produit.h"
 
-#include <QtCharts>
-#include <QtCharts/QChartView>
-#include <QtCharts/QPieSeries>
-#include <QtCharts/QPieSlice>
-#include <QtCharts/QLegend>
-#include <QPropertyAnimation>
+#include <QApplication>
+#include <QTableWidget>
+#include <QDateTime>
+#include<QBarSet>
+#include <QtMultimedia/QMediaPlayer>
+
+#include <QChartView>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -121,6 +126,23 @@ MainWindow::MainWindow(QWidget *parent)
             animation->setStartValue(ui->HallsTitle->geometry());
             animation->setEndValue(QRect(160,10,171,30));
             animation->start();
+
+            QStringList Titres;
+            Titres <<"   Identifiant " <<"  Name  "<<" Phone "<<"         Adresse       "<<"         Email        "<<"delete";
+            ui->aff_trait->setColumnCount(6);
+            ui->aff_trait->setHorizontalHeaderLabels(Titres);
+            ui->aff_trait->resizeColumnsToContents();
+            ui->stackedWidget->setCurrentIndex(0);
+
+            prod_client p_c;
+
+            QSqlQuery* qry = p_c.afficher_client_pour_poduit();
+
+            while ( qry->next() )
+            {
+                ui->comboBox_client_produit->addItem(qry->value(11).toString());
+            }
+
 
 }
 
@@ -837,7 +859,7 @@ void MainWindow::on_add_guest_clicked()
     ui->stackedWidget->setCurrentIndex(7);
 }
 
-void MainWindow::on_pushButton_7_clicked()
+void MainWindow::on_back_guest_from_add()
 {
     ui->stackedWidget->setCurrentIndex(6);
     ui->name_guest->setText("");
@@ -2247,6 +2269,760 @@ void MainWindow::on_back_from_delete_client_clicked()
 }
 
 void MainWindow::on_back_from_yassine_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(10);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////aziz ############################################################
+
+
+void MainWindow::on_traiteur_edit_clicked()
+{
+
+ui->stackedWidget->setCurrentIndex(22);
+
+
+}
+
+void MainWindow::on_fermer_clicked()
+{
+    close();
+}
+
+
+void MainWindow::on_ajouter_traiteur_clicked()
+{
+
+    ui->stackedWidget->setCurrentIndex(24);
+}
+
+void MainWindow::on_cancel_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(22);
+
+}
+
+void MainWindow::on_produit_edit_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+void MainWindow::on_cancel_P_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+
+void MainWindow::on_ajoute_produit_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(25);
+
+}
+bool MainWindow::verif_trait(QString id,QString nom,QString num,QString email,QString adresse)
+{ bool verification=true;
+    int k,N;
+    k=id.toInt();
+    N=num.toInt();
+    if(k==0)
+    {
+        ui->IDEdit->clear();
+        ui->IDEdit->setText("l'identifiant contien que des chiffres");
+        verification=false;
+    }
+    if(nom=="")
+    {
+        ui->nameEdit->clear();
+
+          ui->nameEdit->setText("il faut remplire le nom5");
+          verification=false;
+
+    }
+    QString ch;
+            ch=ui->nameEdit->text();
+            bool test=true;
+            int i=0;
+            while(i<ch.size() && test==true)
+            {
+                if(ch[i].isLetter())
+                  {  i++;
+                    test=true;
+
+                }
+                else {
+                    test=false;
+                  verification=false;
+                  ui->nameEdit->setText("verifier le nom");
+                }
+            }
+   if(N==0)
+   {
+       ui->phoneEdit->clear();
+       ui->phoneEdit->setText("verifier le numero");
+       verification=false;
+   }
+   int x=0;
+   for(int i=0;i<email.size();i++)
+   {
+if(email.at(i)=='@')
+{
+
+x++;
+    }
+   }
+   if((x<1)||(x>1))
+   {
+       ui->emailEdit->clear();
+
+         ui->emailEdit->setText("verifier l'email");
+         verification=false;
+   }
+   if(adresse=="")
+   {
+       ui->adresseEdit->clear();
+
+         ui->adresseEdit->setText("il faut remplire l'adresse");
+         verification=false;
+
+   }
+
+    return verification;
+
+}
+bool MainWindow::verif_prod(QString id ,QString nom ,QString prix,QString id_t)
+{
+bool verification=true;
+   int k,N;
+   k=id.toInt();
+   N=prix.toInt();
+   if(k==0)
+   {
+       ui->identifier_edit->clear();
+       ui->identifier_edit->setText("l'identifiant contien que des chiffres");
+       verification=false;
+   }
+   if(nom=="")
+   {
+       ui->namePEdit->clear();
+
+         ui->namePEdit->setText("il faut remplire le nom");
+         verification=false;
+
+   }
+   QString ch;
+           ch=ui->namePEdit->text();
+           bool test=true;
+           int i=0;
+           while(i<ch.size() && test==true)
+           {
+               if(ch[i].isLetter())
+                 {  i++;
+                   test=true;
+
+               }
+               else {
+                   test=false;
+                 verification=false;
+                 ui->namePEdit->setText("verifier le nom");
+               }
+           }
+   if(N==0)
+   {
+       ui->priceEdit->clear();
+       ui->priceEdit->setText("verifier le prix");
+       verification=false;
+   }
+
+   if(id_t=="")
+   {
+       ui->idencatprod->clear();
+
+         ui->idencatprod->setText("il faut remplire l'id");
+         verification=false;
+
+   }
+
+    return verification;
+}
+//ajouter un traiteur
+void MainWindow::on_green_add_clicked()
+{
+
+    traiteur t;
+   if(verif_trait(ui->IDEdit->text(),ui->nameEdit->text(),ui->phoneEdit->text(),ui->emailEdit->text(),ui->adresseEdit->text())==true)
+   {
+t.setIDTrait(ui->IDEdit->text());
+t.setNomTrait(ui->nameEdit->text());
+t.setNumTrait(ui->phoneEdit->text());
+t.setEmailTrait(ui->emailEdit->text());
+t.setAdressTrait(ui->adresseEdit->text());
+
+t.addtraiteur();
+ui->IDEdit->clear();
+ui->nameEdit->clear();
+ui->phoneEdit->clear();
+ui->emailEdit->clear();
+ui->adresseEdit->clear();
+ui->stackedWidget->setCurrentIndex(22);
+   }
+
+
+}
+void MainWindow::on_green_addP_clicked()
+{
+    Produit p;
+    if(verif_prod(ui->identifier_edit->text(),ui->namePEdit->text(),ui->priceEdit->text(),ui->idencatprod->text()))
+   { p.setIDprod(ui->identifier_edit->text());
+    p.setNOMprod(ui->namePEdit->text());
+    p.setPRIXprod(ui->priceEdit->text());
+    p.setTYPEprod(ui->typeBox->currentText());
+    p.setIDTRAITprod(ui->idencatprod->text());
+p.addproduit();
+    }
+    ui->identifier_edit->clear();
+    ui->namePEdit->clear();
+    ui->priceEdit->clear();
+    ui->idencatprod->clear();
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+void MainWindow::on_BACK5_clicked()
+{ // back from from update caterer to caterer (crud)
+    ui->stackedWidget->setCurrentIndex(22);
+
+}
+
+void MainWindow::on_list_traiteurs_clicked()
+{
+
+traiteur t;
+        ui->stackedWidget->setCurrentIndex(27);
+        ui->essai_table->setModel(t.afficher(0,"null"));
+         ui->essai_table->resizeRowsToContents();
+         ui->essai_table->resizeColumnsToContents();
+         ui->essai_table->show();
+
+
+}
+
+void MainWindow::on_BACK1_clicked()
+{ // back from caterer (crud) to intial
+    ui->stackedWidget->setCurrentIndex(21);
+
+}
+
+void MainWindow::on_BACK2_clicked()
+{// back from product (crud) to intial
+    ui->stackedWidget->setCurrentIndex(21);
+
+}
+
+void MainWindow::on_BACK3_clicked()
+{ // back from from add caterer to caterer (crud)
+    ui->stackedWidget->setCurrentIndex(22);
+
+}
+
+void MainWindow::on_BACK4_clicked()
+{ // back from  add product to product (crud)
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+void MainWindow::on_BACK6_clicked()
+{// back from list caterer to caterer (crud)
+    ui->stackedWidget->setCurrentIndex(22);
+
+}
+
+void MainWindow::on_modifier_traiter_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(26);
+   // initialiserUpdate();
+
+    initialiserUpdatetrait();
+
+
+}
+
+
+void MainWindow::initialiserUpdatetrait( )
+{
+
+    traiteur t;
+
+   ui->essai_table->setModel(t.afficher(0,"null"));
+
+
+            ui->aff_trait->setRowCount(0);
+
+         for( int row = 0; row < ui->essai_table->model()->rowCount(); ++row )
+          {ui->aff_trait->insertRow(ui->aff_trait->rowCount());
+    for( int col = 0; col < ui->essai_table->model()->columnCount(); ++col )
+            {
+             QModelIndex index =ui->essai_table->model()->index(row,col);
+         ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->aff_trait->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.jpg");
+
+         QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+
+              MAJ_item->setIcon(MAJ);
+              ui->aff_trait->setItem(row,5, MAJ_item);
+
+              ui->aff_trait->resizeColumnsToContents();
+            }
+         }
+}
+void MainWindow::on_aff_trait_cellChanged(int row, int column)
+{ traiteur t;
+qDebug()<< "entrer";
+
+
+                    const QAbstractItemModel *model = ui->aff_trait->model();
+                  const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+
+                  const QString nom = model->data(model->index(row, 1), Qt::DisplayRole).toString();
+                    const QString numero = model->data(model->index(row, 2), Qt::DisplayRole).toString();
+                    const QString email = model->data(model->index(row, 3), Qt::DisplayRole).toString();
+                    const QString adresse = model->data(model->index(row, 4), Qt::DisplayRole).toString();
+                    t.update_T(identifiant,nom,numero,email,adresse,column);
+
+}
+
+void MainWindow::essaiaff()
+{}
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(24);
+
+}
+
+void MainWindow::on_BACK7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+
+void MainWindow::on_aff_trait_cellClicked(int row, int column)
+{ traiteur t;
+    const QAbstractItemModel *model = ui->aff_trait->model();
+  const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+if(column==5)
+{
+    QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/projet c++/traiteur/sound.mp3"));
+        player->setVolume(50);
+        player->play();
+    t.effacer(identifiant);
+    initialiserUpdatetrait();
+
+}
+}
+
+void MainWindow::on_list_produit_clicked()
+{
+    Produit p;
+            ui->stackedWidget->setCurrentIndex(28);
+            ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+           // ui->affiche_tablePR->setModel(p.stat("123456",1));
+
+            ui->affiche_tablePR->resizeRowsToContents();
+             ui->affiche_tablePR->resizeColumnsToContents();
+             ui->affiche_tablePR->show();
+}
+void MainWindow::initialiserUpdateprod()
+{
+
+   Produit p;
+   QStringList entet;
+   entet <<"   Identifiant " <<"  Name  "<<" Type "<<" price "<<" Id_traiteur    "<<"delete";
+   ui->update_tablePR->setColumnCount(6);
+   ui->update_tablePR->setHorizontalHeaderLabels(entet);
+   ui->update_tablePR->resizeColumnsToContents();
+
+  ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+
+
+            ui->update_tablePR->setRowCount(0);
+
+         for( int row = 0; row < ui->affiche_tablePR->model()->rowCount(); ++row )
+          {ui->update_tablePR->insertRow(ui->update_tablePR->rowCount());
+    for( int col = 0; col < ui->affiche_tablePR->model()->columnCount(); ++col )
+            {
+             QModelIndex index =ui->affiche_tablePR->model()->index(row,col);
+         ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         ui->update_tablePR->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+         QIcon MAJ("C:/Users/hp/Desktop/projet c++/traiteur/poubelle.jpg");
+
+         QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+
+              MAJ_item->setIcon(MAJ);
+              ui->update_tablePR->setItem(row,5, MAJ_item);
+              ui->update_tablePR->resizeColumnsToContents();
+            }
+         }
+}
+
+void MainWindow::on_modifie_produit_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(29);
+
+    initialiserUpdateprod();
+
+}
+
+void MainWindow::on_BACK8_clicked()
+{// back from update prod to prod (crud)
+
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+void MainWindow::on_update_tablePR_cellChanged(int row, int column)
+{ Produit p;
+    const QAbstractItemModel *model = ui->update_tablePR->model();
+  const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+
+  const QString nom = model->data(model->index(row, 1), Qt::DisplayRole).toString();
+    const QString type = model->data(model->index(row, 2), Qt::DisplayRole).toString();
+    const QString prix = model->data(model->index(row, 3), Qt::DisplayRole).toString();
+    const QString idtrait = model->data(model->index(row, 4), Qt::DisplayRole).toString();
+   p.update_P(identifiant ,nom , type, prix, idtrait , column);
+}
+
+void MainWindow::on_update_tablePR_cellClicked(int row, int column)
+{ Produit p;
+    const QAbstractItemModel *model = ui->update_tablePR->model();
+  const QString identifiant = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+if(column==5)
+{
+    QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/projet c++/traiteur/sound.mp3"));
+        player->setVolume(50);
+        player->play();
+    p.effacer(identifiant);
+    initialiserUpdateprod();
+
+}
+}
+
+void MainWindow::on_triTrait_currentIndexChanged(int index)
+{qDebug()<< index;
+    traiteur t;
+    ui->essai_table->setModel(t.afficher(index,"null"));
+         ui->essai_table->resizeRowsToContents();
+         ui->essai_table->resizeColumnsToContents();
+         ui->essai_table->show();
+
+
+}
+
+
+
+
+
+
+void MainWindow::on_rechercheLine_textChanged(const QString &arg1)
+{
+    traiteur t;
+
+    ui->essai_table->setModel(t.afficher(5,arg1));
+
+    qDebug()<< ui->rechercheLine->text();
+         ui->essai_table->resizeRowsToContents();
+         ui->essai_table->resizeColumnsToContents();
+         ui->essai_table->show();
+}
+
+void MainWindow::on_triProd_currentIndexChanged(int index)
+{
+    Produit p;
+            ui->affiche_tablePR->setModel(p.afficher(index,"null"));
+             ui->affiche_tablePR->resizeRowsToContents();
+             ui->affiche_tablePR->resizeColumnsToContents();
+             ui->affiche_tablePR->show();
+}
+
+void MainWindow::on_rechercheLine_2_textChanged(const QString &arg1)
+{
+    Produit p;
+            ui->affiche_tablePR->setModel(p.afficher(5,arg1));
+             ui->affiche_tablePR->resizeRowsToContents();
+             ui->affiche_tablePR->resizeColumnsToContents();
+             ui->affiche_tablePR->show();
+}
+
+void MainWindow::on_statisticP_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(30);
+
+}
+
+void MainWindow::on_imprimer_TRAIT_clicked()
+{
+    QPrinter printer(QPrinter::HighResolution);
+
+
+    printer.setOrientation(QPrinter::Landscape);
+            QPrintDialog *dialog = new QPrintDialog(&printer, this);
+            dialog->setWindowTitle(tr("Print Document"));
+             dialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+
+                printer.setOutputFileName("print.ps");
+                QPainter painter;
+
+     painter.begin(&printer);
+
+
+        int    numberOfPages=1;
+                for (int page = 0; page < numberOfPages; ++page) {
+
+                    // Utilisez l'imprimante pour dessiner sur la page.
+
+                    if (page != numberOfPages)
+                      {painter.setFont(QFont("Arial",20));
+
+                        painter.drawText(width()/2,height()/2, (""));
+                       // painter.drawImage()
+                              double xscale = printer.pageRect().width()/double(  ui->stackedWidget->width());
+                                double yscale = printer.pageRect().height()/double( ui->stackedWidget->height());
+                                double scale = qMin(xscale, yscale);
+                                painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+                                                   printer.paperRect().y() + printer.pageRect().height()/2);
+                                painter.scale(scale, scale);
+                                painter.translate(-width()/2, -height()/2);
+
+                                 ui->stackedWidget->render(&painter);
+
+
+                    }
+
+
+                }
+
+                painter.end();
+}
+
+void MainWindow::on_stat_clicked()
+{       ui->stackedWidget->setCurrentIndex(31);
+
+      QLineEdit text1;
+
+     Produit p;
+
+            QBarSet *set0 = new QBarSet("chaud");
+            QBarSet *set1 = new QBarSet("froid");
+            QBarSet *set2 = new QBarSet("sucrée");
+            QBarSet *set3 = new QBarSet("salee");
+    QString identifiant_1=ui->identifiant_1->text();
+    QString identifiant_2=ui->identifiant_2->text();
+    QString identifiant_3=ui->identifiant_3->text();
+    QString identifiant_4=ui->identifiant_4->text();
+    QString identifiant_5=ui->identifiant_5->text();
+
+                            for(int i=1;i<5;i++)
+                            {
+
+                                    text1.setText(p.stat(identifiant_1,i)->index(0 , 0).data().toString());
+                                   int k1=text1.text().toInt();
+                                     text1.setText(p.stat(identifiant_2,i)->index(0 , 0).data().toString());
+                                      int k2=text1.text().toInt();
+                                          text1.setText(p.stat(identifiant_3,i)->index(0 , 0).data().toString());
+                                         int k3=text1.text().toInt();
+                                             text1.setText(p.stat(identifiant_4,i)->index(0 , 0).data().toString());
+                                            int k4=text1.text().toInt();
+                                            text1.setText(p.stat(identifiant_5,i)->index(0 , 0).data().toString());
+                                           int k5=text1.text().toInt();
+                                            if(i==1)
+                                            {
+                                              *set0 << k1 << k2 << k3 << k4 << k5 ;
+                                            }
+                                            else if (i==2)
+                                            {
+                                                *set1 << k1 << k2 << k3 << k4 << k5 ;
+
+                                            }
+                                            else if( i==3)
+                                            {
+                                                *set2 << k1 << k2 << k3 << k4 << k5 ;
+
+                                            }
+                                            else if(i==4)
+                                            {
+                                                *set3 << k1 << k2 << k3 << k4 << k5 ;
+                                            }
+
+
+                            }
+
+
+
+            QBarSeries *series = new QBarSeries();
+            series->append(set0);
+            series->append(set1);
+            series->append(set2);
+            series->append(set3);
+
+
+            QChart *chart = new QChart();
+            chart->addSeries(series);
+            chart->setTitle("statistique des poroduits préparés par chaque traiteur");
+            chart->setAnimationOptions(QChart::SeriesAnimations);
+
+            QStringList categories;
+
+            categories << ui->identifiant_1->text() << ui->identifiant_2->text() << ui->identifiant_3->text() << ui->identifiant_4->text() << ui->identifiant_5->text() ;
+            QBarCategoryAxis *axis = new QBarCategoryAxis();
+            axis->append(categories);
+            chart->createDefaultAxes();
+            chart->setAxisX(axis, series);
+
+            chart->legend()->setVisible(true);
+            chart->legend()->setAlignment(Qt::AlignBottom);
+
+            QChartView *chartView = new QChartView(chart);
+            chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->graphicsView->setChart(chart);
+            ui->graphicsView->setMinimumSize(420,300);
+            ui->graphicsView->show();
+
+
+}
+
+void MainWindow::on_BACK10_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(30);
+    ui->identifiant_1->clear();
+    ui->identifiant_2->clear();
+    ui->identifiant_3->clear();
+    ui->identifiant_4->clear();
+    ui->identifiant_5->clear();
+}
+
+void MainWindow::on_BACK9_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(23);
+
+}
+
+void MainWindow::on_imprimerPROD_clicked()
+{
+
+    QPrinter printer(QPrinter::HighResolution);
+
+
+    printer.setOrientation(QPrinter::Landscape);
+            QPrintDialog *dialog = new QPrintDialog(&printer, this);
+            dialog->setWindowTitle(tr("Print Document"));
+             dialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+
+                printer.setOutputFileName("print.ps");
+                QPainter painter;
+
+     painter.begin(&printer);
+
+
+        int    numberOfPages=1;
+                for (int page = 0; page < numberOfPages; ++page) {
+
+                    // Utilisez l'imprimante pour dessiner sur la page.
+
+                    if (page != numberOfPages)
+                      {painter.setFont(QFont("Arial",20));
+
+                        painter.drawText(width()/2,height()/2, (""));
+                       // painter.drawImage()
+                              double xscale = printer.pageRect().width()/double(  ui->stackedWidget->width());
+                                double yscale = printer.pageRect().height()/double( ui->stackedWidget->height());
+                                double scale = qMin(xscale, yscale);
+                                painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+                                                   printer.paperRect().y() + printer.pageRect().height()/2);
+                                painter.scale(scale, scale);
+                                painter.translate(-width()/2, -height()/2);
+
+                                 ui->stackedWidget->render(&painter);
+
+
+                    }
+
+
+                }
+
+                painter.end();
+}
+
+void MainWindow::on_temporaire_clicked()
+{
+Produit p;
+    QStringList entet;
+    entet <<"   Identifiant " <<"  Name  "<<" Type "<<" price "<<" Id_traiteur    "<<"ajouter";
+    ui->acheter_prod->setColumnCount(6);
+    ui->acheter_prod->setHorizontalHeaderLabels(entet);
+    ui->acheter_prod->resizeColumnsToContents();
+
+    ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+
+             ui->acheter_prod->setRowCount(0);
+
+          for( int row = 0; row < ui->affiche_tablePR->model()->rowCount(); ++row )
+           {ui->acheter_prod->insertRow(ui->acheter_prod->rowCount());
+     for( int col = 0; col < ui->affiche_tablePR->model()->columnCount(); ++col )
+             {
+              QModelIndex index =ui->affiche_tablePR->model()->index(row,col);
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+          QIcon MAJ(":/add.png");
+
+          QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+
+               MAJ_item->setIcon(MAJ);
+               ui->acheter_prod->setItem(row,5, MAJ_item);
+               ui->acheter_prod->resizeColumnsToContents();
+             }
+          }
+          ui->stackedWidget->setCurrentIndex(32);
+
+}
+
+void MainWindow::on_acheter_prod_cellClicked(int row, int column)
+{ prod_client pc;
+    const QAbstractItemModel *model = ui->affiche_tablePR->model();
+    const QString idprod = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+qDebug()<<idprod;
+if(column==5)
+{
+    pc.setIDclient(ui->comboBox_client_produit->currentText());
+
+pc.setIDprod(idprod);
+pc.addprod_client();
+}
+}
+
+void MainWindow::on_BACK12_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(21);
+}
+
+void MainWindow::on_aziz_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(21);
+}
+
+void MainWindow::on_back_to_aziz_clicked()
 {
     ui->stackedWidget->setCurrentIndex(10);
 }
