@@ -219,15 +219,23 @@ void employes::gen_pdf()
 {
 QPdfWriter pdf("ficherend.pdf");
 QFont font;
+QFont font1;
 font.setPointSize(14);
-
+font1.setPointSize(14);
+font1.setWeight(QFont::Bold);
 QPainter painter (&pdf);
 int i=0;
 int j=0;
-painter.setFont(font);
+
+painter.setFont(font1);
 QString linepdf;
 QSqlQuery query;
+
+painter.setPen(Qt::black);
+painter.drawText(2800,600,"FICHE DE RENDEMENT DES EMPLOYES");
+
 query.prepare("Select * from EMPLOYES");
+painter.setFont(font);
 if (query.exec())
 {
     j=2000;
@@ -300,5 +308,6 @@ if (query.exec())
  j+=800;
     }
 }
+painter.drawPixmap(QRect(10000,5000,100,100),QPixmap("appico.png"));
 painter.end();
 }
