@@ -1,9 +1,6 @@
 #include "musiciens.h"
-
-musiciens::musiciens()
-{
-#include "musiciens.h"
 #include <string>
+#include <iostream>
 musiciens::musiciens(int prix_mus, QString nom_mus, QString prenom_mus, int id_mus, QString genre_mus, QString email_mus)
 {
     this->id_mus = id_mus;
@@ -38,10 +35,63 @@ bool musiciens::supprimer_mus(int id_mus)
     query.bindValue(":id_mus", res1);
     return query.exec();
 }
-QSqlQueryModel *musiciens::afficher_mus()
+QSqlQueryModel *musiciens::afficher_mus(QString nom_mus,int id_mus, int index)
 {
+    QSqlQuery query;
+    QString res1 = QString::number(id_mus);
+   // query.prepare("SELECT * FROM MUSICIENS WHERE NOM_MUS= :nom_mus");
+    //query.bindValue(":nom_mus",nom_mus);
     QSqlQueryModel *model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM MUSICIENS");
+    if(index==-1)
+     {
+    if(nom_mus=="XYZ" && id_mus==-1)
+    {
+     model->setQuery("SELECT * FROM MUSICIENS");
+    }
+    else if(nom_mus!="XYZ" && id_mus==-1)
+       {
+        query.prepare("SELECT * FROM MUSICIENS WHERE NOM_MUS= :nom_mus");
+        query.bindValue(":nom_mus",nom_mus);
+        query.exec();
+        model->setQuery(query);
+       }
+    else if(nom_mus=="XYZ" && id_mus !=-1)
+    {
+        query.prepare("SELECT * FROM MUSICIENS WHERE ID_MUS= :id_mus");
+        query.bindValue(":id_mus",res1);
+        query.exec();
+        model->setQuery(query);
+    }
+    else if(nom_mus!="XYZ" && id_mus!=-1)
+    {
+        query.prepare("SELECT * FROM MUSICIENS WHERE ID_MUS= :id_mus AND NOM_MUS= :nom_mus");
+        query.bindValue(":nom_mus",nom_mus);
+        query.bindValue(":id_mus",res1);
+        query.exec();
+        model->setQuery(query);
+    }
+    }
+    else
+    {
+        switch (index)
+        {
+        case 1:
+            query.prepare("SELECT * FROM MUSICIENS ORDER BY ID_MUS");
+            query.exec();
+            model->setQuery(query);
+            break;
+         case 2:
+            query.prepare("SELECT * FROM MUSICIENS ORDER BY PRIX_MUS");
+            query.exec();
+            model->setQuery(query);
+            break;
+          case 3:
+            query.prepare("SELECT * FROM MUSICIENS ORDER BY GENRE_MUS");
+            query.exec();
+            model->setQuery(query);
+        break;
+        }
+    }
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("Name"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Last Name"));
@@ -162,6 +212,4 @@ bool musiciens::modifier_mus(int id_mus1, int id_mus, QString nom_mus, QString p
     query.bindValue(":genre_mus", genre_mus);
     query.bindValue(":email_mus", email_mus);
     return query.exec();
-}
-
 }
