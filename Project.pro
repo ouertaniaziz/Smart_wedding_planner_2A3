@@ -1,4 +1,5 @@
-QT       += core gui sql
+QT       += core gui sql printsupport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -9,12 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     connection.cpp \
+    employes.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    musiciens.cpp
 
 HEADERS += \
     connection.h \
-    mainwindow.h
+    employes.h \
+    mainwindow.h \
+    musiciens.h
 
 FORMS += \
     mainwindow.ui
