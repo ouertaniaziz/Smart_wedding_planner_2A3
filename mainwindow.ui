@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>21</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBoxclient">
@@ -3195,7 +3195,7 @@ background-repeat: none;
        <string>zied</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="sami">
       <property name="geometry">
        <rect>
         <x>190</x>
