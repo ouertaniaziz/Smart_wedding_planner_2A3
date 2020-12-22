@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>21</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBoxclient">
@@ -5272,14 +5272,23 @@ font : 10pt;
      <widget class="QPushButton" name="temporaire">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>360</y>
-        <width>75</width>
-        <height>23</height>
+        <x>330</x>
+        <y>350</y>
+        <width>271</width>
+        <height>131</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">#temporaire {
+background-color: transparent;
+border-image: url(:product and customer management.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+      </property>
       <property name="text">
-       <string>temporaire</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="traiteur_edit">
