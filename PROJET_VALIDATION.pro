@@ -33,6 +33,7 @@ SOURCES += \
     traiteur.cpp
 
 HEADERS += \
+    ../../arduinoAZ/arduinoAZ.ino \
     client_marriage.h \
     connection.h \
     decorator.h \
