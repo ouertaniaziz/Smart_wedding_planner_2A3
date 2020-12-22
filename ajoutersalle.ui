@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AjouterSalle</class>
+ <widget class="QWidget" name="AjouterSalle">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>452</width>
+    <height>326</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="titre">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>60</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Ajouter une salle</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nom_salle_label">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>100</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Nom de la salle</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nom_salle_line">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>130</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="adresse_label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>100</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Adresse</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="adresse_line">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>130</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="prix_label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>160</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Prix</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="prix_line">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>190</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nb_places_label">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>170</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Nombre des places</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nb_places_line">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>190</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="numero_label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>220</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Numéro de téléphone</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="numero_line">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>250</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="email_label">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>220</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>E-mail</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="email_line">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>250</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AjouterButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>290</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+background-color: rgb(85, 0, 127);
+color : white</string>
+   </property>
+   <property name="text">
+    <string>Ajouter</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RetourButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-color: rgb(0, 85, 0);
+border-style : outset;
+background-color: rgb(0, 85, 0);
+color : white</string>
+   </property>
+   <property name="text">
+    <string>Retour</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

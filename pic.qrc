@@ -1,0 +1,50 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.png</file>
+        <file>add_client.png</file>
+        <file>budget_icon.png</file>
+        <file>cancel.png</file>
+        <file>cin_icon.png</file>
+        <file>clientlist.png</file>
+        <file>delete.png</file>
+        <file>delete_client.png</file>
+        <file>email_icon.png</file>
+        <file>guestlist.png</file>
+        <file>marriage_list.png</file>
+        <file>phone_icon.png</file>
+        <file>search.png</file>
+        <file>search_icon.png</file>
+        <file>searchguest.png</file>
+        <file>send_invite.png</file>
+        <file>update.png</file>
+        <file>updateclient.png</file>
+        <file>updateguests.png</file>
+        <file>user_icon.png</file>
+        <file>pdf.png</file>
+        <file>addicon.png</file>
+        <file>fav.png</file>
+        <file>gmail.png</file>
+        <file>nofav.png</file>
+        <file>phone.png</file>
+        <file>searchicon.png</file>
+        <file>caterer_management.png</file>
+        <file>Esp_gener.png</file>
+        <file>fermer.png</file>
+        <file>fond.png</file>
+        <file>imprimante.png</file>
+        <file>list_bouton.png</file>
+        <file>list_Pbouton.png</file>
+        <file>modify_bouton.png</file>
+        <file>modify_Pbouton.png</file>
+        <file>poubelle.jpg</file>
+        <file>poubelle.png</file>
+        <file>product_management.png</file>
+        <file>recherche.png</file>
+        <file>statistics_bouton.png</file>
+        <file>Add_bouton.png</file>
+        <file>Add_Pbouton.png</file>
+        <file>client management.png</file>
+        <file>decoration management.png</file>
+        <file>gastronomi_module.png</file>
+    </qresource>
+</RCC>

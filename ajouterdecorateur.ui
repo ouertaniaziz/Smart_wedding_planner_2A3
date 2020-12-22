@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AjouterDecorateur</class>
+ <widget class="QWidget" name="AjouterDecorateur">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLineEdit" name="numero_line">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>110</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="type_decoration_label">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>140</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Type de décoration</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="prix_line">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>170</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="prix_label">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>140</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Prix</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nom_decorateur_label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Nom &amp; prénom du décorateur</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RetourButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-color: rgb(0, 85, 0);
+border-style : outset;
+background-color: rgb(0, 85, 0);
+color : white</string>
+   </property>
+   <property name="text">
+    <string>Retour</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="titre">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>40</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Ajouter un décorateur</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="numero_label">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>80</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Numéro de téléphone</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="type_decoration_line">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>170</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nom_decorateur_line">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>110</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+color : white</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AjouterButton">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>240</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-color: rgb(85, 0, 127);
+border-style : outset;
+background-color: rgb(85, 0, 127);
+color : white</string>
+   </property>
+   <property name="text">
+    <string>Ajouter</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="numero_label_2">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>170</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(85, 0, 127);
+</string>
+   </property>
+   <property name="text">
+    <string>Numéro de téléphone</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
