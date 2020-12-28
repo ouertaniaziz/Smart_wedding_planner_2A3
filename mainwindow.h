@@ -298,6 +298,10 @@ private slots:
 
     void on_back_to_aziz_clicked();
 
+    void on_PrintHallsButton_clicked();
+
+    void on_MailHallPrint_clicked();
+
 private:
     Ui::MainWindow *ui;
     Smtp* smtp ;

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>21</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBoxclient">
@@ -3249,7 +3249,7 @@ background-repeat: none;
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="Halls">
      <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
@@ -3467,6 +3467,24 @@ border-color:rgb(60,170,153);</string>
         <string>Mail</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="PrintHallsButton">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>30</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-width : 1px;
+border-style : outset;
+border-color:rgb(255, 0, 255);</string>
+       </property>
+       <property name="text">
+        <string>Print</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QPushButton" name="back_tomneu">
       <property name="geometry">
@@ -3477,12 +3495,19 @@ border-color:rgb(60,170,153);</string>
         <height>23</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-style : outset;
+background-color:rgb(60,170,153);
+color : white</string>
+      </property>
       <property name="text">
        <string>back</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="Decorators">
      <widget class="QWidget" name="widget" native="true">
       <property name="geometry">
        <rect>
@@ -3705,7 +3730,7 @@ border-color:rgb(60,170,153);</string>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_4">
+    <widget class="QWidget" name="AddHall">
      <widget class="QLineEdit" name="hall_name_line">
       <property name="geometry">
        <rect>
@@ -4038,7 +4063,7 @@ background-repeat : none;
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_5">
+    <widget class="QWidget" name="ModifyHall">
      <widget class="QPushButton" name="BackButton_3">
       <property name="geometry">
        <rect>
@@ -4391,7 +4416,7 @@ QLineEdit:focused{
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="ModifyDecorator">
      <widget class="QLabel" name="mdifyfyei">
       <property name="geometry">
        <rect>
@@ -4699,7 +4724,7 @@ QLineEdit:focused{
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_7">
+    <widget class="QWidget" name="AddDecorator">
      <widget class="QLabel" name="price_label_4">
       <property name="geometry">
        <rect>
@@ -4986,7 +5011,7 @@ QLineEdit:focused{
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_8">
+    <widget class="QWidget" name="StatHall">
      <widget class="QFrame" name="horizontalFrame">
       <property name="geometry">
        <rect>
@@ -5019,7 +5044,7 @@ color : white</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_9">
+    <widget class="QWidget" name="StatDecorator">
      <widget class="QFrame" name="horizontalFrame_2">
       <property name="geometry">
        <rect>
@@ -5052,11 +5077,11 @@ color : white</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_10">
+    <widget class="QWidget" name="MailHall">
      <widget class="QPushButton" name="hall_mail_send_button">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>430</x>
         <y>360</y>
         <width>75</width>
         <height>23</height>
@@ -5159,8 +5184,28 @@ color : white</string>
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="MailHallPrint">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>360</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+border-width : 2px;
+border-style : outset;
+background-color: rgb(85, 0, 127);
+color : white</string>
+      </property>
+      <property name="text">
+       <string>Print</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="page_11">
+    <widget class="QWidget" name="MailDecorator">
      <widget class="QPushButton" name="decorator_mail_send_button">
       <property name="geometry">
        <rect>

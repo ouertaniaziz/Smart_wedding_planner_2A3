@@ -15,6 +15,7 @@
 #include "invite.h"
 #include <QPrinter>
 #include <QPrintDialog>
+#include<QPdfWriter>
 #include <QPdfWriter>
 #include <QPainter>
 #include <QTextEdit>
@@ -2219,7 +2220,11 @@ void MainWindow::on_hall_mail_send_button_clicked()
 
         smtp->sendMail("smartwedding.esprit@gmail.com",ui->hall_mail_to_line->text(),ui->hall_mail_subject_line->text(),msg);
 
-        ui->stackedWidget->setCurrentIndex(11);
+        on_MailHallPrint_clicked();
+
+
+
+        //ui->stackedWidget->setCurrentIndex(11);
 }
 
 
@@ -2277,7 +2282,7 @@ void MainWindow::on_decorator_mail_send_button_clicked()
 
             smtp->sendMail("smartwedding.esprit@gmail.com",ui->decorator_mail_to_line->text(),ui->decorator_mail_subject_line->text(),msg);
 
-            ui->stackedWidget->setCurrentIndex(12);
+
 
 }
 
@@ -3049,4 +3054,58 @@ void MainWindow::on_aziz_clicked()
 void MainWindow::on_back_to_aziz_clicked()
 {
     ui->stackedWidget->setCurrentIndex(10);
+}
+
+
+void MainWindow::on_MailHallPrint_clicked()
+{
+    QPrinter printer;
+        printer.setPrinterName("Mail");
+        QPrintDialog dialog(&printer,this);
+        if ( dialog.exec()== QDialog::Rejected) return ;
+
+        QString to,subject,mail;
+
+
+        to= ui->hall_mail_to_line->text();
+        subject=ui->hall_mail_subject_line->text();
+        mail = ui->hall_mail_plainText->toPlainText();
+
+
+
+        QPainter painter(this);
+        painter.begin(&printer);
+
+
+        QFont font = painter.font();
+        font.setPointSize(font.pointSize() * 2);
+        painter.setFont(font);
+        QImage image(":/email_icon.png");
+        painter.setPen(Qt::cyan);
+        painter.drawImage(380,30,image);
+
+        painter.drawText(230,90,"Mail");
+        painter.setPen(Qt::darkBlue);
+
+        painter.drawText(130,160,"To: ");
+        painter.drawText(130,185,"Subject: ");
+        painter.drawText(130,210,"Mail: ");
+
+
+
+        painter.setPen(Qt::black);
+
+        painter.drawText(300,160,to);
+        painter.drawText(300,185,subject);
+        painter.drawText(300,210,mail);
+
+
+
+
+
+
+        painter.end();
+
+
+         ui->stackedWidget->setCurrentIndex(11);
 }
