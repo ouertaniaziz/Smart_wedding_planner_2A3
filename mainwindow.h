@@ -8,6 +8,7 @@
 #include "smtp.h"
 #include <QtWidgets/QMessageBox>
 #include <QPropertyAnimation>
+#include "arduino.h"
 
 #include <QMainWindow>
 #include "traiteur.h"
@@ -307,6 +308,7 @@ void calcule_de_facture();
 void on_nbr_editingFinished();
 
 void on_imprimerFACTURE_clicked();
+void reclamation();
 
 private:
     Ui::MainWindow *ui;

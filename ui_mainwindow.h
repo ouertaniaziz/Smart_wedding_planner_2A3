@@ -2723,10 +2723,10 @@ public:
         page_12->setObjectName(QStringLiteral("page_12"));
         temporaire = new QPushButton(page_12);
         temporaire->setObjectName(QStringLiteral("temporaire"));
-        temporaire->setGeometry(QRect(330, 350, 271, 131));
+        temporaire->setGeometry(QRect(330, 360, 271, 131));
         temporaire->setStyleSheet(QLatin1String("#temporaire {\n"
 "background-color: transparent;\n"
-"border-image: url(:product and customer management.png);\n"
+"border-image: url(:productandcustomermanagement.png);\n"
 "background: none;\n"
 "border: none;\n"
 "background-repeat: none;\n"
@@ -3732,7 +3732,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(32);
+        stackedWidget->setCurrentIndex(21);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

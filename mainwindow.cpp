@@ -145,8 +145,21 @@ MainWindow::MainWindow(QWidget *parent)
             {
                 ui->comboBox_client_produit->addItem(qry->value(11).toString());
             }
+Arduino A;
 
-
+int ret=A.connect_arduino();
+switch(ret){
+     case 0 :
+         qDebug()<<"arduino is available on connected to "<<A.getArduino_port_name();
+         break;
+     case 1 :
+         qDebug()<<"arduino is available but not connected to : "<<A.getArduino_port_name();
+         break;
+     case -1 :
+         qDebug()<<"arduino is not available";
+         break;
+     }
+     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_btn()));
 }
 
 void MainWindow::sendMail()
@@ -3082,6 +3095,8 @@ void MainWindow::on_BACK12_clicked()
 void MainWindow::on_aziz_clicked()
 {
     ui->stackedWidget->setCurrentIndex(21);
+
+
 }
 
 void MainWindow::on_back_to_aziz_clicked()
@@ -3162,35 +3177,7 @@ QString resulta=QString::number(somme);
 
 ui->prix_finale->setText(resulta);
 }
-/*void MainWindow::on_pushButton_39_clicked()
-{
-   int cin = ui->edit_rechavanc_prod_4->text().toInt();
 
-    QSqlQuery  query=tmp.exporter(cin);
-   while (query.next())
-             {
-               QString SALAIRE = query.value(0).toString();
-               QString DUREE = query.value(1).toString();
-               QString DATEDEB = query.value(2).toString();
-               QString EMAIL = query.value(3).toString();
-               QString CIN = query.value(4).toString();
-               QPdfWriter pdf1("C:/Users/ASUS/Documents/PROJET_2A11_RH/Exportation.pdf");
-               QPainter painter (&pdf1);
-               painter.drawText(2200,3500,SALAIRE);
-               painter.drawText(2200,4000,DUREE);
-               painter.drawText(2200,4500,DATEDEB);
-               painter.drawText(2200,5000,EMAIL);
-               painter.drawText(2200,5500,CIN);
-             painter.setPen(Qt::blue);
-             painter.drawText(4500,2000,"Contrat");
-             painter.setPen(Qt::blue);
-             painter.drawText(500,3500,"salaire :");
-             painter.drawText(500,4000,"duree :");
-             painter.drawText(500,4500,"Date deb:");
-             painter.drawText(500,5000,"EMAIL :");
-             painter.drawText(500,5500,"CIN :");
-   }
-*/
 
 void MainWindow::on_nbr_editingFinished()
 {
@@ -3237,5 +3224,14 @@ painter.setPen(Qt::darkGreen);
    painter.drawText(3500,x+2000,resulta);
    painter.drawText(500,x+1000,"la quantitée a achetée est  ");
    painter.drawText(3500,x+1000,ui->nbr->text());
+
+}
+void MainWindow::reclamation()
+{
+Arduino a;
+QByteArray rec = a.read_from_arduino();
+qDebug() << rec;
+
+//ui->reclame->setText(rec);
 
 }

@@ -1,4 +1,5 @@
 INPUT(
+./debug\arduino.o
 ./debug\client_marriage.o
 ./debug\connection.o
 ./debug\decorator.o
