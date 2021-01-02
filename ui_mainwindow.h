@@ -150,7 +150,7 @@ public:
     QPushButton *zied;
     QPushButton *sami;
     QPushButton *aziz;
-    QWidget *page_2;
+    QWidget *Halls;
     QFrame *frame;
     QLabel *HallsTitle;
     QPushButton *AddHallButton;
@@ -162,8 +162,9 @@ public:
     QPushButton *DisplayButton;
     QPushButton *StatHallButton;
     QPushButton *MailHallButton;
+    QPushButton *PrintHallsButton;
     QPushButton *back_tomneu;
-    QWidget *page_3;
+    QWidget *Decorators;
     QWidget *widget;
     QLabel *DecoratorsTitle;
     QPushButton *BackButton;
@@ -176,7 +177,7 @@ public:
     QPushButton *UpdateDecButton;
     QPushButton *StatDecoratorButton;
     QPushButton *MailDecoratorButton;
-    QWidget *page_4;
+    QWidget *AddHall;
     QLineEdit *hall_name_line;
     QLineEdit *price_line;
     QLabel *title_hall;
@@ -192,7 +193,7 @@ public:
     QPushButton *AddButton;
     QLabel *email_label;
     QLabel *hall_name_label;
-    QWidget *page_5;
+    QWidget *ModifyHall;
     QPushButton *BackButton_3;
     QLabel *email_label_2;
     QLineEdit *nb_places_line_2;
@@ -209,7 +210,7 @@ public:
     QPushButton *UpdateFindButton;
     QLineEdit *address_line_2;
     QLineEdit *number_line_2;
-    QWidget *page_6;
+    QWidget *ModifyDecorator;
     QLabel *mdifyfyei;
     QLabel *decorator_name_label;
     QLineEdit *decorator_name_line;
@@ -224,7 +225,7 @@ public:
     QLineEdit *price_line_3;
     QLabel *type_decoration_label;
     QLabel *number_label_4;
-    QWidget *page_7;
+    QWidget *AddDecorator;
     QLabel *price_label_4;
     QLabel *type_decoration_label_2;
     QLineEdit *hall_id_line;
@@ -238,15 +239,15 @@ public:
     QLineEdit *number_line_4;
     QLineEdit *type_decoration_line_2;
     QLineEdit *decorator_name_line_2;
-    QWidget *page_8;
+    QWidget *StatHall;
     QFrame *horizontalFrame;
     QHBoxLayout *horizontalLayout;
     QPushButton *HallStatBackButton;
-    QWidget *page_9;
+    QWidget *StatDecorator;
     QFrame *horizontalFrame_2;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *DecoratorStatBackButton;
-    QWidget *page_10;
+    QWidget *MailHall;
     QPushButton *hall_mail_send_button;
     QLineEdit *hall_mail_subject_line;
     QTextEdit *hall_mail_plainText;
@@ -254,7 +255,8 @@ public:
     QLabel *hall_mail_to_label;
     QPushButton *DecoratorStatBackButton_2;
     QLineEdit *hall_mail_to_line;
-    QWidget *page_11;
+    QPushButton *MailHallPrint;
+    QWidget *MailDecorator;
     QPushButton *decorator_mail_send_button;
     QLineEdit *decorator_mail_to_line;
     QLabel *decorator_mail_subject_label;
@@ -350,10 +352,18 @@ public:
     QPushButton *BACK10;
     QChartView *graphicsView;
     QWidget *page_23;
-    QComboBox *comboBox_client_produit;
+    QTableView *clientproduittable;
+    QTableWidget *acheter_prod;
+    QLabel *label_33;
+    QLineEdit *nbr;
     QLabel *label_11;
     QPushButton *BACK12;
-    QTableWidget *acheter_prod;
+    QComboBox *comboBox_client_produit;
+    QLineEdit *prix_finale;
+    QLabel *label_34;
+    QLabel *label_35;
+    QPushButton *imprimerFACTURE;
+    QLabel *label_36;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -364,7 +374,7 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(0, 0, 1000, 700));
+        stackedWidget->setGeometry(QRect(-20, 0, 1000, 700));
         menu_page = new QWidget();
         menu_page->setObjectName(QStringLiteral("menu_page"));
         groupBoxclient = new QGroupBox(menu_page);
@@ -1732,9 +1742,9 @@ public:
 "background-repeat: none;\n"
 "}"));
         stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        frame = new QFrame(page_2);
+        Halls = new QWidget();
+        Halls->setObjectName(QStringLiteral("Halls"));
+        frame = new QFrame(Halls);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setGeometry(QRect(230, 100, 581, 401));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -1824,13 +1834,24 @@ public:
         MailHallButton->setStyleSheet(QLatin1String("border-width : 1px;\n"
 "border-style : outset;\n"
 "border-color:rgb(60,170,153);"));
-        back_tomneu = new QPushButton(page_2);
+        PrintHallsButton = new QPushButton(frame);
+        PrintHallsButton->setObjectName(QStringLiteral("PrintHallsButton"));
+        PrintHallsButton->setGeometry(QRect(440, 30, 75, 23));
+        PrintHallsButton->setStyleSheet(QLatin1String("border-width : 1px;\n"
+"border-style : outset;\n"
+"border-color:rgb(255, 0, 255);"));
+        back_tomneu = new QPushButton(Halls);
         back_tomneu->setObjectName(QStringLiteral("back_tomneu"));
         back_tomneu->setGeometry(QRect(130, 70, 75, 23));
-        stackedWidget->addWidget(page_2);
-        page_3 = new QWidget();
-        page_3->setObjectName(QStringLiteral("page_3"));
-        widget = new QWidget(page_3);
+        back_tomneu->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"border-width : 2px;\n"
+"border-style : outset;\n"
+"background-color:rgb(60,170,153);\n"
+"color : white"));
+        stackedWidget->addWidget(Halls);
+        Decorators = new QWidget();
+        Decorators->setObjectName(QStringLiteral("Decorators"));
+        widget = new QWidget(Decorators);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(240, 80, 551, 431));
         DecoratorsTitle = new QLabel(widget);
@@ -1922,10 +1943,10 @@ public:
         MailDecoratorButton->setStyleSheet(QLatin1String("border-width : 1px;\n"
 "border-style : outset;\n"
 "border-color:rgb(60,170,153);"));
-        stackedWidget->addWidget(page_3);
-        page_4 = new QWidget();
-        page_4->setObjectName(QStringLiteral("page_4"));
-        hall_name_line = new QLineEdit(page_4);
+        stackedWidget->addWidget(Decorators);
+        AddHall = new QWidget();
+        AddHall->setObjectName(QStringLiteral("AddHall"));
+        hall_name_line = new QLineEdit(AddHall);
         hall_name_line->setObjectName(QStringLiteral("hall_name_line"));
         hall_name_line->setGeometry(QRect(360, 200, 113, 20));
         hall_name_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -1944,7 +1965,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        price_line = new QLineEdit(page_4);
+        price_line = new QLineEdit(AddHall);
         price_line->setObjectName(QStringLiteral("price_line"));
         price_line->setGeometry(QRect(360, 260, 113, 20));
         price_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -1963,19 +1984,19 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        title_hall = new QLabel(page_4);
+        title_hall = new QLabel(AddHall);
         title_hall->setObjectName(QStringLiteral("title_hall"));
         title_hall->setGeometry(QRect(470, 100, 101, 31));
         title_hall->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 16pt;\n"
 "\n"
 ""));
-        number_label = new QLabel(page_4);
+        number_label = new QLabel(AddHall);
         number_label->setObjectName(QStringLiteral("number_label"));
         number_label->setGeometry(QRect(370, 290, 111, 16));
         number_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        email_line = new QLineEdit(page_4);
+        email_line = new QLineEdit(AddHall);
         email_line->setObjectName(QStringLiteral("email_line"));
         email_line->setGeometry(QRect(560, 320, 113, 20));
         email_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -1994,7 +2015,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        BackButton_2 = new QPushButton(page_4);
+        BackButton_2 = new QPushButton(AddHall);
         BackButton_2->setObjectName(QStringLiteral("BackButton_2"));
         BackButton_2->setGeometry(QRect(310, 90, 75, 23));
         BackButton_2->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2002,17 +2023,17 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        price_label = new QLabel(page_4);
+        price_label = new QLabel(AddHall);
         price_label->setObjectName(QStringLiteral("price_label"));
         price_label->setGeometry(QRect(400, 230, 31, 20));
         price_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        nb_places_label = new QLabel(page_4);
+        nb_places_label = new QLabel(AddHall);
         nb_places_label->setObjectName(QStringLiteral("nb_places_label"));
         nb_places_label->setGeometry(QRect(570, 240, 91, 16));
         nb_places_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        number_line = new QLineEdit(page_4);
+        number_line = new QLineEdit(AddHall);
         number_line->setObjectName(QStringLiteral("number_line"));
         number_line->setGeometry(QRect(360, 320, 113, 20));
         number_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2031,12 +2052,12 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        address_label = new QLabel(page_4);
+        address_label = new QLabel(AddHall);
         address_label->setObjectName(QStringLiteral("address_label"));
         address_label->setGeometry(QRect(580, 170, 91, 16));
         address_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        nb_places_line = new QLineEdit(page_4);
+        nb_places_line = new QLineEdit(AddHall);
         nb_places_line->setObjectName(QStringLiteral("nb_places_line"));
         nb_places_line->setGeometry(QRect(560, 260, 113, 20));
         nb_places_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2055,7 +2076,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        address_line = new QLineEdit(page_4);
+        address_line = new QLineEdit(AddHall);
         address_line->setObjectName(QStringLiteral("address_line"));
         address_line->setGeometry(QRect(560, 200, 113, 20));
         address_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2074,7 +2095,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        AddButton = new QPushButton(page_4);
+        AddButton = new QPushButton(AddHall);
         AddButton->setObjectName(QStringLiteral("AddButton"));
         AddButton->setGeometry(QRect(480, 360, 75, 23));
         AddButton->setStyleSheet(QLatin1String("background-color : transparent;\n"
@@ -2084,20 +2105,20 @@ public:
 "background-repeat : none;\n"
 "\n"
 ""));
-        email_label = new QLabel(page_4);
+        email_label = new QLabel(AddHall);
         email_label->setObjectName(QStringLiteral("email_label"));
         email_label->setGeometry(QRect(600, 290, 51, 20));
         email_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        hall_name_label = new QLabel(page_4);
+        hall_name_label = new QLabel(AddHall);
         hall_name_label->setObjectName(QStringLiteral("hall_name_label"));
         hall_name_label->setGeometry(QRect(380, 170, 91, 16));
         hall_name_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        stackedWidget->addWidget(page_4);
-        page_5 = new QWidget();
-        page_5->setObjectName(QStringLiteral("page_5"));
-        BackButton_3 = new QPushButton(page_5);
+        stackedWidget->addWidget(AddHall);
+        ModifyHall = new QWidget();
+        ModifyHall->setObjectName(QStringLiteral("ModifyHall"));
+        BackButton_3 = new QPushButton(ModifyHall);
         BackButton_3->setObjectName(QStringLiteral("BackButton_3"));
         BackButton_3->setGeometry(QRect(320, 70, 75, 23));
         BackButton_3->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2105,12 +2126,12 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        email_label_2 = new QLabel(page_5);
+        email_label_2 = new QLabel(ModifyHall);
         email_label_2->setObjectName(QStringLiteral("email_label_2"));
         email_label_2->setGeometry(QRect(500, 350, 51, 20));
         email_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        nb_places_line_2 = new QLineEdit(page_5);
+        nb_places_line_2 = new QLineEdit(ModifyHall);
         nb_places_line_2->setObjectName(QStringLiteral("nb_places_line_2"));
         nb_places_line_2->setGeometry(QRect(560, 330, 113, 20));
         nb_places_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2129,7 +2150,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        price_line_2 = new QLineEdit(page_5);
+        price_line_2 = new QLineEdit(ModifyHall);
         price_line_2->setObjectName(QStringLiteral("price_line_2"));
         price_line_2->setGeometry(QRect(360, 330, 113, 20));
         price_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2148,22 +2169,22 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        hall_name_label_2 = new QLabel(page_5);
+        hall_name_label_2 = new QLabel(ModifyHall);
         hall_name_label_2->setObjectName(QStringLiteral("hall_name_label_2"));
         hall_name_label_2->setGeometry(QRect(380, 240, 91, 16));
         hall_name_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        number_label_2 = new QLabel(page_5);
+        number_label_2 = new QLabel(ModifyHall);
         number_label_2->setObjectName(QStringLiteral("number_label_2"));
         number_label_2->setGeometry(QRect(470, 160, 111, 16));
         number_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        price_label_2 = new QLabel(page_5);
+        price_label_2 = new QLabel(ModifyHall);
         price_label_2->setObjectName(QStringLiteral("price_label_2"));
         price_label_2->setGeometry(QRect(400, 300, 31, 20));
         price_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        UpdateButton = new QPushButton(page_5);
+        UpdateButton = new QPushButton(ModifyHall);
         UpdateButton->setObjectName(QStringLiteral("UpdateButton"));
         UpdateButton->setGeometry(QRect(480, 410, 75, 23));
         UpdateButton->setStyleSheet(QLatin1String("background-color : transparent;\n"
@@ -2173,24 +2194,24 @@ public:
 "background-repeat : none;\n"
 "\n"
 ""));
-        nb_places_label_2 = new QLabel(page_5);
+        nb_places_label_2 = new QLabel(ModifyHall);
         nb_places_label_2->setObjectName(QStringLiteral("nb_places_label_2"));
         nb_places_label_2->setGeometry(QRect(570, 300, 91, 16));
         nb_places_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        title_modify = new QLabel(page_5);
+        title_modify = new QLabel(ModifyHall);
         title_modify->setObjectName(QStringLiteral("title_modify"));
         title_modify->setGeometry(QRect(450, 100, 141, 31));
         title_modify->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 16pt;\n"
 "\n"
 ""));
-        address_label_2 = new QLabel(page_5);
+        address_label_2 = new QLabel(ModifyHall);
         address_label_2->setObjectName(QStringLiteral("address_label_2"));
         address_label_2->setGeometry(QRect(590, 240, 91, 16));
         address_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        email_line_2 = new QLineEdit(page_5);
+        email_line_2 = new QLineEdit(ModifyHall);
         email_line_2->setObjectName(QStringLiteral("email_line_2"));
         email_line_2->setGeometry(QRect(460, 370, 113, 20));
         email_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2209,7 +2230,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        hall_name_line_2 = new QLineEdit(page_5);
+        hall_name_line_2 = new QLineEdit(ModifyHall);
         hall_name_line_2->setObjectName(QStringLiteral("hall_name_line_2"));
         hall_name_line_2->setGeometry(QRect(360, 270, 113, 20));
         hall_name_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2228,7 +2249,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        UpdateFindButton = new QPushButton(page_5);
+        UpdateFindButton = new QPushButton(ModifyHall);
         UpdateFindButton->setObjectName(QStringLiteral("UpdateFindButton"));
         UpdateFindButton->setGeometry(QRect(570, 190, 75, 23));
         UpdateFindButton->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2236,7 +2257,7 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        address_line_2 = new QLineEdit(page_5);
+        address_line_2 = new QLineEdit(ModifyHall);
         address_line_2->setObjectName(QStringLiteral("address_line_2"));
         address_line_2->setGeometry(QRect(560, 270, 113, 20));
         address_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2255,7 +2276,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        number_line_2 = new QLineEdit(page_5);
+        number_line_2 = new QLineEdit(ModifyHall);
         number_line_2->setObjectName(QStringLiteral("number_line_2"));
         number_line_2->setGeometry(QRect(450, 190, 113, 20));
         number_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2274,22 +2295,22 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        stackedWidget->addWidget(page_5);
-        page_6 = new QWidget();
-        page_6->setObjectName(QStringLiteral("page_6"));
-        mdifyfyei = new QLabel(page_6);
+        stackedWidget->addWidget(ModifyHall);
+        ModifyDecorator = new QWidget();
+        ModifyDecorator->setObjectName(QStringLiteral("ModifyDecorator"));
+        mdifyfyei = new QLabel(ModifyDecorator);
         mdifyfyei->setObjectName(QStringLiteral("mdifyfyei"));
         mdifyfyei->setGeometry(QRect(390, 120, 201, 31));
         mdifyfyei->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 16pt;\n"
 "\n"
 ""));
-        decorator_name_label = new QLabel(page_6);
+        decorator_name_label = new QLabel(ModifyDecorator);
         decorator_name_label->setObjectName(QStringLiteral("decorator_name_label"));
         decorator_name_label->setGeometry(QRect(530, 250, 111, 16));
         decorator_name_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        decorator_name_line = new QLineEdit(page_6);
+        decorator_name_line = new QLineEdit(ModifyDecorator);
         decorator_name_line->setObjectName(QStringLiteral("decorator_name_line"));
         decorator_name_line->setGeometry(QRect(530, 270, 113, 20));
         decorator_name_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2308,7 +2329,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        type_decoration_line = new QLineEdit(page_6);
+        type_decoration_line = new QLineEdit(ModifyDecorator);
         type_decoration_line->setObjectName(QStringLiteral("type_decoration_line"));
         type_decoration_line->setGeometry(QRect(530, 320, 113, 20));
         type_decoration_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2327,7 +2348,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        BackButton_4 = new QPushButton(page_6);
+        BackButton_4 = new QPushButton(ModifyDecorator);
         BackButton_4->setObjectName(QStringLiteral("BackButton_4"));
         BackButton_4->setGeometry(QRect(280, 100, 75, 23));
         BackButton_4->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2335,12 +2356,12 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        price_label_3 = new QLabel(page_6);
+        price_label_3 = new QLabel(ModifyDecorator);
         price_label_3->setObjectName(QStringLiteral("price_label_3"));
         price_label_3->setGeometry(QRect(370, 300, 31, 20));
         price_label_3->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        UpdateFindButton_2 = new QPushButton(page_6);
+        UpdateFindButton_2 = new QPushButton(ModifyDecorator);
         UpdateFindButton_2->setObjectName(QStringLiteral("UpdateFindButton_2"));
         UpdateFindButton_2->setGeometry(QRect(510, 210, 75, 23));
         UpdateFindButton_2->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2348,12 +2369,12 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        hall_id_label_2 = new QLabel(page_6);
+        hall_id_label_2 = new QLabel(ModifyDecorator);
         hall_id_label_2->setObjectName(QStringLiteral("hall_id_label_2"));
         hall_id_label_2->setGeometry(QRect(340, 250, 101, 16));
         hall_id_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        hall_id_line_3 = new QLineEdit(page_6);
+        hall_id_line_3 = new QLineEdit(ModifyDecorator);
         hall_id_line_3->setObjectName(QStringLiteral("hall_id_line_3"));
         hall_id_line_3->setGeometry(QRect(330, 270, 113, 20));
         hall_id_line_3->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2372,7 +2393,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        number_line_3 = new QLineEdit(page_6);
+        number_line_3 = new QLineEdit(ModifyDecorator);
         number_line_3->setObjectName(QStringLiteral("number_line_3"));
         number_line_3->setGeometry(QRect(390, 210, 113, 20));
         number_line_3->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2391,7 +2412,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        UpdateButton_2 = new QPushButton(page_6);
+        UpdateButton_2 = new QPushButton(ModifyDecorator);
         UpdateButton_2->setObjectName(QStringLiteral("UpdateButton_2"));
         UpdateButton_2->setGeometry(QRect(450, 370, 75, 23));
         UpdateButton_2->setStyleSheet(QLatin1String("background-color : transparent;\n"
@@ -2401,7 +2422,7 @@ public:
 "background-repeat : none;\n"
 "\n"
 ""));
-        price_line_3 = new QLineEdit(page_6);
+        price_line_3 = new QLineEdit(ModifyDecorator);
         price_line_3->setObjectName(QStringLiteral("price_line_3"));
         price_line_3->setGeometry(QRect(330, 320, 113, 20));
         price_line_3->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2420,30 +2441,30 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        type_decoration_label = new QLabel(page_6);
+        type_decoration_label = new QLabel(ModifyDecorator);
         type_decoration_label->setObjectName(QStringLiteral("type_decoration_label"));
         type_decoration_label->setGeometry(QRect(540, 300, 101, 16));
         type_decoration_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        number_label_4 = new QLabel(page_6);
+        number_label_4 = new QLabel(ModifyDecorator);
         number_label_4->setObjectName(QStringLiteral("number_label_4"));
         number_label_4->setGeometry(QRect(400, 190, 111, 16));
         number_label_4->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        stackedWidget->addWidget(page_6);
-        page_7 = new QWidget();
-        page_7->setObjectName(QStringLiteral("page_7"));
-        price_label_4 = new QLabel(page_7);
+        stackedWidget->addWidget(ModifyDecorator);
+        AddDecorator = new QWidget();
+        AddDecorator->setObjectName(QStringLiteral("AddDecorator"));
+        price_label_4 = new QLabel(AddDecorator);
         price_label_4->setObjectName(QStringLiteral("price_label_4"));
         price_label_4->setGeometry(QRect(390, 230, 31, 20));
         price_label_4->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        type_decoration_label_2 = new QLabel(page_7);
+        type_decoration_label_2 = new QLabel(AddDecorator);
         type_decoration_label_2->setObjectName(QStringLiteral("type_decoration_label_2"));
         type_decoration_label_2->setGeometry(QRect(570, 240, 101, 16));
         type_decoration_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        hall_id_line = new QLineEdit(page_7);
+        hall_id_line = new QLineEdit(AddDecorator);
         hall_id_line->setObjectName(QStringLiteral("hall_id_line"));
         hall_id_line->setGeometry(QRect(450, 320, 113, 20));
         hall_id_line->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2462,7 +2483,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        price_line_4 = new QLineEdit(page_7);
+        price_line_4 = new QLineEdit(AddDecorator);
         price_line_4->setObjectName(QStringLiteral("price_line_4"));
         price_line_4->setGeometry(QRect(350, 260, 113, 20));
         price_line_4->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2481,18 +2502,18 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        decorator_name_label_2 = new QLabel(page_7);
+        decorator_name_label_2 = new QLabel(AddDecorator);
         decorator_name_label_2->setObjectName(QStringLiteral("decorator_name_label_2"));
         decorator_name_label_2->setGeometry(QRect(360, 170, 111, 16));
         decorator_name_label_2->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        add_deccc = new QLabel(page_7);
+        add_deccc = new QLabel(AddDecorator);
         add_deccc->setObjectName(QStringLiteral("add_deccc"));
         add_deccc->setGeometry(QRect(440, 120, 151, 21));
         add_deccc->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 16pt;\n"
 ""));
-        BackButton_5 = new QPushButton(page_7);
+        BackButton_5 = new QPushButton(AddDecorator);
         BackButton_5->setObjectName(QStringLiteral("BackButton_5"));
         BackButton_5->setGeometry(QRect(300, 100, 75, 23));
         BackButton_5->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2500,17 +2521,17 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        number_label_5 = new QLabel(page_7);
+        number_label_5 = new QLabel(AddDecorator);
         number_label_5->setObjectName(QStringLiteral("number_label_5"));
         number_label_5->setGeometry(QRect(560, 170, 111, 16));
         number_label_5->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        hall_id_label = new QLabel(page_7);
+        hall_id_label = new QLabel(AddDecorator);
         hall_id_label->setObjectName(QStringLiteral("hall_id_label"));
         hall_id_label->setGeometry(QRect(460, 300, 101, 16));
         hall_id_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 ""));
-        AddButton_2 = new QPushButton(page_7);
+        AddButton_2 = new QPushButton(AddDecorator);
         AddButton_2->setObjectName(QStringLiteral("AddButton_2"));
         AddButton_2->setGeometry(QRect(470, 360, 75, 23));
         AddButton_2->setStyleSheet(QLatin1String("background-color : transparent;\n"
@@ -2520,7 +2541,7 @@ public:
 "background-repeat : none;\n"
 "\n"
 ""));
-        number_line_4 = new QLineEdit(page_7);
+        number_line_4 = new QLineEdit(AddDecorator);
         number_line_4->setObjectName(QStringLiteral("number_line_4"));
         number_line_4->setGeometry(QRect(550, 200, 113, 20));
         number_line_4->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2539,7 +2560,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        type_decoration_line_2 = new QLineEdit(page_7);
+        type_decoration_line_2 = new QLineEdit(AddDecorator);
         type_decoration_line_2->setObjectName(QStringLiteral("type_decoration_line_2"));
         type_decoration_line_2->setGeometry(QRect(550, 260, 113, 20));
         type_decoration_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2558,7 +2579,7 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        decorator_name_line_2 = new QLineEdit(page_7);
+        decorator_name_line_2 = new QLineEdit(AddDecorator);
         decorator_name_line_2->setObjectName(QStringLiteral("decorator_name_line_2"));
         decorator_name_line_2->setGeometry(QRect(350, 200, 113, 20));
         decorator_name_line_2->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -2577,15 +2598,15 @@ public:
 "	border: 2px solid rgb(60,170,153);\n"
 "	color: #A0A0A0;\n"
 "}"));
-        stackedWidget->addWidget(page_7);
-        page_8 = new QWidget();
-        page_8->setObjectName(QStringLiteral("page_8"));
-        horizontalFrame = new QFrame(page_8);
+        stackedWidget->addWidget(AddDecorator);
+        StatHall = new QWidget();
+        StatHall->setObjectName(QStringLiteral("StatHall"));
+        horizontalFrame = new QFrame(StatHall);
         horizontalFrame->setObjectName(QStringLiteral("horizontalFrame"));
         horizontalFrame->setGeometry(QRect(259, 159, 491, 231));
         horizontalLayout = new QHBoxLayout(horizontalFrame);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        HallStatBackButton = new QPushButton(page_8);
+        HallStatBackButton = new QPushButton(StatHall);
         HallStatBackButton->setObjectName(QStringLiteral("HallStatBackButton"));
         HallStatBackButton->setGeometry(QRect(260, 110, 75, 23));
         HallStatBackButton->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2593,15 +2614,15 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        stackedWidget->addWidget(page_8);
-        page_9 = new QWidget();
-        page_9->setObjectName(QStringLiteral("page_9"));
-        horizontalFrame_2 = new QFrame(page_9);
+        stackedWidget->addWidget(StatHall);
+        StatDecorator = new QWidget();
+        StatDecorator->setObjectName(QStringLiteral("StatDecorator"));
+        horizontalFrame_2 = new QFrame(StatDecorator);
         horizontalFrame_2->setObjectName(QStringLiteral("horizontalFrame_2"));
         horizontalFrame_2->setGeometry(QRect(249, 159, 491, 231));
         horizontalLayout_2 = new QHBoxLayout(horizontalFrame_2);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        DecoratorStatBackButton = new QPushButton(page_9);
+        DecoratorStatBackButton = new QPushButton(StatDecorator);
         DecoratorStatBackButton->setObjectName(QStringLiteral("DecoratorStatBackButton"));
         DecoratorStatBackButton->setGeometry(QRect(250, 110, 75, 23));
         DecoratorStatBackButton->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2609,36 +2630,36 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        stackedWidget->addWidget(page_9);
-        page_10 = new QWidget();
-        page_10->setObjectName(QStringLiteral("page_10"));
-        hall_mail_send_button = new QPushButton(page_10);
+        stackedWidget->addWidget(StatDecorator);
+        MailHall = new QWidget();
+        MailHall->setObjectName(QStringLiteral("MailHall"));
+        hall_mail_send_button = new QPushButton(MailHall);
         hall_mail_send_button->setObjectName(QStringLiteral("hall_mail_send_button"));
-        hall_mail_send_button->setGeometry(QRect(490, 360, 75, 23));
+        hall_mail_send_button->setGeometry(QRect(430, 360, 75, 23));
         hall_mail_send_button->setStyleSheet(QLatin1String("border-radius: 10px;\n"
 "border-width : 2px;\n"
 "border-style : outset;\n"
 "background-color: rgb(85, 0, 127);\n"
 "color : white"));
-        hall_mail_subject_line = new QLineEdit(page_10);
+        hall_mail_subject_line = new QLineEdit(MailHall);
         hall_mail_subject_line->setObjectName(QStringLiteral("hall_mail_subject_line"));
         hall_mail_subject_line->setGeometry(QRect(410, 180, 221, 20));
-        hall_mail_plainText = new QTextEdit(page_10);
+        hall_mail_plainText = new QTextEdit(MailHall);
         hall_mail_plainText->setObjectName(QStringLiteral("hall_mail_plainText"));
         hall_mail_plainText->setGeometry(QRect(410, 220, 221, 121));
-        hall_mail_subject_label = new QLabel(page_10);
+        hall_mail_subject_label = new QLabel(MailHall);
         hall_mail_subject_label->setObjectName(QStringLiteral("hall_mail_subject_label"));
         hall_mail_subject_label->setGeometry(QRect(340, 180, 61, 20));
         hall_mail_subject_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 10pt;\n"
 ""));
-        hall_mail_to_label = new QLabel(page_10);
+        hall_mail_to_label = new QLabel(MailHall);
         hall_mail_to_label->setObjectName(QStringLiteral("hall_mail_to_label"));
         hall_mail_to_label->setGeometry(QRect(350, 150, 47, 14));
         hall_mail_to_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 10pt;\n"
 ""));
-        DecoratorStatBackButton_2 = new QPushButton(page_10);
+        DecoratorStatBackButton_2 = new QPushButton(MailHall);
         DecoratorStatBackButton_2->setObjectName(QStringLiteral("DecoratorStatBackButton_2"));
         DecoratorStatBackButton_2->setGeometry(QRect(250, 100, 75, 23));
         DecoratorStatBackButton_2->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2646,13 +2667,21 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        hall_mail_to_line = new QLineEdit(page_10);
+        hall_mail_to_line = new QLineEdit(MailHall);
         hall_mail_to_line->setObjectName(QStringLiteral("hall_mail_to_line"));
         hall_mail_to_line->setGeometry(QRect(410, 150, 221, 20));
-        stackedWidget->addWidget(page_10);
-        page_11 = new QWidget();
-        page_11->setObjectName(QStringLiteral("page_11"));
-        decorator_mail_send_button = new QPushButton(page_11);
+        MailHallPrint = new QPushButton(MailHall);
+        MailHallPrint->setObjectName(QStringLiteral("MailHallPrint"));
+        MailHallPrint->setGeometry(QRect(530, 360, 75, 23));
+        MailHallPrint->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"border-width : 2px;\n"
+"border-style : outset;\n"
+"background-color: rgb(85, 0, 127);\n"
+"color : white"));
+        stackedWidget->addWidget(MailHall);
+        MailDecorator = new QWidget();
+        MailDecorator->setObjectName(QStringLiteral("MailDecorator"));
+        decorator_mail_send_button = new QPushButton(MailDecorator);
         decorator_mail_send_button->setObjectName(QStringLiteral("decorator_mail_send_button"));
         decorator_mail_send_button->setGeometry(QRect(520, 380, 75, 23));
         decorator_mail_send_button->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2660,16 +2689,16 @@ public:
 "border-style : outset;\n"
 "background-color: rgb(85, 0, 127);\n"
 "color : white"));
-        decorator_mail_to_line = new QLineEdit(page_11);
+        decorator_mail_to_line = new QLineEdit(MailDecorator);
         decorator_mail_to_line->setObjectName(QStringLiteral("decorator_mail_to_line"));
         decorator_mail_to_line->setGeometry(QRect(440, 160, 221, 20));
-        decorator_mail_subject_label = new QLabel(page_11);
+        decorator_mail_subject_label = new QLabel(MailDecorator);
         decorator_mail_subject_label->setObjectName(QStringLiteral("decorator_mail_subject_label"));
         decorator_mail_subject_label->setGeometry(QRect(370, 190, 61, 20));
         decorator_mail_subject_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 10pt;\n"
 ""));
-        MailDecoratorBackButton = new QPushButton(page_11);
+        MailDecoratorBackButton = new QPushButton(MailDecorator);
         MailDecoratorBackButton->setObjectName(QStringLiteral("MailDecoratorBackButton"));
         MailDecoratorBackButton->setGeometry(QRect(280, 110, 75, 23));
         MailDecoratorBackButton->setStyleSheet(QLatin1String("border-radius: 10px;\n"
@@ -2677,24 +2706,31 @@ public:
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        decorator_mail_subject_line = new QLineEdit(page_11);
+        decorator_mail_subject_line = new QLineEdit(MailDecorator);
         decorator_mail_subject_line->setObjectName(QStringLiteral("decorator_mail_subject_line"));
         decorator_mail_subject_line->setGeometry(QRect(440, 190, 221, 20));
-        decorator_mail_to_label = new QLabel(page_11);
+        decorator_mail_to_label = new QLabel(MailDecorator);
         decorator_mail_to_label->setObjectName(QStringLiteral("decorator_mail_to_label"));
         decorator_mail_to_label->setGeometry(QRect(380, 160, 47, 14));
         decorator_mail_to_label->setStyleSheet(QLatin1String("color: rgb(85, 0, 127);\n"
 "font : 10pt;\n"
 ""));
-        decorator_mail_plainText = new QTextEdit(page_11);
+        decorator_mail_plainText = new QTextEdit(MailDecorator);
         decorator_mail_plainText->setObjectName(QStringLiteral("decorator_mail_plainText"));
         decorator_mail_plainText->setGeometry(QRect(440, 230, 221, 121));
-        stackedWidget->addWidget(page_11);
+        stackedWidget->addWidget(MailDecorator);
         page_12 = new QWidget();
         page_12->setObjectName(QStringLiteral("page_12"));
         temporaire = new QPushButton(page_12);
         temporaire->setObjectName(QStringLiteral("temporaire"));
-        temporaire->setGeometry(QRect(430, 360, 75, 23));
+        temporaire->setGeometry(QRect(330, 350, 271, 131));
+        temporaire->setStyleSheet(QLatin1String("#temporaire {\n"
+"background-color: transparent;\n"
+"border-image: url(:product and customer management.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}"));
         traiteur_edit = new QPushButton(page_12);
         traiteur_edit->setObjectName(QStringLiteral("traiteur_edit"));
         traiteur_edit->setGeometry(QRect(500, 170, 241, 121));
@@ -2848,6 +2884,11 @@ public:
         back_to_aziz = new QPushButton(page_12);
         back_to_aziz->setObjectName(QStringLiteral("back_to_aziz"));
         back_to_aziz->setGeometry(QRect(80, 30, 91, 31));
+        back_to_aziz->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"border-width : 2px;\n"
+"border-style : outset;\n"
+"background-color:rgb(60,170,153);\n"
+"color : white"));
         stackedWidget->addWidget(page_12);
         page_13 = new QWidget();
         page_13->setObjectName(QStringLiteral("page_13"));
@@ -3216,12 +3257,16 @@ public:
         imprimer_TRAIT = new QPushButton(page_18);
         imprimer_TRAIT->setObjectName(QStringLiteral("imprimer_TRAIT"));
         imprimer_TRAIT->setGeometry(QRect(770, 160, 41, 31));
-        imprimer_TRAIT->setStyleSheet(QLatin1String("#imprimer {\n"
+        imprimer_TRAIT->setStyleSheet(QLatin1String("#imprimer_TRAIT {\n"
 "background-color: transparent;\n"
-"border-image: url(:imprimante.png);\n"
+"border-image: url(:pdf.png);\n"
 "background: none;\n"
 "border: none;\n"
 "background-repeat: none;\n"
+"}\n"
+"#imprimer_TRAIT:pressed\n"
+"{\n"
+"   border-image: url(:update.png);\n"
 "}"));
         essai_table = new QTableView(page_18);
         essai_table->setObjectName(QStringLiteral("essai_table"));
@@ -3455,12 +3500,16 @@ public:
         imprimerPROD = new QPushButton(page_19);
         imprimerPROD->setObjectName(QStringLiteral("imprimerPROD"));
         imprimerPROD->setGeometry(QRect(840, 160, 41, 31));
-        imprimerPROD->setStyleSheet(QLatin1String("#imprimer_2 {\n"
+        imprimerPROD->setStyleSheet(QLatin1String("#imprimerPROD {\n"
 "background-color: transparent;\n"
-"border-image: url(:imprimante.png);\n"
+"border-image: url(:pdf.png);\n"
 "background: none;\n"
 "border: none;\n"
 "background-repeat: none;\n"
+"}\n"
+"#imprimerPROD:pressed\n"
+"{\n"
+"   border-image: url(:update.png);\n"
 "}"));
         stackedWidget->addWidget(page_19);
         page_20 = new QWidget();
@@ -3584,29 +3633,106 @@ public:
         stackedWidget->addWidget(page_22);
         page_23 = new QWidget();
         page_23->setObjectName(QStringLiteral("page_23"));
-        comboBox_client_produit = new QComboBox(page_23);
-        comboBox_client_produit->setObjectName(QStringLiteral("comboBox_client_produit"));
-        comboBox_client_produit->setGeometry(QRect(497, 145, 141, 21));
+        clientproduittable = new QTableView(page_23);
+        clientproduittable->setObjectName(QStringLiteral("clientproduittable"));
+        clientproduittable->setGeometry(QRect(50, 205, 331, 192));
+        acheter_prod = new QTableWidget(page_23);
+        acheter_prod->setObjectName(QStringLiteral("acheter_prod"));
+        acheter_prod->setGeometry(QRect(443, 205, 461, 192));
+        acheter_prod->setStyleSheet(QLatin1String("QTableWidget {\n"
+"	background-color: #FFF;\n"
+"	/*alternate-background-color: rgb(138,87,163);*/\n"
+"	selection-background-color: rgb(60,170,153);\n"
+"\n"
+"\n"
+"}"));
+        label_33 = new QLabel(page_23);
+        label_33->setObjectName(QStringLiteral("label_33"));
+        label_33->setGeometry(QRect(693, 155, 111, 16));
+        nbr = new QLineEdit(page_23);
+        nbr->setObjectName(QStringLiteral("nbr"));
+        nbr->setGeometry(QRect(803, 155, 113, 20));
+        nbr->setStyleSheet(QLatin1String("QLineEdit{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(255,255,255);\n"
+"}\n"
+"\n"
+"QLineEdit:hover{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"}\n"
+"\n"
+"QLineEdit:focused{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"	color: #A0A0A0;\n"
+"}"));
         label_11 = new QLabel(page_23);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(390, 140, 81, 31));
+        label_11->setGeometry(QRect(403, 145, 81, 31));
         BACK12 = new QPushButton(page_23);
         BACK12->setObjectName(QStringLiteral("BACK12"));
-        BACK12->setGeometry(QRect(197, 95, 75, 23));
+        BACK12->setGeometry(QRect(210, 100, 75, 23));
         BACK12->setStyleSheet(QLatin1String("border-radius: 10px;\n"
 "border-width : 2px;\n"
 "border-style : outset;\n"
 "background-color:rgb(60,170,153);\n"
 "color : white"));
-        acheter_prod = new QTableWidget(page_23);
-        acheter_prod->setObjectName(QStringLiteral("acheter_prod"));
-        acheter_prod->setGeometry(QRect(317, 215, 461, 192));
+        comboBox_client_produit = new QComboBox(page_23);
+        comboBox_client_produit->setObjectName(QStringLiteral("comboBox_client_produit"));
+        comboBox_client_produit->setGeometry(QRect(510, 150, 141, 21));
+        comboBox_client_produit->setStyleSheet(QLatin1String("#comboBox_client_produit{\n"
+"background-color: transparent;\n"
+"border-image: url(:Esp_gener.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}"));
+        prix_finale = new QLineEdit(page_23);
+        prix_finale->setObjectName(QStringLiteral("prix_finale"));
+        prix_finale->setGeometry(QRect(790, 500, 61, 20));
+        prix_finale->setStyleSheet(QLatin1String("QLineEdit{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(255,255,255);\n"
+"}\n"
+"\n"
+"QLineEdit:hover{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"}\n"
+"\n"
+"QLineEdit:focused{\n"
+"	border: 2px solid rgb(138,87,163);\n"
+"	color: #A0A0A0;\n"
+"}"));
+        label_34 = new QLabel(page_23);
+        label_34->setObjectName(QStringLiteral("label_34"));
+        label_34->setGeometry(QRect(660, 500, 121, 20));
+        label_35 = new QLabel(page_23);
+        label_35->setObjectName(QStringLiteral("label_35"));
+        label_35->setGeometry(QRect(860, 500, 21, 20));
+        imprimerFACTURE = new QPushButton(page_23);
+        imprimerFACTURE->setObjectName(QStringLiteral("imprimerFACTURE"));
+        imprimerFACTURE->setGeometry(QRect(790, 530, 75, 51));
+        imprimerFACTURE->setStyleSheet(QLatin1String("#imprimerFACTURE {\n"
+"background-color: transparent;\n"
+"border-image: url(:pdf.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#imprimerFACTURE:pressed\n"
+"{\n"
+"   border-image: url(:update.png);\n"
+"}"));
+        label_36 = new QLabel(page_23);
+        label_36->setObjectName(QStringLiteral("label_36"));
+        label_36->setGeometry(QRect(670, 540, 121, 20));
         stackedWidget->addWidget(page_23);
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(10);
+        stackedWidget->setCurrentIndex(32);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -3778,6 +3904,7 @@ public:
         DisplayButton->setText(QString());
         StatHallButton->setText(QApplication::translate("MainWindow", "Stat", Q_NULLPTR));
         MailHallButton->setText(QApplication::translate("MainWindow", "Mail", Q_NULLPTR));
+        PrintHallsButton->setText(QApplication::translate("MainWindow", "Print", Q_NULLPTR));
         back_tomneu->setText(QApplication::translate("MainWindow", "back", Q_NULLPTR));
         DecoratorsTitle->setText(QApplication::translate("MainWindow", "Decorators", Q_NULLPTR));
         BackButton->setText(QApplication::translate("MainWindow", "Back", Q_NULLPTR));
@@ -3830,11 +3957,12 @@ public:
         hall_mail_subject_label->setText(QApplication::translate("MainWindow", "Subject ", Q_NULLPTR));
         hall_mail_to_label->setText(QApplication::translate("MainWindow", "To ", Q_NULLPTR));
         DecoratorStatBackButton_2->setText(QApplication::translate("MainWindow", "Back", Q_NULLPTR));
+        MailHallPrint->setText(QApplication::translate("MainWindow", "Print", Q_NULLPTR));
         decorator_mail_send_button->setText(QApplication::translate("MainWindow", "Send", Q_NULLPTR));
         decorator_mail_subject_label->setText(QApplication::translate("MainWindow", "Subject ", Q_NULLPTR));
         MailDecoratorBackButton->setText(QApplication::translate("MainWindow", "Back", Q_NULLPTR));
         decorator_mail_to_label->setText(QApplication::translate("MainWindow", "To ", Q_NULLPTR));
-        temporaire->setText(QApplication::translate("MainWindow", "temporaire", Q_NULLPTR));
+        temporaire->setText(QString());
         traiteur_edit->setText(QString());
         produit_edit->setText(QString());
         back_to_aziz->setText(QApplication::translate("MainWindow", "back", Q_NULLPTR));
@@ -3910,8 +4038,13 @@ public:
         label_32->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600; color:#9c4dcc;\">identifiant 2\n"
 "</span></p></body></html>", Q_NULLPTR));
         BACK10->setText(QApplication::translate("MainWindow", "back", Q_NULLPTR));
-        label_11->setText(QApplication::translate("MainWindow", "Client Nom :", Q_NULLPTR));
+        label_33->setText(QApplication::translate("MainWindow", "<font color = #8351a1>le nombre des pieces ", Q_NULLPTR));
+        label_11->setText(QApplication::translate("MainWindow", "<font color = #8351a1>Client Nom :", Q_NULLPTR));
         BACK12->setText(QApplication::translate("MainWindow", "back", Q_NULLPTR));
+        label_34->setText(QApplication::translate("MainWindow", "<font color = #8351a1>la somme de la facture", Q_NULLPTR));
+        label_35->setText(QApplication::translate("MainWindow", "DT", Q_NULLPTR));
+        imprimerFACTURE->setText(QString());
+        label_36->setText(QApplication::translate("MainWindow", "<font color = #8351a1>Imprimer la facture", Q_NULLPTR));
     } // retranslateUi
 
 };

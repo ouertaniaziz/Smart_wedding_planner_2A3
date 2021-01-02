@@ -99,7 +99,7 @@ private slots:
 
     void on_search_bar_textChanged(const QString &arg1);
 
-    void on_add_3_clicked();
+    //void on_add_3_clicked();
 
     void on_add_guest_3_clicked();
 
@@ -114,7 +114,7 @@ private slots:
     void on_search_bar_2_textChanged(const QString &arg1);
 
     void sendMail();
-    void mailSent(QString);
+  //  void mailSent(QString);
 
     void on_imprimer_clicked();
 
@@ -150,7 +150,7 @@ private slots:
 
     void on_BackButton_5_clicked();
 
-    void on_search_2_windowIconChanged(const QIcon &icon);
+ //   void on_search_2_windowIconChanged(const QIcon &icon);
 
     void on_AddButton_clicked();
 
@@ -160,7 +160,7 @@ private slots:
 
     void on_DisplayButton_clicked();
 
-    void on_hall_id_line_2_textChanged(const QString &arg1);
+  //  void on_hall_id_line_2_textChanged(const QString &arg1);
 
     void on_AddDecButton_2_clicked();
 
@@ -182,13 +182,13 @@ private slots:
 
     void on_DecoratorStatBackButton_clicked();
 
-    void on_mail_send_button_clicked();
+    //void on_mail_send_button_clicked();
 
     void on_MailHallButton_clicked();
 
     void on_DecoratorStatBackButton_2_clicked();
 
-    void on_HallMailBackButton_clicked();
+    //void on_HallMailBackButton_clicked();
 
     void on_hall_mail_send_button_clicked();
 
@@ -196,7 +196,7 @@ private slots:
 
     void on_MailDecoratorButton_clicked();
 
-    void on_decorator_mail_send_button_2_clicked();
+   // void on_decorator_mail_send_button_2_clicked();
 
     void on_decorator_mail_send_button_clicked();
 
@@ -298,9 +298,15 @@ private slots:
 
     void on_back_to_aziz_clicked();
 
-    void on_PrintHallsButton_clicked();
+    //void on_PrintHallsButton_clicked();
 
     void on_MailHallPrint_clicked();
+    void initialiserclientproduit();
+void calcule_de_facture();
+
+void on_nbr_editingFinished();
+
+void on_imprimerFACTURE_clicked();
 
 private:
     Ui::MainWindow *ui;

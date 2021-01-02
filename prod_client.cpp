@@ -23,3 +23,26 @@ QSqlQuery* prod_client::afficher_client_pour_poduit()
     qry->exec();
     return qry;
 }
+
+
+QSqlQueryModel * prod_client::afficherpc(QString id,int nbr)
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+//NOM_PRODUIT,PRIX_PRODUIT,PRIX_PRODUIT*37
+        model->setQuery("SELECT CP.ID_PRODUIT,P.NOM_PRODUIT,P.PRIX_PRODUIT FROM CLIENT_PRODUIT CP , PRODUIT P WHERE  CP.ID_CLIENT= '"+id+"' AND P.ID_PRODUIT=CP.ID_PRODUIT    ");
+
+
+
+return model;
+}
+QSqlQuery prod_client::imprimeretcalcule(QString id)
+
+{
+    QSqlQuery query;
+
+       query.prepare("SELECT CP.ID_PRODUIT,P.NOM_PRODUIT,P.PRIX_PRODUIT FROM CLIENT_PRODUIT CP , PRODUIT P WHERE  CP.ID_CLIENT= '"+id+"' AND P.ID_PRODUIT=CP.ID_PRODUIT    ");
+       query.exec();
+
+       return query;
+}

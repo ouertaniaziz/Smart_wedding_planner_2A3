@@ -18,6 +18,8 @@ public:
 
     bool addprod_client();
     QSqlQuery *afficher_client_pour_poduit();
+    QSqlQueryModel * afficherpc(QString,int);
+   QSqlQuery imprimeretcalcule(QString id);
 };
 
 #endif // PROD_CLIENT_H

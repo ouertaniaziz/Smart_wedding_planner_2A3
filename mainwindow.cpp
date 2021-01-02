@@ -135,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent)
             ui->aff_trait->setColumnCount(6);
             ui->aff_trait->setHorizontalHeaderLabels(Titres);
             ui->aff_trait->resizeColumnsToContents();
-            ui->stackedWidget->setCurrentIndex(0);
+            ui->stackedWidget->setCurrentIndex(10);
 
             prod_client p_c;
 
@@ -2990,61 +2990,94 @@ void MainWindow::on_imprimerPROD_clicked()
 
                 painter.end();
 }
+void MainWindow::initialiserclientproduit()
+{
+   prod_client pc;
+   ui->clientproduittable->setModel(pc.afficherpc(ui->comboBox_client_produit->currentText(),ui->nbr->text().toInt()));
+   ui->clientproduittable->resizeRowsToContents();
+   ui->clientproduittable->resizeColumnsToContents();
+ui->nbr->setText("1");
+calcule_de_facture();
 
+}
 void MainWindow::on_temporaire_clicked()
 {
-Produit p;
-    QStringList entet;
-    entet <<"   Identifiant " <<"  Name  "<<" Type "<<" price "<<" Id_traiteur    "<<"ajouter";
-    ui->acheter_prod->setColumnCount(6);
-    ui->acheter_prod->setHorizontalHeaderLabels(entet);
-    ui->acheter_prod->resizeColumnsToContents();
 
-    ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+    Produit p;
 
-             ui->acheter_prod->setRowCount(0);
+    prod_client p_c;
 
-          for( int row = 0; row < ui->affiche_tablePR->model()->rowCount(); ++row )
-           {ui->acheter_prod->insertRow(ui->acheter_prod->rowCount());
-     for( int col = 0; col < ui->affiche_tablePR->model()->columnCount(); ++col )
-             {
-              QModelIndex index =ui->affiche_tablePR->model()->index(row,col);
-          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-          ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
-          QIcon MAJ(":/add.png");
+    QSqlQuery* qry = p_c.afficher_client_pour_poduit();
 
-          QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+    while ( qry->next() )
+    {
+        ui->comboBox_client_produit->addItem(qry->value(11).toString());
+    }
+     initialiserclientproduit();
+        QStringList entet;
+        entet <<"   Identifiant " <<"  Name  "<<" Type "<<" price "<<" Id_traiteur    "<<"ajouter";
+        ui->acheter_prod->setColumnCount(6);
+        ui->acheter_prod->setHorizontalHeaderLabels(entet);
+        ui->acheter_prod->resizeColumnsToContents();
 
-               MAJ_item->setIcon(MAJ);
-               ui->acheter_prod->setItem(row,5, MAJ_item);
-               ui->acheter_prod->resizeColumnsToContents();
-             }
-          }
-          ui->stackedWidget->setCurrentIndex(32);
+        ui->affiche_tablePR->setModel(p.afficher(0,"null"));
+
+                 ui->acheter_prod->setRowCount(0);
+
+
+              for( int row = 0; row < ui->affiche_tablePR->model()->rowCount(); ++row )
+               {ui->acheter_prod->insertRow(ui->acheter_prod->rowCount());
+         for( int col = 0; col < ui->affiche_tablePR->model()->columnCount(); ++col )
+                 {
+                  QModelIndex index =ui->affiche_tablePR->model()->index(row,col);
+              ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+              ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+              ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+              ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+              ui->acheter_prod->setItem(row,col,new QTableWidgetItem(index.data().toString()));
+              QIcon MAJ(":/add.png");
+
+              QTableWidgetItem *MAJ_item = new QTableWidgetItem;
+
+                   MAJ_item->setIcon(MAJ);
+                   ui->acheter_prod->setItem(row,5, MAJ_item);
+                   ui->acheter_prod->resizeColumnsToContents();
+                 }
+              }
+              ui->stackedWidget->setCurrentIndex(32);
 
 }
 
 void MainWindow::on_acheter_prod_cellClicked(int row, int column)
-{ prod_client pc;
-    const QAbstractItemModel *model = ui->affiche_tablePR->model();
-    const QString idprod = model->data(model->index(row, 0), Qt::DisplayRole).toString();
-qDebug()<<idprod;
-if(column==5)
 {
-    pc.setIDclient(ui->comboBox_client_produit->currentText());
+    prod_client pc;
+        const QAbstractItemModel *model = ui->affiche_tablePR->model();
+        const QString idprod = model->data(model->index(row, 0), Qt::DisplayRole).toString();
+    qDebug()<<idprod;
+    if(column==5)
+    {
+        pc.setIDclient(ui->comboBox_client_produit->currentText());
 
-pc.setIDprod(idprod);
-pc.addprod_client();
-}
+    pc.setIDprod(idprod);
+    pc.addprod_client();
+    initialiserclientproduit();
+    calcule_de_facture();
+
+    }
 }
 
 void MainWindow::on_BACK12_clicked()
 {
     ui->stackedWidget->setCurrentIndex(21);
+    ui->comboBox_client_produit->clear();
+    ui->clientproduittable->clearSpans();
 }
+
+
+
+
+
+
 
 void MainWindow::on_aziz_clicked()
 {
@@ -3108,4 +3141,101 @@ void MainWindow::on_MailHallPrint_clicked()
 
 
          ui->stackedWidget->setCurrentIndex(11);
+}
+void MainWindow::calcule_de_facture()
+{ prod_client cp;
+  QString id=ui->comboBox_client_produit->currentText() ;
+  QSqlQuery  query=cp.imprimeretcalcule(id);
+int somme=0;
+  while (query.next())
+            {
+
+             int prix = query.value(2).toInt();
+             somme=somme+prix;
+              qDebug() <<prix<<somme<< endl;
+
+
+  }
+int k=ui->nbr->text().toInt();
+somme=somme*k;
+QString resulta=QString::number(somme);
+
+ui->prix_finale->setText(resulta);
+}
+/*void MainWindow::on_pushButton_39_clicked()
+{
+   int cin = ui->edit_rechavanc_prod_4->text().toInt();
+
+    QSqlQuery  query=tmp.exporter(cin);
+   while (query.next())
+             {
+               QString SALAIRE = query.value(0).toString();
+               QString DUREE = query.value(1).toString();
+               QString DATEDEB = query.value(2).toString();
+               QString EMAIL = query.value(3).toString();
+               QString CIN = query.value(4).toString();
+               QPdfWriter pdf1("C:/Users/ASUS/Documents/PROJET_2A11_RH/Exportation.pdf");
+               QPainter painter (&pdf1);
+               painter.drawText(2200,3500,SALAIRE);
+               painter.drawText(2200,4000,DUREE);
+               painter.drawText(2200,4500,DATEDEB);
+               painter.drawText(2200,5000,EMAIL);
+               painter.drawText(2200,5500,CIN);
+             painter.setPen(Qt::blue);
+             painter.drawText(4500,2000,"Contrat");
+             painter.setPen(Qt::blue);
+             painter.drawText(500,3500,"salaire :");
+             painter.drawText(500,4000,"duree :");
+             painter.drawText(500,4500,"Date deb:");
+             painter.drawText(500,5000,"EMAIL :");
+             painter.drawText(500,5500,"CIN :");
+   }
+*/
+
+void MainWindow::on_nbr_editingFinished()
+{
+    calcule_de_facture();
+
+}
+
+void MainWindow::on_imprimerFACTURE_clicked()
+{
+    prod_client cp;
+     QString id=ui->comboBox_client_produit->currentText() ;
+     QSqlQuery  query=cp.imprimeretcalcule(id);
+   int somme=0;
+   QPdfWriter pdf1("C:/Users/hp/Desktop/projet/Smart_wedding_planner_2A3/Exportation.pdf");
+   QPainter painter (&pdf1);
+int x=2000;
+painter.setPen(Qt::blue);
+painter.drawText(4500,500,"facture ");
+painter.drawText(500,2000,"IDENTIFIANT ");
+painter.drawText(1500,2000,"NOM DE PRODUIT");
+painter.drawText(2500,2000,"PRIX DE PRODUIT");
+
+     while (query.next())
+               {
+x=x+500;
+painter.setPen(Qt::darkGreen);
+
+                int prix = query.value(2).toInt();
+                somme=somme+prix;
+                 qDebug() <<prix<<somme<< endl;
+                 QString identifiant = query.value(0).toString();
+                               QString nom = query.value(1).toString();
+                               QString prix1 = query.value(2).toString();
+                 painter.drawText(500,x,identifiant);
+                 painter.drawText(1500,x,nom);
+                 painter.drawText(2500,x,prix1);
+
+
+     }
+   int k=ui->nbr->text().toInt();
+   somme=somme*k;
+   QString resulta=QString::number(somme);
+   painter.drawText(500,x+2000,"la somme de votre facture est ");
+   painter.drawText(3500,x+2000,resulta);
+   painter.drawText(500,x+1000,"la quantitée a achetée est  ");
+   painter.drawText(3500,x+1000,ui->nbr->text());
+
 }
