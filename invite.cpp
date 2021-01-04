@@ -25,6 +25,144 @@ invite::invite(QString id_inv,QString nom,QString prenom ,QString phone ,QString
 bool invite::add_guest()
 {
     QSqlQuery qry;
+       ///////////////////// ajout du code d'invite
+       /// INVITE_ARDUINO
+
+
+    qry.prepare("SELECT * FROM INVITE_ARDUINO WHERE ID_MARRIAGE =:id AND ID_INVITE=(SELECT MAX(ID_INVITE) FROM INVITE_ARDUINO)");
+    //qry.prepare("SELECT * FROM INVITE_ARDUINO WHERE ID_MARRIAGE =:id ORDER BY ID_INVITE DESC LIMIT 1");
+    qry.bindValue(":id",id_marriage);
+    int code_1 = 0;
+    QString code_2,code = "1A";
+    int change_lettre = 0;
+    if ( qry.exec() )
+    {
+        while ( qry.next())
+        {
+            QString temp = qry.value(1).toString();
+            qDebug() << "code aman : "<<temp << endl;
+            if ( temp[0] == "1")
+            {
+                code_1 = 2;
+            }
+            else if ( temp[0] == "2")
+            {
+                code_1 = 3;
+            }
+            else if ( temp[0] == "3")
+            {
+                code_1 = 4;
+            }
+            else if ( temp[0] == "4")
+            {
+                code_1 = 5;
+            }
+            else if ( temp[0] == "5")
+            {
+                code_1 = 6;
+            }
+            else if ( temp[0] == "6")
+            {
+                code_1 = 7;
+            }
+            else if ( temp[0] == "7")
+            {
+                code_1 = 8;
+            }
+            else if ( temp[0] == "8")
+            {
+                code_1 = 9;
+            }
+            else if ( temp[0] == "9")
+            {
+                code_1 = 1;
+                change_lettre = 1;
+            }
+            else
+            {
+            }
+
+
+            if ( temp[1] == "A" && change_lettre == 1)
+            {
+                code_2 = "B";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "B" && change_lettre == 1)
+            {
+                code_2 = "C";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "C" && change_lettre == 1)
+            {
+                code_2 = "D";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "D" && change_lettre == 1)
+            {
+                code_2 = "E";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "E" && change_lettre == 1)
+            {
+                code_2 = "F";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "F" && change_lettre == 1)
+            {
+                code_2 = "H";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "H" && change_lettre == 1)
+            {
+                code_2 = "L";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "L" && change_lettre == 1)
+            {
+                code_2 = "P";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "P" && change_lettre == 1)
+            {
+                code_2 = "Q";
+                change_lettre = 0;
+            }
+            else if ( temp[1] == "Q" && change_lettre == 1)
+            {
+                code_2 = "A";
+                change_lettre = 0;
+            }
+            else
+            {
+            }
+
+            QString tmp = QString::number(code_1);
+            code = tmp + temp[1];
+        }
+
+    }
+
+
+    qDebug() << "code initialise baseeee " << code << endl;
+
+
+    qry.prepare("INSERT INTO INVITE_ARDUINO (ID_INVITE,CODE,ID_MARRIAGE) "
+                "values ( :id_inv , :code , :id_marriage)");
+    QString id_inv = id_invite;
+    id_invite = id_marriage + id_invite;
+    qDebug() << "hedha l id mtaa invite mkhalet " << id_invite << endl;
+    //int id_inv_int = id_invite.toInt();
+    qry.bindValue(":id_inv",id_invite);
+    qry.bindValue(":code",code);
+    qry.bindValue(":id_marriage",id_marriage);
+    qry.exec();
+
+
+
+    /////////////// ajout d'invite
+
+    id_invite = id_inv;
     qry.prepare("INSERT INTO INVITE_MARRIAGE (ID_INVITE,NOM_INVITE,PRENOM_INVITE,PHONE_INVITE,EMAIL_INVITE,ID_MARRIAGE) "
                 "values ( :id_inv , :nom_inv , :prenom_inv , :phone_inv , :email_inv , :id_marriage)");
 

@@ -37,6 +37,29 @@ client_marriage::client_marriage(QString n_m,QString pr_m,QString c_m,QString ph
     email = em;
 }
 
+QSqlQuery* client_marriage::order_by_name()
+{
+    QSqlQuery* qry= new QSqlQuery();
+    qry->prepare("SELECT * FROM CLIENT_MARRIAGE ORDER BY PRENOM_M ASC");
+    qry->exec();
+    return qry;
+}
+
+QSqlQuery* client_marriage::order_by_email()
+{
+    QSqlQuery* qry= new QSqlQuery();
+    qry->prepare("SELECT * FROM CLIENT_MARRIAGE ORDER BY EMAIL ASC");
+    qry->exec();
+    return qry;
+}
+
+QSqlQuery* client_marriage::order_by_confirmation()
+{
+    QSqlQuery* qry= new QSqlQuery();
+    qry->prepare("SELECT * FROM CLIENT_MARRIAGE ORDER BY CONFIRMATION DESC;");
+    qry->exec();
+    return qry;
+}
 
 
 bool client_marriage::ajouter_client(int ID_CLIENT)
@@ -177,18 +200,13 @@ int client_marriage::count_id()
 int client_marriage::clear_table_marriage()
 {
     QSqlQuery qry;
-
     int rowCount = 0;
-
     if (qry.exec("SELECT * FROM CLIENT_MARRIAGE"))
     {
         while(qry.next())
         {
             rowCount++;
         }
-
-
-
     }
     return rowCount;
 }

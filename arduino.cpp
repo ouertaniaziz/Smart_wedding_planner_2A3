@@ -3,6 +3,7 @@
 Arduino::Arduino()
 {
   data="";
+  arduino_port_name="";
   arduino_is_available = false;
   serial = new QSerialPort;
 
@@ -42,12 +43,13 @@ serial = new QSerialPort();
         serial->setPortName(arduino_port_name);
         if(serial->open(QSerialPort::ReadWrite))
         {
+            serial->open(QSerialPort::ReadOnly);
             serial->setBaudRate(QSerialPort::Baud9600);
             serial->setDataBits(QSerialPort::Data8);
+            serial->setFlowControl(QSerialPort::NoFlowControl);
             serial->setParity(QSerialPort::NoParity);
             serial->setStopBits(QSerialPort::OneStop);
-            serial->setFlowControl(QSerialPort::NoFlowControl);
-            return  0;
+            return 0;
         }
         return 1;
     }

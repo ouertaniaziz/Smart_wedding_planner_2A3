@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     arduino.cpp \
+    arduino_yassine.cpp \
     client_marriage.cpp \
     connection.cpp \
     decorator.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 HEADERS += \
     ../../arduinoAZ/arduinoAZ.ino \
     arduino.h \
+    arduino_yassine.h \
     client_marriage.h \
     connection.h \
     decorator.h \

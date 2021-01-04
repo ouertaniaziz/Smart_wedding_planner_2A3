@@ -8,6 +8,7 @@
 #include "smtp.h"
 #include <QtWidgets/QMessageBox>
 #include <QPropertyAnimation>
+#include "arduino_yassine.h"
 #include "arduino.h"
 #include "musiciens.h"
 #include "employes.h"
@@ -397,6 +398,16 @@ void on_returnsami_19_clicked();
 
 void on_comboBox_2_activated(int index);
 
+void activate_arduino();
+
+void on_name_marriage_clicked();
+
+void on_none_clicked();
+
+void on_confirmation_clicked();
+
+void on_email_marriage_clicked();
+
 private:
     Ui::MainWindow *ui;
     Smtp* smtp ;
@@ -405,5 +416,8 @@ private:
     employes empy;
     QString mail;
     QPropertyAnimation *animation;
+    arduino_yassine Arduino_yassine;
+    QByteArray data;
+
 };
 #endif // MAINWINDOW_H

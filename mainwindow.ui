@@ -29,7 +29,7 @@ background: white;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>41</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBoxclient">
@@ -120,11 +120,14 @@ background-repeat: none;
      <widget class="QGroupBox" name="groupe_client_page">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>22</x>
         <y>0</y>
         <width>1001</width>
         <height>611</height>
        </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox{
@@ -148,6 +151,9 @@ background-repeat: none;
          <width>851</width>
          <height>501</height>
         </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QTableWidget {
@@ -346,6 +352,9 @@ background-repeat: none;
          <height>31</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">#add_client {
 background-color: transparent;
@@ -371,6 +380,9 @@ background-repeat: none;
          <width>121</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">#delete_client {
@@ -398,6 +410,9 @@ background-repeat: none;
          <height>31</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">#update_client {
 background-color: transparent;
@@ -423,6 +438,9 @@ background-repeat: none;
          <width>181</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
@@ -466,6 +484,9 @@ QLineEdit:focused{
          <bold>true</bold>
         </font>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#8351a1;&quot;&gt;Marriage List :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
@@ -478,6 +499,9 @@ QLineEdit:focused{
          <width>140</width>
          <height>40</height>
         </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
@@ -509,6 +533,9 @@ QPushButton:focused{
          <height>18</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>ID</string>
        </property>
@@ -521,6 +548,9 @@ QPushButton:focused{
          <width>61</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string>Marriage</string>
@@ -535,8 +565,109 @@ QPushButton:focused{
          <height>18</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>Phone Number</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>390</y>
+         <width>111</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QRadioButton" name="name_marriage">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>83</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="email_marriage">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>83</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="confirmation">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>83</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>E-mail</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="none">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>83</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Confirmation</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="label_41">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>380</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Palatino Linotype</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort By :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#label_41 {
+color: #8351a1;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Sort By :</string>
        </property>
       </widget>
      </widget>
@@ -545,7 +676,7 @@ QPushButton:focused{
      <widget class="QGroupBox" name="groupe_box_add_client">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>140</x>
         <y>80</y>
         <width>851</width>
         <height>481</height>
@@ -1163,7 +1294,7 @@ QDateEdit:focused{
      <widget class="QPushButton" name="back_">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>40</x>
         <y>30</y>
         <width>140</width>
         <height>40</height>
@@ -1203,7 +1334,7 @@ QPushButton:focused{
      <widget class="QLabel" name="add">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>40</x>
         <y>110</y>
         <width>101</width>
         <height>41</height>
@@ -1228,7 +1359,7 @@ QPushButton:focused{
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>190</x>
         <y>135</y>
         <width>700</width>
         <height>400</height>
@@ -1332,7 +1463,7 @@ QLineEdit:focused{
      <widget class="QPushButton" name="back_from_delete_client">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>40</x>
         <y>30</y>
         <width>140</width>
         <height>40</height>
@@ -1871,7 +2002,7 @@ background-repeat: none;
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>550</y>
         <width>201</width>
         <height>31</height>
@@ -1895,7 +2026,7 @@ background-repeat: none;
      <widget class="QPushButton" name="marriage_list_2">
       <property name="geometry">
        <rect>
-        <x>800</x>
+        <x>810</x>
         <y>550</y>
         <width>191</width>
         <height>31</height>
@@ -1921,7 +2052,7 @@ background-repeat: none;
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>170</x>
         <y>120</y>
         <width>700</width>
         <height>400</height>
@@ -2025,7 +2156,7 @@ QLineEdit:focused{
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>30</y>
         <width>140</width>
         <height>40</height>
@@ -2057,7 +2188,7 @@ QPushButton:focused{
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>30</x>
         <y>0</y>
         <width>1001</width>
         <height>611</height>
@@ -2458,7 +2589,7 @@ QPushButton:focused{
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>240</x>
         <y>110</y>
         <width>631</width>
         <height>431</height>
@@ -2715,7 +2846,7 @@ QLineEdit:focused{
      <widget class="QPushButton" name="back_guest_from_add">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>50</x>
         <y>30</y>
         <width>140</width>
         <height>40</height>
@@ -2755,7 +2886,7 @@ QPushButton:focused{
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>70</x>
         <y>170</y>
         <width>101</width>
         <height>41</height>
@@ -2780,7 +2911,7 @@ QPushButton:focused{
      <widget class="QPushButton" name="pushButton_8">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>45</x>
         <y>30</y>
         <width>140</width>
         <height>40</height>
@@ -2810,7 +2941,7 @@ QPushButton:focused{
      <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>185</x>
         <y>120</y>
         <width>700</width>
         <height>400</height>

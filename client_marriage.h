@@ -49,6 +49,9 @@ public:
     QSqlQuery search_client_update(QString id);
     int check_id_client(QString id);
     void update_confirmation(QString id);
+    QSqlQuery *order_by_name();
+    QSqlQuery *order_by_email();
+    QSqlQuery *order_by_confirmation();
 };
 
 #endif // CLIENT_MARRIAGE_H
