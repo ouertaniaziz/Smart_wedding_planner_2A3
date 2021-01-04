@@ -9,7 +9,8 @@
 #include <QtWidgets/QMessageBox>
 #include <QPropertyAnimation>
 #include "arduino.h"
-
+#include "musiciens.h"
+#include "employes.h"
 #include <QMainWindow>
 #include "traiteur.h"
 #include"prod_client.h"
@@ -310,12 +311,99 @@ void on_nbr_editingFinished();
 void on_imprimerFACTURE_clicked();
 void reclamation();
 
+void on_sami_clicked();
+
+void on_search_clicked();
+
+void on_reset_clicked();
+
+void on_Sort_mus_activated(int index);
+
+void on_mus_man_main_2_clicked();
+
+void on_mus_man_main_clicked();
+
+void on_Submit_mus_clicked();
+
+void on_mus_man_main_5_clicked();
+
+void on_mus_man_main_3_clicked();
+
+void on_returnsami_clicked();
+
+void on_cancelsami_clicked();
+
+void on_returnsami_5_clicked();
+
+void on_returnsami_4_clicked();
+
+void on_returnsami_3_clicked();
+
+void on_returnsami_2_clicked();
+
+void on_Submit_mus_2_clicked();
+
+void on_search_3_clicked();
+
+void on_returnsami_6_clicked();
+
+void on_mus_man_main_6_clicked();
+
+void on_search_7_clicked();
+
+void on_returnsami_13_clicked();
+
+void on_mus_man_main_7_clicked();
+
+void on_emp_man_main_clicked();
+
+void on_search_8_clicked();
+
+void on_reset_3_clicked();
+
+void on_Gen_PDF_clicked();
+
+void on_returnsami_14_clicked();
+
+void on_returnsami_15_clicked();
+
+void on_sub_emp_2_clicked();
+
+void on_cancelsami_5_clicked();
+
+void on_returnsami_16_clicked();
+
+void on_search_9_clicked();
+
+void on_Submit_mus_5_clicked();
+
+void on_returnsami_17_clicked();
+
+void on_search_10_clicked();
+
+void on_returnsami_18_clicked();
+
+void on_emp_man_main_3_clicked();
+
+void on_mus_man_main_15_clicked();
+
+void on_mus_man_main_16_clicked();
+
+void on_mus_man_main_17_clicked();
+
+void on_mus_man_main_18_clicked();
+
+void on_returnsami_19_clicked();
+
+void on_comboBox_2_activated(int index);
+
 private:
     Ui::MainWindow *ui;
     Smtp* smtp ;
     QString msg;
+    musiciens mscs;
+    employes empy;
     QString mail;
     QPropertyAnimation *animation;
-
 };
 #endif // MAINWINDOW_H

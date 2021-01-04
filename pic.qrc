@@ -47,5 +47,18 @@
         <file>decoration management.png</file>
         <file>gastronomi_module.png</file>
         <file>productandcustomermanagement.png</file>
+        <file>app icon.png</file>
+        <file>back_sami.png</file>
+        <file>bell.png</file>
+        <file>empico.png</file>
+        <file>icons8-list-100.png</file>
+        <file>mng.png</file>
+        <file>musico.png</file>
+        <file>pdf_sami.png</file>
+        <file>pencil.png</file>
+        <file>plus_sami.png</file>
+        <file>reset.png</file>
+        <file>trash_sami.png</file>
+        <file>search_sami.png</file>
     </qresource>
 </RCC>

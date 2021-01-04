@@ -23,10 +23,12 @@ SOURCES += \
     client_marriage.cpp \
     connection.cpp \
     decorator.cpp \
+    employes.cpp \
     hall.cpp \
     invite.cpp \
     main.cpp \
     mainwindow.cpp \
+    musiciens.cpp \
     prod_client.cpp \
     produit.cpp \
     smtp.cpp \
@@ -40,9 +42,11 @@ HEADERS += \
     client_marriage.h \
     connection.h \
     decorator.h \
+    employes.h \
     hall.h \
     invite.h \
     mainwindow.h \
+    musiciens.h \
     prod_client.h \
     produit.h \
     smtp.h \
