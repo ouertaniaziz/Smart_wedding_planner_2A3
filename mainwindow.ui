@@ -29,7 +29,7 @@ background: white;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>27</number>
     </property>
     <widget class="QWidget" name="menu_page">
      <widget class="QGroupBox" name="groupBoxclient">
@@ -3629,24 +3629,6 @@ border-color:rgb(60,170,153);</string>
         <string>Mail</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="PrintHallsButton">
-       <property name="geometry">
-        <rect>
-         <x>440</x>
-         <y>30</y>
-         <width>75</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width : 1px;
-border-style : outset;
-border-color:rgb(255, 0, 255);</string>
-       </property>
-       <property name="text">
-        <string>Print</string>
-       </property>
-      </widget>
      </widget>
      <widget class="QPushButton" name="back_tomneu">
       <property name="geometry">
@@ -3767,7 +3749,7 @@ QLineEdit:focused{
        </property>
        <property name="styleSheet">
         <string notr="true">background-color : transparent;
-border-image: url(://Img/addicon.png);
+border-image: url(:/addicon.png);
 background: none;
 border: none;
 background-repeat : none;
@@ -5243,7 +5225,7 @@ color : white</string>
      <widget class="QPushButton" name="hall_mail_send_button">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>490</x>
         <y>360</y>
         <width>75</width>
         <height>23</height>
@@ -5344,26 +5326,6 @@ color : white</string>
         <width>221</width>
         <height>20</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="MailHallPrint">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>360</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-radius: 10px;
-border-width : 2px;
-border-style : outset;
-background-color: rgb(85, 0, 127);
-color : white</string>
-      </property>
-      <property name="text">
-       <string>Print</string>
       </property>
      </widget>
     </widget>

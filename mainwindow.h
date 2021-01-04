@@ -18,7 +18,6 @@
 #include<QSqlQueryModel>
 #include"produit.h"
 #include <stdlib.h>
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -266,7 +265,7 @@ private slots:
     void on_update_tablePR_cellClicked(int row, int column);
 
     void on_triTrait_currentIndexChanged(int index);
-
+void reclamatio();
 
 
 
@@ -310,7 +309,6 @@ void calcule_de_facture();
 void on_nbr_editingFinished();
 
 void on_imprimerFACTURE_clicked();
-void reclamation();
 
 void on_sami_clicked();
 
@@ -408,6 +406,7 @@ void on_confirmation_clicked();
 
 void on_email_marriage_clicked();
 
+void sendMail_yassine();
 private:
     Ui::MainWindow *ui;
     Smtp* smtp ;

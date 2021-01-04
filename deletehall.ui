@@ -85,7 +85,7 @@ border-color:rgb(60,170,153);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color : transparent;
-border-image: url(://Img/delete.png);
+border-image: url(:/delete.png);
 background: none;
 border: none;
 background-repeat : none;

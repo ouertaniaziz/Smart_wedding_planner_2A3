@@ -53,67 +53,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-    ////////////////////////
-
-    client_marriage c_m;
-    QSqlQuery* qry= new QSqlQuery();
-    if ( ui->name_marriage->isChecked())
-    {
-        qry = c_m.order_by_name();
-    }
-    else if ( ui->email_marriage->isChecked())
-    {
-        qry = c_m.order_by_email();
-    }
-    else if ( ui->confirmation->isChecked())
-    {
-        qry = c_m.order_by_confirmation();
-    }
-
-
-    int rowCount = c_m.clear_table_marriage();
-    for (int i =rowCount ; i>=0 ; i--)
-        ui->tableWidget_client->removeRow(i);
-
-
-    while(qry->next())
-    {
-        ui->tableWidget_client->insertRow(rowCount);
-        QTableWidgetItem *ID = new QTableWidgetItem;
-        QTableWidgetItem *Marriage = new QTableWidgetItem;
-        QTableWidgetItem *Phone_Number = new QTableWidgetItem;
-        QTableWidgetItem *Email = new QTableWidgetItem;
-        QTableWidgetItem *Confirmation = new QTableWidgetItem;
-
-        ID->setText(qry->value(11).toString());
-        Marriage->setText(qry->value(1).toString()+" "+qry->value(0).toString()+" / "+qry->value(5).toString()+" "+qry->value(4).toString());
-        Phone_Number->setText(qry->value(3).toString()+" / "+qry->value(7).toString());
-        Email->setText(qry->value(9).toString());
-
-
-        if ( qry->value(12).toString() == "1" )
-        {
-            Confirmation->setCheckState(Qt::Checked);
-        }
-        else
-        {
-            Confirmation->setCheckState(Qt::Unchecked);
-        }
-
-
-        ui->tableWidget_client->setItem(rowCount,0,ID);
-        ui->tableWidget_client->setItem(rowCount,1,Marriage);
-        ui->tableWidget_client->setItem(rowCount,2,Phone_Number);
-        ui->tableWidget_client->setItem(rowCount,3,Email);
-        ui->tableWidget_client->setItem(rowCount,4,Confirmation);
-
-        rowCount++;
-
-    }
-
-
-
     ////////////////////////////////////// ##################################################################
     int ret=Arduino_yassine.connect_arduino_yassine_sami();
 
@@ -127,7 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
 
-    QObject::connect(Arduino_yassine.getserial_yassine_sami(),SIGNAL(readyRead()),this,SLOT(activate_arduino()));
+    //QObject::connect(Arduino_yassine.getserial_yassine_sami(),SIGNAL(readyRead()),this,SLOT(activate_arduino()));
+    QObject::connect(Arduino_yassine.getserial_yassine_sami(),SIGNAL(readyRead()),this,SLOT(reclamatio()));
 
     ui->tableView_3->setModel(mscs.afficher_mus("XYZ",-1,-1));
     ui->tableView_7->setModel(empy.afficher_emp("XYZ",-1,-1));
@@ -181,7 +121,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    connect(ui->send_invite, SIGNAL(clicked()),this, SLOT(sendMail()));
+    connect(ui->send_invite, SIGNAL(clicked()),this, SLOT(sendMail_yassine()));
 
     ui->tableWidget_client->setSortingEnabled(false);
     ui->tableWidget_3->setSortingEnabled(false);
@@ -219,7 +159,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QSqlQuery* qryy = p_c.afficher_client_pour_poduit();
 
-    while ( qry->next() )
+    while ( qryy->next() )
     {
         ui->comboBox_client_produit->addItem(qryy->value(11).toString());
     }
@@ -369,9 +309,16 @@ void MainWindow::activate_arduino()
 
     }
 }
+void MainWindow::reclamatio() {
+    data = Arduino_yassine.read_from_arduino_yassine_sami();
+    QString temp = QString::fromStdString(data.toStdString());
+    QMessageBox::information(nullptr, QObject::tr("ALERT !"),
+                        QObject::tr("A TABLE IS REQUESTING A SERVER.\n"), QMessageBox::Cancel);
+
+}
 
 
-void MainWindow::sendMail()
+void MainWindow::sendMail_yassine()
 {
     QSqlQuery qry;
     qry.prepare("SELECT * FROM INVITE_MARRIAGE WHERE ID_MARRIAGE=:id");
@@ -383,18 +330,18 @@ void MainWindow::sendMail()
             QString code = qry.value(0).toString() + ui->mariage_id_3->text();
             qDebug() << code << endl;
 
-            Smtp* smtp = new Smtp("yassine.bs125@gmail.com", "Salwaghozzi10", "smtp.gmail.com", 465);
+            Smtp* smtp = new Smtp("yassine.esprit.tn@gmail.com", "esprit2020", "smtp.gmail.com", 465);
             connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
 
-            smtp->sendMail("yassine.bs125@gmail.com", qry.value(4).toString() , "Wedding Invitation",code);
+            smtp->sendMail("yassine.esprit.tn@gmail.com", qry.value(4).toString() , "Wedding Invitation",code);
         }
 
     }
 
 
-
 }
+
 
 /*void MainWindow::mailSent(QString status)
 {
@@ -3435,15 +3382,15 @@ void MainWindow::on_imprimerFACTURE_clicked()
     painter.drawText(3500,x+1000,ui->nbr->text());
 
 }
-void MainWindow::reclamation()
+/*void MainWindow::reclamation()
 {
     /*Arduino a;
 QByteArray rec = a.read_from_arduino();
 qDebug() << rec;
 
-//ui->reclame->setText(rec);*/
+//ui->reclame->setText(rec);
 
-}
+}*/
 
 void MainWindow::on_sami_clicked()
 {
