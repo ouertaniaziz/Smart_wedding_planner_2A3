@@ -407,6 +407,8 @@ void on_confirmation_clicked();
 void on_email_marriage_clicked();
 
 void sendMail_yassine();
+void on_Aman_clicked();
+
 private:
     Ui::MainWindow *ui;
     Smtp* smtp ;

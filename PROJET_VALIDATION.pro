@@ -35,6 +35,7 @@ SOURCES += \
     smtp.cpp \
     deletehall.cpp \
     deletedecorator.cpp \
+    statistics.cpp \
     traiteur.cpp
 
 HEADERS += \
@@ -54,12 +55,14 @@ HEADERS += \
     smtp.h \
     deletehall.h \
     deletedecorator.h \
+    statistics.h \
     traiteur.h
 
 FORMS += \
     mainwindow.ui \
     deletehall.ui \
-    deletedecorator.ui
+    deletedecorator.ui \
+    statistics.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

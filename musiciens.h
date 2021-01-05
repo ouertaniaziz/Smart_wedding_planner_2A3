@@ -65,6 +65,7 @@ public:
     bool supprimer_mus(int);
     bool modifier_mus(int, int, QString, QString, QString, QString, int);
     int affecter_mus(int);
+    int stat_mus(int);
     QString affecter_mus2(int);
     QString affecter_mus3(int);
     QString affecter_mus4(int);

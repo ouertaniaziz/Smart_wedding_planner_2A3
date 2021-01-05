@@ -213,3 +213,44 @@ bool musiciens::modifier_mus(int id_mus1, int id_mus, QString nom_mus, QString p
     query.bindValue(":email_mus", email_mus);
     return query.exec();
 }
+int musiciens::stat_mus(int genre_stat)
+{
+    int total{0};
+    QSqlQuery query;
+    switch (genre_stat)
+    {
+        case 1:
+        genre_mus="Jazz";
+        query.prepare("Select * from MUSICIENS where GENRE_MUS= :genre_mus");
+        query.bindValue(":genre_mus", genre_mus);
+        break;
+    case 2:
+        genre_mus="Electro";
+query.prepare("Select * from MUSICIENS where GENRE_MUS= :genre_mus");
+query.bindValue(":genre_mus", genre_mus);
+        break;
+    case 3:
+        genre_mus="Traditional";
+query.prepare("Select * from MUSICIENS where GENRE_MUS= :genre_mus");
+query.bindValue(":genre_mus", genre_mus);
+        break;
+    case 4:
+        genre_mus="Rock";
+query.prepare("Select * from MUSICIENS where GENRE_MUS= :genre_mus");
+query.bindValue(":genre_mus", genre_mus);
+        break;
+    case 5:
+        genre_mus="Classical";
+        query.prepare("Select * from MUSICIENS where GENRE_MUS= :genre_mus");
+        query.bindValue(":genre_mus", genre_mus);
+        break;
+    }
+    if (query.exec())
+    {
+        while (query.next())
+        {
+            total++;
+        }
+    }
+    return total;
+}

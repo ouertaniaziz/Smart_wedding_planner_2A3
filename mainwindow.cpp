@@ -31,7 +31,7 @@
 #include "smtp.h"
 #include "smtp_yassine.h"
 #include "deletehall.h"
-
+#include "statistics.h"
 #include"traiteur.h"
 #include"produit.h"
 
@@ -4023,4 +4023,10 @@ void MainWindow::on_email_marriage_clicked()
         row++;
 
     }
+}
+
+void MainWindow::on_Aman_clicked()
+{
+    statistics *s= new statistics();
+    s->show();
 }

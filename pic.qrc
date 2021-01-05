@@ -60,5 +60,6 @@
         <file>reset.png</file>
         <file>trash_sami.png</file>
         <file>search_sami.png</file>
+        <file>pie-chart.png</file>
     </qresource>
 </RCC>
